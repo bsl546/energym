@@ -29,6 +29,13 @@ config_dict["root"] = {
 }
 
 
-config_dict["toto"] = {"libs": [r"C:\Data\Projects\ModeLib\\modelica-ibpsa\IBPSA"]}
+config_dict["bsl"] = {
+    "libs": [
+        r"C:\Users\bsl\Documents\90_Other_scripts\Buildings-v7.0.0\Buildings 7.0.0",
+        r"C:\Users\bsl\Documents\90_Other_scripts\modelica-ibpsa",
+        r"C:\Users\bsl\Documents\20_Python_Scripts\170_Building_lib\code_refac\best\simulation\modelica",
+    ]
+}
+
 
 libs = config_dict[username]["libs"]

@@ -646,7 +646,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Rad_1RC_Sun_S16_v0_",
+                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S16_v0_",
                 ),
                 weather="CH_ZH_Maur",
                 simulation_days=365,
@@ -657,7 +657,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Rad_1RC_Sun_S16_v0_",
+                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S16_v0_",
                 ),
                 **kwargs
             )
@@ -668,7 +668,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Rad_1RC_Sun_S18_v0_",
+                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S18_v0_",
                 ),
                 weather="CH_ZH_Maur",
                 simulation_days=365,
@@ -679,7 +679,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Rad_1RC_Sun_S18_v0_",
+                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S18_v0_",
                 ),
                 **kwargs
             )
@@ -690,7 +690,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Rad_1RC_Sun_S20_v0_",
+                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0_",
                 ),
                 weather="CH_ZH_Maur",
                 simulation_days=365,
@@ -701,7 +701,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Rad_1RC_Sun_S20_v0_",
+                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0_",
                 ),
                 **kwargs
             )
@@ -712,7 +712,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Slab_1RC_Sun_S16_v0_",
+                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0_",
                 ),
                 weather="CH_ZH_Maur",
                 simulation_days=365,
@@ -723,7 +723,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Slab_1RC_Sun_S16_v0_",
+                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0_",
                 ),
                 **kwargs
             )
@@ -734,7 +734,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Slab_1RC_Sun_S18_v0_",
+                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0_",
                 ),
                 weather="CH_ZH_Maur",
                 simulation_days=365,
@@ -745,7 +745,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Slab_1RC_Sun_S18_v0_",
+                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0_",
                 ),
                 **kwargs
             )
@@ -756,7 +756,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Slab_1RC_Sun_S20_v0_",
+                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0_",
                 ),
                 weather="CH_ZH_Maur",
                 simulation_days=365,
@@ -767,7 +767,7 @@ def make(key, eval_mode=False, **kwargs):
                     "swiss_house",
                     "fmus",
                     op_sys,
-                    "modelica_swisshouse_src_HP_u_Slab_1RC_Sun_S20_v0_",
+                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0_",
                 ),
                 **kwargs
             )

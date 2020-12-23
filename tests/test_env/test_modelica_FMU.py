@@ -1,247 +1,20 @@
 import numpy as np
 import pandas as pd
-import os, time
 import platform
+import time
 
 import matplotlib.pyplot as plt
 
 import energym
-from energym.envs.env_fmu_mod import EnvModFMU
 
 
 # ============================================================================
 # Constants
 # ============================================================================
 op_sys = platform.system().lower()
-T0 = 273.15
 
-
-# ============================================================================
-# Model parameters
-# -> this sould go in a json or yaml file
-# ============================================================================
-def dummy_model():
-    mdl = {
-        "model_path": os.path.join(
-            "dummy",
-            "fmus",
-            "modelica_dummy_srcmo_vdp_osc",
-        ),
-        "start_time": 0,
-        "stop_time": 30,
-        "step_size": 0.1,
-        "states": ["x1", "x2"],
-        "params": {
-            "mu": 1.0,   # damping
-            "k": 1.0,   # stiffness
-        },
-        "in_specs": {
-            "u": {"type": "scalar", "lower_bound": -1, "upper_bound": 1}
-        },
-        "out_specs": None,
-        "init": {
-            "x1": 1.0,
-            "x2": 0.0
-        },
-        # Controller I/O and Gains
-        "input": "u",
-        "sensor": "x2",
-        "ref": 0.0,
-        "kp": 1.2,
-        "bound": [-1, 1],
-    }
-    return mdl
-
-
-def simple_house_rad():
-    mdl = {
-        # 'model_path'    : 'modelica\\HP1room\\fmus\\modelica_HP1room_srcmo_HP_u_Rad_1RC.fmu',
-        "model_path": os.path.join(
-            "simple_house",
-            "fmus",
-            op_sys,
-            "modelica_simple_house_src_HP_u_Rad_1RC_Sun",
-        ),
-        "weather": "CH_ZH_Maur",
-        "start_time": 0,  # [s]
-        "stop_time": 21 * 24 * 3600,  # [s]
-        "step_size": 5 * 60,  # [s]
-        "states": [
-            "heaPum.P",
-            "heaPum.QCon_flow",
-            "rad.Q_flow",
-            "temRet.T",
-            "temSup.T",
-            "TOut.T",
-            "temRoo.T",
-        ],
-        "params": {
-            "therm_cond_G": 500,
-            "heat_capa_C": 1e7,
-        },
-        "in_specs": {
-            "u": {"type": "scalar", "lower_bound": -1, "upper_bound": 1}
-        },
-        "out_specs": {
-            "y": {"type": "scalar", "lower_bound": -10, "upper_bound": 70}
-        },
-        "init": {"u": 0.0},
-        # Controller I/O and Gains
-        "input": "u",
-        "sensor": "temRoo.T",
-        "ref": T0 + 20,
-        "kp": 0.1,
-        "bound": [0, 1],
-    }
-    return mdl
-
-
-def simple_house_slab():
-    mdl = {
-        # 'model_path'    : 'modelica\\HP1room\\fmus\\modelica_HP1room_srcmo_HP_u_Slab_1RC.fmu',
-        "model_path": os.path.join(
-            "simple_house",
-            "fmus",
-            op_sys,
-            "modelica_simple_house_src_HP_u_Slab_1RC_Sun",
-        ),
-        "weather": "CH_ZH_Maur",
-        "start_time": 0,  # [s]
-        "stop_time": 21 * 24 * 3600,  # [s]
-        "step_size": 5 * 60,  # [s]
-        "states": [
-            "heaPum.P",
-            "heaPum.QCon_flow",
-            "sla.surf_a.Q_flow",
-            "temRet.T",
-            "temSup.T",
-            "TOut.T",
-            "temRoo.T",
-        ],
-        "params": {
-            "therm_cond_G": 500,
-            "heat_capa_C": 1e7,
-        },
-        "in_specs": {
-            "u": {"type": "scalar", "lower_bound": -1, "upper_bound": 1}
-        },
-        "out_specs": {
-            "y": {"type": "scalar", "lower_bound": -10, "upper_bound": 70}
-        },
-        "init": {"u": 0.0},
-        # Controller I/O and Gains
-        "input": "u",
-        "sensor": "temRoo.T",
-        "ref": T0 + 20,
-        "kp": 0.1,
-        "bound": [0, 1],
-    }
-    return mdl
-
-
-def sh_tank():
-    mdl = {
-        # "model_path": "modelica\\HP1room\\fmus\\modelica_HP1room_srcmo_HP_u_Tank_PI_Rad_1RC.fmu",
-        "model_path": os.path.join(
-            "simple_house",
-            "fmus",
-            op_sys,
-            "modelica_HP1room_srcmo_HP_u_Tank_PI_Rad_1RC",
-        ),
-        "start_time": 0,  # [s]
-        "stop_time": 21 * 24 * 3600,  # [s]
-        "step_size": 5 * 60,  # [s]
-        "states": [
-            "heaPum.P",
-            "heaPum.QCon_flow",
-            "rad.Q_flow",
-            "temHP2Hex.T",
-            "temHex2HP.T",
-            "temTan2Rad.T",
-            "temRad2Tan.T",
-            "TOut.T",
-            "temRoo.T",
-        ],
-        "params": {
-            "P_nominal": 5e3,
-            "COP_nominal": 5,
-            "gaiHP.k": 1.0,
-            "therm_cond_G": 500,
-            "heat_capa_C": 5e5,
-        },
-        "in_specs": {
-            "hp_uin": {
-                "type": "scalar",
-                "lower_bound": 1,
-                "upper_bound": 1,
-            },
-            "room_Tset": {
-                "type": "scalar",
-                "lower_bound": T0 + 4,
-                "upper_bound": T0 + 40,
-            },
-        },
-        "out_specs": {
-            "hpT": {
-                "type": "scalar",
-                "lower_bound": T0 - 10,
-                "upper_bound": T0 + 70,
-            },
-            "roomT": {
-                "type": "scalar",
-                "lower_bound": T0 + 0,
-                "upper_bound": T0 + 40,
-            },
-        },
-        "init": {"key": ["hp_uin", "room_Tset"], "val": [0.0, T0 + 20.0]},
-        # Controller I/O and Gains
-        "input": "hp_uin",
-        # 'input'         : ['hp_uin', 'room_Tset'],
-        "sensor": "temHP2Hex.T",
-        "ref": T0 + 60,
-        "kp": 0.1,
-        "bound": [0, 1],
-    }
-    return mdl
-
-
-# ============================================================================
-# FMU Functions
-# ============================================================================
-def build_model(mdl):
-    env = EnvModFMU(
-        model_path=mdl["model_path"],
-        start_time=mdl["start_time"],
-        stop_time=mdl["stop_time"],
-        step_size=mdl["step_size"],
-        weather=mdl["weather"],
-        input_specs=mdl["in_specs"],
-        output_specs=mdl["out_specs"],
-        kpi_options={},
-    )
-    # print(env.model_description)
-    # env.build_action_space(input_specs = INPUT_SPECS)
-    return env
-
-
-def get_model_data(env, var):
-    out = env.get_variable_data(var)
-    return out
-
-
-def set_model_param(env, pvar, pval):
-    env.set_model_variables(pvar, pval)
-
-
-def control_step(env, uvar, uval):
-    env.step(inputs={uvar: [uval]})
-    # env.step(inputs = dict(zip(uvar, uval)))
-
-
-def controller(meas, ref, kp, bnd):
-    uval = kp * (ref - meas)
-    uval = np.min([np.max([uval, bnd[0]]), bnd[1]])
-    return uval
+T0 = 273.15   # [K] Zero degree Celsius in Kelvin
+cp = 4180   # [J/(kg K)] Water specific heat capacity
 
 
 # ============================================================================
@@ -249,109 +22,200 @@ def controller(meas, ref, kp, bnd):
 # ============================================================================
 
 
-def plot_dummy(mdl, record):
-    row, col = 2, 1
-    fig, ax = plt.subplots(row, col, sharex=True, num="co-simulation")
+def set_plot_labels(ax):
+    ax[0, 0].set_ylabel("I [W/m2]")
+    ax[1, 0].set_ylabel("P [kW]")
+    ax[2, 0].set_ylabel("T [°C]")
+    ax[0, 1].set_ylabel("-")
+    ax[1, 1].set_ylabel("mf [kg/s]")
+    ax[2, 1].set_ylabel("-")
 
-    record[mdl["states"]].plot(ax=ax[0])
-    record[mdl["input"]].plot(ax=ax[1])
-    ax[1].set_ylabel("input")
-    # plt.show()
 
-
-def plot_simple_house(mdl, record, model_name):
-    row, col = 3, 1
+def plot_sh_rad(record, model_name):
+    row, col = 3, 2
     fig, ax = plt.subplots(row, col, sharex=True, num=model_name)
 
-    (record[mdl["states"]].iloc[:, :3].abs() * 1e-3).plot(ax=ax[0])
-    (record[mdl["states"]].iloc[:, 3:] - T0).plot(ax=ax[1])
-    record[mdl["input"]].plot(ax=ax[row - 1])
-    ax[0].set_ylabel("P [kW]")
-    ax[1].set_ylabel("T [°C]")
-    ax[2].set_ylabel("input")
+    record["rad_Q"] = (
+        (record["temSup.T"] - record["temRet.T"]) * record["rad.m_flow"] * cp
+    )
+    (
+        record[
+            [
+                "weaBus.HDifHor",
+                "weaBus.HDirNor",
+                "weaBus.HGloHor",
+                # "weaBus.HHorIR",
+                # "sunRad.y",
+            ]
+        ]
+    ).plot(ax=ax[0, 0])
+    (
+        record[
+            [
+                "preHea.Q_flow",
+                "sunHea.Q_flow",
+                "heaPum.QEva_flow",
+                "heaPum.QCon_flow",
+                "heaPum.P",
+                "rad.Q_flow",
+                "rad_Q",
+            ]
+        ].abs()
+        * 1e-3
+    ).plot(ax=ax[1, 0])
+    (
+        record[
+            [
+                "TOut.T",
+                "temRoo.T",
+                "heaPum.TEvaAct",
+                "heaPum.TConAct",
+                "temRet.T",
+                "temSup.T",
+            ]
+        ]
+        - T0
+    ).plot(ax=ax[2, 0])
+    record[["heaPum.COP", "heaPum.COPCar"]].plot(ax=ax[0, 1])
+    record[["rad.m_flow"]].plot(ax=ax[1, 1])
+    record[["u"]].plot(ax=ax[2, 1])
+    set_plot_labels(ax)
     # plt.show()
 
 
-def model_function(model_name: str):
-    if model_name == "dummy":
-        func = dummy_model
-    elif model_name == "simple_house_rad":
-        func = simple_house_rad
-    elif model_name == "simple_house_slab":
-        func = simple_house_slab
-    elif model_name == "sh_tank":
-        func = sh_tank
-    else:
-        print("no model available")
-        func = None
+def plot_sh_slab(record, model_name):
+    row, col = 3, 2
+    fig, ax = plt.subplots(row, col, sharex=True, num=model_name)
 
+    record["slab_Q"] = (
+        (record["temSup.T"] - record["temRet.T"]) * record["sla.m_flow"] * cp
+    )
+    (
+        record[
+            [
+                "weaBus.HDifHor",
+                "weaBus.HDirNor",
+                "weaBus.HGloHor",
+                "weaBus.HHorIR",
+                "sunRad.y",
+            ]
+        ]
+    ).plot(ax=ax[0, 0])
+    (
+        record[
+            [
+                "preHea.Q_flow",
+                "sunHea.Q_flow",
+                "heaPum.QEva_flow",
+                "heaPum.QCon_flow",
+                "heaPum.P",
+                "sla.surf_a.Q_flow",
+                "sla.surf_b.Q_flow",
+                "slab_Q",
+            ]
+        ].abs()
+        * 1e-3
+    ).plot(ax=ax[1, 0])
+    (
+        record[
+            [
+                "TOut.T",
+                "temRoo.T",
+                "heaPum.TEvaAct",
+                "heaPum.TConAct",
+                "temRet.T",
+                "temSup.T",
+                "sla.surf_a.T",
+                "sla.surf_b.T",
+            ]
+        ]
+        - T0
+    ).plot(ax=ax[2, 0])
+    record[["heaPum.COP", "heaPum.COPCar"]].plot(ax=ax[0, 1])
+    record[["sla.m_flow"]].plot(ax=ax[1, 1])
+    record[["u"]].plot(ax=ax[2, 1])
+    set_plot_labels(ax)
+    # plt.show()
+
+
+def select_plot_model(model_name: str):
+    if "rad" in model_name:
+        func = plot_sh_rad
+    elif "slab" in model_name:
+        func = plot_sh_slab
+    else:
+        print("no plot function available")
+        func = None
     return func
 
 
+# ============================================================================
+# Model and control
+# ============================================================================
+
+
+def controller(meas, param):
+    uval = param["kp"] * (param["ref"] - meas)
+    uval = np.min([np.max([uval, param["bound"][0]]), param["bound"][1]])
+    return uval
+
+
 def run_model(model_name: str):
-
-    func = model_function(model_name)
-    mdl = func()
-
-    # Build model
-    env = build_model(mdl)
-
-    # Read parameters
-    print(get_model_data(env, mdl["params"].keys()))
-
-    # Set parameters and check
-    set_model_param(env, mdl["params"].keys(), mdl["params"].values())
-    print(get_model_data(env, mdl["params"].keys()))
-
-    # Set initial conditions (for states and/or inputs) and check
-    set_model_param(env, mdl["init"].keys(), mdl["init"].values())
-    print(get_model_data(env, mdl["init"].keys()))
-    print(get_model_data(env, mdl["states"]))
-
-    # Init data record
-    N = round((mdl["stop_time"] - mdl["start_time"]) / mdl["step_size"])
-    record = pd.DataFrame(
-        np.zeros((N, len(mdl["states"]) + 1)),
-        index=np.arange(N) * mdl["step_size"],
-        columns=["u"] + mdl["states"],
-    )
-
-    # Run feedback loop
-    tic = time.time()
-    for dt in record.index:
-
-        # Get states, control law, and DoStep
-        out = get_model_data(env, mdl["states"])
-        uval = controller(
-            out[mdl["sensor"]], mdl["ref"], mdl["kp"], mdl["bound"]
-        )
-        # uval = [controller(out[mdl['sensor']], mdl['ref'], mdl['kp'], mdl['bound']), T0+20]
-        control_step(env, mdl["input"], uval)
-
-        # Save into DataFrame
-        record.loc[dt, mdl["input"]] = uval
-        record.loc[dt, mdl["states"]] = out
-
-    toc = time.time()
-    print("Elapsed time: %.2f s" % (toc - tic))
-
-    return mdl, record
-
-
-def run_model_new(model_name: str):
     env = energym.make(model_name)
+    print(model_name)
     # Init data record
     N = round((env.stop_time - env.start_time) / env.step_size)
-    outputs = env.get_outputs()
+    outputs = env.get_outputs_names()
     record = pd.DataFrame(
         np.zeros((N, len(outputs) + 1)),
         index=np.arange(N) * env.step_size,
         columns=["u"] + outputs,
     )
 
-    extra_vals = {
+    param_fmu = {
+        # "P_nominal": 25e3,
+        # "COP_nominal": 4,
+        # "therm_cond_G": 2000 #1000,
+        # "heat_capa_C": 1e9,
+        # "TCon_nominal": T0 + 30,
+        # "room_vol_V": 10e3,
+    }
+    # get_param = env.get_variable_data(["P_nominal"])
+    # param_fmu["P_nominal"] = get_param["P_nominal"]*0.5
+
+    param_read = [
+        "P_nominal", "COP_nominal",
+        "Q_flow_nominal", "mHeaPum_flow_nominal",
+        "therm_cond_G", "heat_capa_C",
+    ]
+
+    if "rad" in model_name.lower():
+        param_fmu = dict(**param_fmu, **{
+            # "TRadSup_nominal": T0 + 40,
+            # "TRadRet_nominal": T0 + 35,
+        })
+    elif "slab" in model_name.lower():
+        param_fmu = dict(**param_fmu, **{
+            # "slab_surf": 10e3,
+            # "slab_G_Abo": 1e3, #10e3,
+            # "slab_G_Bel": 1e3, #120,
+        })
+        param_read.extend([
+            "slab_G_Abo", "slab_G_Bel",
+            "slab_surf",
+        ])
+    else:
+        param_fmu = {}
+        param_read = []
+
+    print("old param:", env.get_variable_data(param_fmu))
+    env.set_model_variables(list(param_fmu.keys()), list(param_fmu.values()))
+    print("new param:", env.get_variable_data(param_fmu))
+    print("read param:", env.get_variable_data(param_read))
+
+    param_ctrl = {
         "ref": T0 + 20,
-        "kp": 0.1,
+        "kp": 0.5,
         "bound": [0, 1],
     }
 
@@ -363,12 +227,7 @@ def run_model_new(model_name: str):
     for dt in record.index:
 
         # Get control law
-        uval = controller(
-            out["temRoo.T"],
-            extra_vals["ref"],
-            extra_vals["kp"],
-            extra_vals["bound"],
-        )
+        uval = controller(out["temRoo.T"], param_ctrl)
 
         # Save into DataFrame
         record.loc[dt, "u"] = uval
@@ -380,41 +239,28 @@ def run_model_new(model_name: str):
     toc = time.time()
     print("Elapsed time: %.2f s" % (toc - tic))
 
-    return record
+    return record, env
 
 
 def test_models():
     # List of models to be tested
-    to_test = ["simple_house_rad", "simple_house_slab"]
-    records ={}
+    # to_test = ["SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
+    to_test = ["SwissHouseRad-v0","SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
+    # to_test = ["SuurstoffiRadS16-v0", "SuurstoffiRadS18-v0", "SuurstoffiRadS20-v0"]
+    # to_test = ["SuurstoffiSlabS16-v0", "SuurstoffiSlabS18-v0", "SuurstoffiSlabS20-v0"]
+    records, envs = {}, {}
 
     for model_name in to_test:
 
-        mdl, record = run_model(model_name)
+        record, env = run_model(model_name)
         assert record.to_numpy().sum() != 0
         records[model_name] = record
-
+        envs[model_name] =  env
         # plot
-        if "dummy" in mdl["model_path"]:
-            plot_dummy(mdl, record)
-        elif "simple_house" in mdl["model_path"]:
-            plot_simple_house(mdl, record, model_name)
-        else:
-            print("no plot")
-    return records
+        plot_fun = select_plot_model(model_name.lower())
+        plot_fun(record, model_name)
 
-
-def test_new_models():
-    # List of models to be tested
-    to_test = ["SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
-    records = {}
-
-    for model_name in to_test:
-
-        record = run_model_new(model_name)
-        assert record.to_numpy().sum() != 0
-        records[model_name] = record
-    return records
+    return records, envs
 
 
 # ============================================================================
@@ -422,5 +268,4 @@ def test_new_models():
 # ============================================================================
 if __name__ == "__main__":
     plt.close("all")
-    # records_new = test_new_models()
-    records_old = test_models()
+    records, envs = test_models()

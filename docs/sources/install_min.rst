@@ -30,11 +30,9 @@ Before starting, you must have a running version of Python>=3.6. Check `here <ht
     .. image:: images/env_var_windows3.PNG
 
 
-3. Install Energym. 
+3. Install Energym::
 
-    Install Energym from its source gitlab repository, with git::
-
-    git clone <energym adress>
+    git clone <energym gitlab adress>
     cd <energym main folder>
     python setup.py install --verbose
 
@@ -60,11 +58,9 @@ Before starting, you must have a running version of Python>=3.6. Check `here <ht
     sudo echo "y\r" | ./EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu20.04-x86_64.sh
     rm EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu20.04-x86_64.sh
 
-3. Install Energym. 
+3. Install Energym::
 
-    Install Energym from its source gitlab repository, with git::
-
-    git clone <energym adress>
+    git clone <energym gitlab adress>
     cd <energym main folder>
     python setup.py install --verbose
 

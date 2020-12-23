@@ -29,7 +29,7 @@ Energym
 ================================
 
 
-We introduce Energym, a simple, realistic and transparent open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a fair comparison between different controllers and publications.
+We introduce Energym, a calibrated open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
  
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the `Gym <https://gym.openai.com/>`_ used in the robotic control community. Energym relies on the `functional mockup interface (FMI) <https://fmi-standard.org/>`_ standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in `Modelica <https://www.modelica.org/>`_ and `EnergyPlus <https://energyplus.net/>`_  as well as specific classes for simulating weather forecasts and appliances consumption figures.
  
@@ -160,17 +160,16 @@ For an introduction to Energym see :ref:`start` and for more in depth control ex
 Contribute
 ----------
 
-This open-source library is featured to become the reference library for building control benchmarking.
 Users are encouraged to upload any new environment that present an interest for building or energy system control.
 
 To do so, follow the full installation steps described  in :ref:`install_full`.
 
-To create a new model, please  follow the steps described in :ref:`add_model`.
+To create a new model, please  follow the steps described in :ref:`add_model`. Then contact the authors (see Support) if you want your model to be incorporated in Energym.
 
 Cite
 -------
 
-If you use our library for your publication, please cite our paper 
+If you use our library for your publication, please cite our paper. 
 
 
 
@@ -178,12 +177,12 @@ Support
 -------
 
 If you are having issues, please let us know. We are happy to let Energym grow and help you in a reasonable amount of time.
-We have a mailing list located at: energym_library@google-groups.com
+Plese contact the maintainers [` P.Scharnhorst`](psh@csem.ch) and [`B.Schubnel`](bsl@csem.ch).
 
 License
 -------
 
-The project is licensed under the BSD license.
+The project except all files in "dependencies" is licensed under the BSD license. For dependencies licenses, please refer to the dependencies folder.
 
 
 Thanks

@@ -29,7 +29,7 @@ Energym
 ================================
 
 
-We introduce Energym, a calibrated open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
+Energym is a calibrated open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
  
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the `Gym <https://gym.openai.com/>`_ used in the robotic control community. Energym relies on the `functional mockup interface (FMI) <https://fmi-standard.org/>`_ standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in `Modelica <https://www.modelica.org/>`_ and `EnergyPlus <https://energyplus.net/>`_  as well as specific classes for simulating weather forecasts and appliances consumption figures.
  
@@ -177,7 +177,7 @@ Support
 -------
 
 If you are having issues, please let us know. We are happy to let Energym grow and help you in a reasonable amount of time.
-Plese contact the maintainers [` P.Scharnhorst`](psh@csem.ch) and [`B.Schubnel`](bsl@csem.ch).
+Plese contact the maintainers <psh@csem.ch> and <bsl@csem.ch>.
 
 License
 -------

@@ -3057,7 +3057,7 @@
     Data Center Operation Schedule,  !- Design Power Input Schedule Name
     Data Center CPU Loading Schedule,  !- CPU Loading  Schedule Name
     Data Center Servers Power fLoadTemp,  !- CPU Power Input Function of Loading and Air Temperature Curve Name
-    0.4,                     !- Design Fan Power Input Fraction
+    0.25,                     !- Design Fan Power Input Fraction
     0.0001,                  !- Design Fan Air Flow Rate per Power Input {m3/s-W}
     Data Center Servers Airflow fLoadTemp,  !- Air Flow Function of Loading and Air Temperature Curve Name
     ECM FanPower fFlow,      !- Fan Power Input Function of Flow Curve Name
@@ -3094,10 +3094,10 @@
 
   Curve:Biquadratic,
     Data Center Servers Power fLoadTemp,  !- Name
-    -1.0,                    !- Coefficient1 Constant
+    -0.15,                    !- Coefficient1 Constant-1.0
     1.0,                     !- Coefficient2 x
     0.0,                     !- Coefficient3 x**2
-    0.06667,                 !- Coefficient4 y
+    0.01,                 !- Coefficient4 y 0.06667
     0.0,                     !- Coefficient5 y**2
     0.0,                     !- Coefficient6 x*y
     0.0,                     !- Minimum Value of x
@@ -3198,7 +3198,7 @@
     Data Center Operation Schedule,  !- Design Power Input Schedule Name
     Data Center CPU Loading Schedule,  !- CPU Loading  Schedule Name
     Data Center Servers Power fLoadTemp,  !- CPU Power Input Function of Loading and Air Temperature Curve Name
-    0.4,                     !- Design Fan Power Input Fraction
+    0.25,                     !- Design Fan Power Input Fraction
     0.0001,                  !- Design Fan Air Flow Rate per Power Input {m3/s-W}
     Data Center Servers Airflow fLoadTemp,  !- Air Flow Function of Loading and Air Temperature Curve Name
     ECM FanPower fFlow,      !- Fan Power Input Function of Flow Curve Name

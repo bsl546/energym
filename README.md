@@ -1,11 +1,18 @@
 # General
 
-We introduce Energym, a simple, realistic and transparent open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a fair comparison between different controllers and publications.
+We introduce Energym, a calibrated open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a stadardized comparison between different controllers and publications.
 
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the [Gym library](https://gym.openai.com/)
  used in the robotic control community. Energym relies on the [functional mockup interface (FMI)](https://fmi-standard.org/) standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in [Modelica](https://www.modelica.org/) and [EnergyPlus](https://energyplus.net/)  as well as specific classes for simulating weather forecasts and appliances consumption figures.
 
 With the models already incorporated, Energym offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). In summary, the models already incorporated are representative of cases that can be encountered in real-world control deployment.
+
+
+## Documentation
+
+The full documentation (with installation instructions, usage examples, buildings characteristics) is available at [Energym](tbd)
+
+
 
 ## Working principles
 
@@ -55,8 +62,8 @@ Environment | Thermostat Control | Heat Pump Control | AHU Control | Battery | E
 `SeminarcenterThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :heavy_check_mark: | E+
 `SeminarcenterFull-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | E+
 `SimpleHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Mod
-`SimpleHouseSlab-v0` | :x: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Mod
-`SwissHouseRad-v0` | ? | ? | ? | ? | ? | ? | Mod
+`SimpleHouseSlab-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | Mod
+`SwissHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | Mod
 
 Control variables are outlined in yaml files for all environments in the simulation folder. Environment simulations are packed into FMU's for windows and debian distributions.
 

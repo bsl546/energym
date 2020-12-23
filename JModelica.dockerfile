@@ -116,6 +116,11 @@ RUN git clone -b v7.0.0  https://github.com/lbl-srg/modelica-buildings.git
 RUN git clone https://github.com/ibpsa/modelica-ibpsa.git
 RUN git clone https://github.com/lbl-srg/EnergyPlusToFMU
 
+#Add python3
+RUN apt-get update \
+    && apt-get install -y python3-pip python3-dev      
+
+
 
 #Add python3 to make the tests
 RUN apt-get update \

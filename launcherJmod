@@ -4,13 +4,9 @@
 docker_dir=$(readlink -f $0 | xargs dirname)
 basename="$(dirname "$docker_dir")"
 echo $basename
+docker build --file 'JModelica.dockerfile' . -t docker_jmod
 
-
-
-docker build --file 'Dockerfile' . -t docker_best
-
-
-docker run -it --name docker_energym \
+docker run -it --name docker_jmod \
 	-p 8106:8106 \
-	--volume $basename/:/home/energym \
-docker_energym
+	--volume $basename/:/home/best \
+docker_jmod

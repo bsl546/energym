@@ -85,3 +85,8 @@ For this goal, the tracked KPIs are the average power demand, and the average te
 
 Notebook example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. toctree::
+   :maxdepth: 1
+   :caption:  Here is a notebook example:
+
+   notebooks/SwissHouseRad

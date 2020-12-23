@@ -4,7 +4,6 @@
 SimpleHouseSlab
 ----------------
 
-.. image:: images/haus_picture.PNG
 
 The simple house is a one-zone residential buildings located in Zurich Canton, Switzerland
 

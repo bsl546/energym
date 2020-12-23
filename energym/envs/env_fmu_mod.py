@@ -166,8 +166,10 @@ class EnvModFMU(EnvFMU):
         return self.post_process(list_vars, res)
 
     def get_output(self):
-        res = self.fmu.getReal(
+        out = self.fmu.getReal(
             [self.vrs[key] for key in self.output_keys]
         )
+        res = []
+        res.append((self.time, out))
         output = self.post_process(self.output_keys, res, arrays=False)
         return output

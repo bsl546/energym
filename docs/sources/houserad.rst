@@ -90,4 +90,4 @@ Notebook example
    :maxdepth: 1
    :caption:  Here is a notebook example:
 
-   notebooks/SimpleHouseSlab
+   notebooks/SimpleHouseRad

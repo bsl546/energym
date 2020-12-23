@@ -692,19 +692,28 @@ class EnvFMU(Env):
         self.fmu.terminate()
         self.fmu.freeInstance()
         self.is_fmu_initialized = False
-        shutil.rmtree(self.unzipdir)
+        try:
+            shutil.rmtree(self.unzipdir)
+        except PermissionError:
+            print("Folder could not be removed.")
         cwd = os.getcwd()
         wd_sub_list = os.listdir(cwd)
         if save:
             for dir in wd_sub_list:
                 if "Output_EPExport" in dir:
-                    shutil.move(
-                        os.path.join(cwd, dir),
-                        os.path.join(self.runs_path, dir),
-                    )
+                    try:
+                        shutil.move(
+                            os.path.join(cwd, dir),
+                            os.path.join(self.runs_path, dir),
+                        )
+                    except PermissionError:
+                        print("Folder could not be moved.")
         else:
             for dir in wd_sub_list:
                 if "Output_EPExport" in dir:
-                    shutil.rmtree(
-                        os.path.join(cwd, dir),
-                    )
+                    try:
+                        shutil.rmtree(
+                            os.path.join(cwd, dir),
+                        )
+                    except PermissionError:
+                        print("Folder could not be removed.")

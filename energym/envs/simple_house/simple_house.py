@@ -276,7 +276,7 @@ class SimpleHouse(EnvModFMU):
             outputs_specs = OUTPUTS_SPECS_RAD
         else:
             outputs_specs = OUTPUTS_SPECS_SLAB
-        print(model_path)
+
         super().__init__(
             model_path,
             start_time,

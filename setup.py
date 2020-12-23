@@ -84,7 +84,7 @@ setuptools.setup(
     name="energym",
     version="0.1",
     author="CSEM",
-    author_email="",
+    author_email="psh@csem.ch",
     description="A benchmark for controllers of energy systems",
     # long_description=long_description,
     # long_description_content_type="text/markdown",

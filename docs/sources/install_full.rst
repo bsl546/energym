@@ -6,7 +6,7 @@ Full Installation
 
 The full installation should be used only by contributors willing to add and develop new buildings models.
 
-Two containers are provided, one with OpenModelica, one with the latest free version of JModelica (2.14). Supported platforms are Linux (Ubuntu) and Windows 10.
+Two containers are provided, one with OpenModelica, one with the latest opensource version of JModelica (2.14). Supported platforms are Linux (Ubuntu) and Windows 10.
 
 **Important note**: Users willing only to compile Energyplus files can skip the installation steps 1 and 4. Users willing only to compile Modelica files can skip steps 2,3,5,6.
 

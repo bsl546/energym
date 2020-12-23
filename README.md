@@ -49,21 +49,23 @@ For users willing to use containers, a dockerfile, called `Dockerfile`, is made 
 
 Following environments are available:
 
-Environment | Thermostat Control | Heat Pump Control | AHU Control | Battery | EV | PV | Type
+Environment | Thermostat | Heat Pump | Battery | AHU | EV | PV | Software
 ---|---|---|---|---|---|---|---
-`SmartlabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | E+
-`SmartlabGrid-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | E+
-`SeilabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | E+
-`SeilabGrid-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | E+
-`DatacenterThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :x: | E+
-`DatacenterTempFan-v0` | :x: | :x: | :heavy_check_mark: | :x: | :x: | :x: | E+
-`OfficesThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :heavy_check_mark: | E+
-`SiloFanFCU-v0` | :heavy_check_mark: | :x: | :heavy_check_mark: | :x: | :x: | :x: | E+
-`SeminarcenterThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :heavy_check_mark: | E+
-`SeminarcenterFull-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | E+
-`SimpleHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | Mod
-`SimpleHouseSlab-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | Mod
-`SwissHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | Mod
+`SmartlabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
+`SmartlabGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
+`SeilabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
+`SeilabGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
+`DatacenterThermostat-v0` | :heavy_check_mark: | :x: | :x: | :large_orange_diamond: | :x: | :x: | E+
+`DatacenterTempFan-v0` | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: | :x: | E+
+`OfficesThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :large_orange_diamond: | E+
+`SiloFanFCU-v0` | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: | :x: | E+
+`SeminarcenterThermostat-v0` | :heavy_check_mark: | :large_orange_diamond: | :x: | :x: | :x: | :large_orange_diamond: | E+
+`SeminarcenterFull-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | E+
+`SimpleHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SimpleHouseSlab-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SwissHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+
+:heavy_check_mark: : present and controllable, :large_orange_diamond: : present but not controllable, :x: : absent. 
 
 Control variables are outlined in yaml files for all environments in the simulation folder. Environment simulations are packed into FMU's for windows and debian distributions.
 

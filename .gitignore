@@ -125,6 +125,11 @@ venv.bak/
 # mkdocs documentation
 /site
 
+#docker
+docker/
+dependencies/
+
 # mypy
 .mypy_cache/
 .vscode/launch.json
+.idea/

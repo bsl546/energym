@@ -28,10 +28,3 @@ The icons and materials included in the project are released under the Creative
 Commons Attribution 4.0 International Public License (CC BY 4.0) available on
 https://creativecommons.org/licenses/by/4.0/.
 
-
------------------------------------------------------------------------------
-Files: dependencies/JModelica.org-2.14.zip
-
-License information for files in this zip directory is found in the header
-of each file. For license information of files in subdirectory, see
-the corresponding LICENSE files and file headers.

@@ -689,6 +689,7 @@ class EnvFMU(Env):
 
     def close(self, save=True):
         """Terminates the FMU and removes leftover folders."""
+        instanceName = self.fmu.instanceName
         self.fmu.terminate()
         self.fmu.freeInstance()
         self.is_fmu_initialized = False
@@ -700,7 +701,7 @@ class EnvFMU(Env):
         wd_sub_list = os.listdir(cwd)
         if save:
             for dir in wd_sub_list:
-                if "Output_EPExport" in dir:
+                if instanceName in dir:
                     try:
                         shutil.move(
                             os.path.join(cwd, dir),
@@ -710,7 +711,7 @@ class EnvFMU(Env):
                         print("Folder could not be moved.")
         else:
             for dir in wd_sub_list:
-                if "Output_EPExport" in dir:
+                if instanceName in dir:
                     try:
                         shutil.rmtree(
                             os.path.join(cwd, dir),

@@ -55,8 +55,6 @@ Environment | Thermostat | Heat Pump | Battery | AHU | EV | PV | Software
 `SmartlabGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `SeilabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `SeilabGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
-`DatacenterThermostat-v0` | :heavy_check_mark: | :x: | :x: | :large_orange_diamond: | :x: | :x: | E+
-`DatacenterTempFan-v0` | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: | :x: | E+
 `OfficesThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :large_orange_diamond: | E+
 `SiloFanFCU-v0` | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: | :x: | E+
 `SeminarcenterThermostat-v0` | :heavy_check_mark: | :large_orange_diamond: | :x: | :x: | :x: | :large_orange_diamond: | E+
@@ -77,7 +75,7 @@ An examplatory usage of Energym (assuming a function `get_input()` for computing
 ```python
 import energym
 
-envName = "DatacenterThermostat-v0"
+envName = "SmartlabGrid-v0"
 nsteps = 10
 env = energym.make(envName, simulation_days=100)
 obs = env.get_output()

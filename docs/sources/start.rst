@@ -38,11 +38,11 @@ To use Energym, it has to be imported like any other Python module using the com
 
     import energym
 
-A simulation environment can then be created using the ``make`` command. Here we demonstrate the usage for the model :ref:`DatacenterThermostat-v0 <DataCenterThermostat>`.:
+A simulation environment can then be created using the ``make`` command. Here we demonstrate the usage for the model :ref:`SmartlabGrid-v0 <SmartlabGrid>`.:
 
 .. code-block:: python
 
-    envName = "DatacenterThermostat-v0"
+    envName = "SmartlabGrid-v0"
     env = energym.make(envName)
 
 To create a simulation environment with a different model, substitute ``envName`` with a string containing the name of one of the available models (see e.g. here :ref:`envs`).
@@ -55,7 +55,7 @@ In code, this looks as follows:
 
 .. code-block:: python
 
-    inputs = {'Z01_T_Thermostat_sp':[21], 'Z02_T_Thermostat_sp':[21]}
+    inputs = {'P1_T_Thermostat_sp':[21], 'P2_T_Thermostat_sp':[21], 'P3_T_Thermostat_sp':[21], 'P4_T_Thermostat_sp':[21], 'Bd_Pw_Bat_sp':[0], 'Bd_Ch_EV1Bat_sp':[0], 'Bd_Ch_EV2Bat_sp':[0]}
     outputs = env.step(inputs)
 
 

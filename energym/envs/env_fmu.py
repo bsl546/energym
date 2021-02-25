@@ -516,15 +516,15 @@ class EnvFMU(Env):
         """
         return self.kpis.get_kpi(start_ind, end_ind)
 
-    def get_cumulative_kpi(self, phrase, kpi_type, out_type):
+    def get_cumulative_kpi(self, names, kpi_type, out_type):
         """Retrieves the cumulative KPIs over multiple variables.
 
         For implementation details see the KPI class.
 
         Parameters
         ----------
-        phrase : str
-            Common string to filter the variables.
+        names : list or str
+            List of variable names or common string to filter the variables.
         kpi_type : str
             One of the 4 KPI types to filter the variables.
         out_type : str
@@ -535,7 +535,7 @@ class EnvFMU(Env):
         float or int
             The computed KPI.
         """
-        return self.kpis.get_cumulative_kpi(phrase, kpi_type, out_type)
+        return self.kpis.get_cumulative_kpi(names, kpi_type, out_type)
 
     def sample_random_action(self):
         """Samples random actions from the action space.

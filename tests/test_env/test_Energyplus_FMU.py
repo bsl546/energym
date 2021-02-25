@@ -82,36 +82,6 @@ def test_can_run_gym_interface_on_smartlab_grid():
     env.close()
 
 
-def test_can_run_gym_interface_on_datacenter_thermostat():
-    env = make("DatacenterThermostat-v0")
-    episodes = 2
-    n_steps_per_episode = 100
-    for _ in range(episodes):
-        observation = env.get_output()
-        print(observation)
-        for _ in range(n_steps_per_episode):
-            action = env.sample_random_action()
-            observation = env.step(action)
-        print("Episode finished")
-        env.reset()
-    env.close()
-
-
-def test_can_run_gym_interface_on_datacenter_temp_fan():
-    env = make("DatacenterTempFan-v0")
-    episodes = 2
-    n_steps_per_episode = 100
-    for _ in range(episodes):
-        observation = env.get_output()
-        print(observation)
-        for _ in range(n_steps_per_episode):
-            action = env.sample_random_action()
-            observation = env.step(action)
-        print("Episode finished")
-        env.reset()
-    env.close()
-
-
 def test_can_run_gym_interface_on_offices_thermostat():
     env = make("OfficesThermostat-v0")
     episodes = 2
@@ -177,8 +147,6 @@ def full_test():
     test_can_run_gym_interface_on_seilab_grid()
     test_can_run_gym_interface_on_smartlab_thermal()
     test_can_run_gym_interface_on_smartlab_grid()
-    test_can_run_gym_interface_on_datacenter_thermostat()
-    test_can_run_gym_interface_on_datacenter_temp_fan()
     test_can_run_gym_interface_on_offices_thermostat()
     test_can_run_gym_interface_on_silo_fan_fcu()
     test_can_run_gym_interface_on_seminarcenter_thermostat()
@@ -191,7 +159,7 @@ def epw_test():
     weather_eplus = EPW()
     path_eplus = (
         energym_path
-        / "simulation\\energyplus\\datacenter\\wf\\USA_IL_Chicago-OHare.Intl.AP.725300_TMY3.epw"
+        / "simulation\\energyplus\\offices\\wf\\GRC_Athens.167160_IWEC.epw"
     )
     print(path_eplus)
     weather_eplus.read(path_eplus)
@@ -275,8 +243,6 @@ if __name__ == "__main__":
     # test_can_run_gym_interface_on_seilab_grid()
     # test_can_run_gym_interface_on_smartlab_thermal()
     # test_can_run_gym_interface_on_smartlab_grid()
-    # test_can_run_gym_interface_on_datacenter_thermostat()
-    # test_can_run_gym_interface_on_datacenter_temp_fan()
     # test_can_run_gym_interface_on_offices_thermostat()
     # test_can_run_gym_interface_on_silo_fan_fcu()
     full_test()

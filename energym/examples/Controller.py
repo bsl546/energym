@@ -4,7 +4,7 @@ import math
 class SimpleController(object):
     """Rule-based controller for thermostat setpoint control.
 
-    Supports the models SeminarcenterThermostat-v0, DatacenterThermostat-v0
+    Supports the models SeminarcenterThermostat-v0
     and OfficesThermostat-v0.
 
     Attributes
@@ -489,99 +489,6 @@ class SeminarcenterFullController(object):
             controls[control_name][0] = control_temp
         return controls
 
-
-class DatacenterFanController(object):
-    """Rule-based controller for temperature control.
-
-    Supports the model DatacenterTempFan-v0.
-
-    Attributes
-    ----------
-    CPU_load : float
-        Fixed and constant cpu load.
-    fan_controls : list of str
-        List of inputs for fan flow rate control.
-    HVAC_controls : list of str
-        List of inputs for HVAC equipment temperature control.
-    observations : list of str
-        List of zone temperature observations
-    tol1 : float
-        First threshold for deviation from the goal temperature.
-    tol2 : float
-        Second threshold for deviation from the goal temperature.
-
-    Methods
-    -------
-    get_control(obs, temp_sp)
-        Computes the control actions.
-    """
-
-    def __init__(self, control_list, lower_tol, upper_tol, CPU_load=0.0):
-        """
-        Parameters
-        ----------
-        control_list : list of str
-            List containing all inputs
-        lower_tol : float
-            First threshold for deviation from the goal temperature.
-        upper_tol : float
-            Second threshold for deviation from the goal temperature.
-        CPU_load : float, optional
-            Fixed CPU load for the whole simulation (between 0.0 and 1.0),
-            default is 0.0.
-        """
-        self.CPU_load = CPU_load
-        self.fan_controls = []
-        self.HVAC_controls = []
-        for control in control_list:
-            if "T_HVAC_sp" in control:
-                self.HVAC_controls.append(control)
-            elif "Fl_Fan_sp" in control:
-                self.fan_controls.append(control)
-        self.observations = [control[:5] for control in self.HVAC_controls]
-        self.tol1 = lower_tol
-        self.tol2 = upper_tol
-
-    def get_control(self, obs, temp_sp):
-        """Computes the control actions.
-
-        Parameters
-        ----------
-        obs : dict
-            Dict containing the temperature observations.
-        temp_sp : float
-            Goal temperature for the next timestep.
-
-        Returns
-        -------
-        controls : dict
-            Dict containing the control inputs.
-        """
-        controls = {}
-        for control in self.HVAC_controls:
-            controls[control] = [temp_sp - 2]
-        for control in self.fan_controls:
-            controls[control] = [2]
-
-        for measurement in self.observations:
-            observation = obs[measurement]
-            HVAC_name = measurement + "_HVAC_sp"
-            fan_name = measurement[:4] + "Fl_Fan_sp"
-
-            if self.tol1 < observation - temp_sp < self.tol2:
-                controls[HVAC_name] = [temp_sp - 3]
-                controls[fan_name] = [3.5]
-            elif self.tol1 < temp_sp - observation < self.tol2:
-                controls[HVAC_name] = [temp_sp + 3]
-                controls[fan_name] = [3.5]
-            elif observation - temp_sp > self.tol2:
-                controls[HVAC_name] = [temp_sp - 4]
-                controls[fan_name] = [7]
-            elif temp_sp - observation > self.tol2:
-                controls[HVAC_name] = [temp_sp + 4]
-                controls[fan_name] = [7]
-        controls["Bd_Load_CPU"] = [self.CPU_load]
-        return controls
 
 
 class SiloController(object):

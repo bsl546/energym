@@ -8,8 +8,6 @@ class EnvNames(Enum):
     SMARTLAB_GRID_V0 = "SmartlabGrid-v0"
     SEILAB_THERMAL_V0 = "SeilabThermal-v0"
     SEILAB_GRID_V0 = "SeilabGrid-v0"
-    DATACENTER_THERMOSTAT_V0 = "DatacenterThermostat-v0"
-    DATACENTER_TEMP_FAN_V0 = "DatacenterTempFan-v0"
     OFFICES_THERMOSTAT_V0 = "OfficesThermostat-v0"
     SILO_FAN_FCU_V0 = "SiloFanFCU-v0"
     SEMINARCENTER_THERMOSTAT_V0 = "SeminarcenterThermostat-v0"

@@ -88,10 +88,6 @@ of the buildings, their inputs and outputs.
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`SeilabGrid-v0 <SeilabGrid>`                                   |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`DatacenterThermostat-v0 <DataCenterThermostat>`               |:gre:`con` |:red:`abs`  |:yel:`uncon`|:red:`abs`|:red:`abs`|:red:`abs`  | E+|
-+---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`DatacenterTempFan-v0 <DataCenterFull>`                        |:gre:`con` |:red:`abs`  |:gre:`con`  |:red:`abs`|:red:`abs`|:red:`abs`  | E+|
-+---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`OfficesThermostat-v0 <Offices>`                               |:gre:`con` |:red:`abs`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`SiloFanFCU-v0 <Silo>`                                         |:gre:`con` |:red:`abs`  |:gre:`con`  |:red:`abs`|:red:`abs`|:red:`abs`  | E+|
@@ -121,11 +117,7 @@ of the buildings, their inputs and outputs.
    
    sources/seit
    
-   sources/seig 
-
-   sources/datat  
-
-   sources/dataf  
+   sources/seig
 
    sources/offices
 
@@ -149,7 +141,7 @@ The usage of Energym is straight forward, as in this simplified code example, as
 
    import energym
 
-   envName = "DatacenterThermostat-v0"
+   envName = "SmartlabGrid-v0"
    nsteps = 10
    env = energym.make(envName, simulation_days=100)
    obs = env.get_output()

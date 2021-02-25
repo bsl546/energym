@@ -35,13 +35,6 @@ energym.envs.env_fmu_eplus
 Model Classes
 ################
 
-.. _datacenter_doc:
-
-energym.envs.datacenter.datacenter
------------------------------------
-
-.. autoclass:: energym.envs.datacenter.datacenter.DataCenter
-
 .. _seminarcenter_doc:
 
 energym.envs.seminarcenter.seminarcenter

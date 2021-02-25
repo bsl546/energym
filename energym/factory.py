@@ -6,13 +6,11 @@ import datetime
 from energym.envs.env_names import EnvNames
 from energym.envs.irec_seilab.seilab import Seilab
 from energym.envs.irec_smartlab.smartlab import Smartlab
-from energym.envs.datacenter.datacenter import DataCenter
 from energym.envs.offices.offices import Offices
 from energym.envs.silo.silo import Silo
 from energym.envs.seminarcenter.seminarcenter import Seminarcenter
 from energym.envs.simple_house.simple_house import SimpleHouse
 from energym.envs.swiss_house.swiss_house import SwissHouse
-from energym.schedules.CPUSchedule import CPUSchedule
 from energym.schedules.EProductionSchedule import EProductionSchedule
 from energym.schedules.EVSchedule import ElectricVehicleSchedule
 
@@ -284,135 +282,6 @@ def make(key, eval_mode=False, **kwargs):
                     ),
                     EV1_schedule=ev1_schedule,
                     EV2_schedule=ev2_schedule,
-                    **kwargs
-                )
-            except:
-                raise Exception("Unable to build model")
-    elif key == EnvNames.DATACENTER_THERMOSTAT_V0.value:
-        # cwd = os.getcwd()
-        cpu_dataframe = pd.read_csv(
-            os.path.join(
-                dir_path,
-                "schedules",
-                "ScheduleFiles",
-                "data_cpu.csv",  # "energym",
-            )
-        )
-        cpu_schedule = CPUSchedule(cpu_dataframe, 10)
-        if eval_mode:
-            start_day = 1
-            start_month = 1
-            start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
-            seed = 1
-            cpu_schedule.generate_profile(
-                schedule_start, basefreq=15, seed=seed
-            )
-            return DataCenter(
-                model_path=os.path.join(
-                    "datacenter",
-                    "fmus",
-                    op_sys,
-                    "ZoneDataCenterHVAC_wEconomizer_thermostats_",
-                ),
-                cpu_schedule=cpu_schedule,
-                simulation_days=365,
-                weather="USA_NY_NewYork_KennedyAP3",
-            )
-        else:
-            try:
-                if "start_day" in kwargs:
-                    start_day = kwargs["start_day"]
-                else:
-                    start_day = 1
-                if "start_month" in kwargs:
-                    start_month = kwargs["start_month"]
-                else:
-                    start_month = 1
-                if "start_year" in kwargs:
-                    start_year = kwargs["start_year"]
-                else:
-                    start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
-                seed = datetime.datetime.now().microsecond
-                cpu_schedule.generate_profile(
-                    schedule_start, basefreq=15, seed=seed
-                )
-                return DataCenter(
-                    model_path=os.path.join(
-                        "datacenter",
-                        "fmus",
-                        op_sys,
-                        "ZoneDataCenterHVAC_wEconomizer_thermostats_",
-                    ),
-                    cpu_schedule=cpu_schedule,
-                    **kwargs
-                )
-            except:
-                raise Exception("Unable to build model")
-    elif key == EnvNames.DATACENTER_TEMP_FAN_V0.value:
-
-        cpu_dataframe = pd.read_csv(
-            os.path.join(
-                dir_path, "schedules", "ScheduleFiles", "data_cpu.csv"
-            )
-        )
-        cpu_schedule = CPUSchedule(cpu_dataframe, 10)
-        if eval_mode:
-            start_day = 1
-            start_month = 1
-            start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
-            seed = 1
-            cpu_schedule.generate_profile(
-                schedule_start, basefreq=15, seed=seed
-            )
-            return DataCenter(
-                model_path=os.path.join(
-                    "datacenter",
-                    "fmus",
-                    op_sys,
-                    "DataCenterHVAC_wEconomizer_Temp_Fan_",
-                ),
-                cpu_schedule=cpu_schedule,
-                simulation_days=365,
-                weather="USA_NY_NewYork_KennedyAP3",
-            )
-        else:
-            try:
-                if "start_day" in kwargs:
-                    start_day = kwargs["start_day"]
-                else:
-                    start_day = 1
-                if "start_month" in kwargs:
-                    start_month = kwargs["start_month"]
-                else:
-                    start_month = 1
-                if "start_year" in kwargs:
-                    start_year = kwargs["start_year"]
-                else:
-                    start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
-                seed = datetime.datetime.now().microsecond
-                cpu_schedule.generate_profile(
-                    schedule_start, basefreq=15, seed=seed
-                )
-                return DataCenter(
-                    model_path=os.path.join(
-                        "datacenter",
-                        "fmus",
-                        op_sys,
-                        "DataCenterHVAC_wEconomizer_Temp_Fan_",
-                    ),
-                    cpu_schedule=cpu_schedule,
                     **kwargs
                 )
             except:

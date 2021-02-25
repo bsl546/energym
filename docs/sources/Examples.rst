@@ -12,10 +12,6 @@ Building Examples
 
    OfficesThermostat-v0 <notebooks/Offices>
 
-   DatacenterTempFan-v0 <notebooks/DataCenterTempFan>
-
-   DatacenterThermostat-v0 <notebooks/DataCenterThermostat>
-
    SeminarcenterFull-v0 <notebooks/SeminarcenterFull>
 
    SeminarcenterThermostat-v0 <notebooks/SeminarcenterThermostat>

@@ -15,6 +15,7 @@ config_dict["mxb"] = {
     "libs": [
         r"C:\Data\Projects\ModeLib\lbl-srg\modelica-buildings\Buildings",
         r"C:\Data\Projects\ModeLib\ibpsa\modelica-ibpsa\IBPSA",
+        r"C:\Data\Projects\ModeLib\open-ideas\IDEAS\IDEAS",
         r"C:\Data\Projects\ModeLib\energym\simulation\modelica",
     ]
 }

@@ -1,3 +1,6 @@
+import os
+
+
 def replace_ep_version(ep_version):
     """Sets the correct EnergyPlus version for the simulation model.
 

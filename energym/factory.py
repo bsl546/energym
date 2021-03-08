@@ -1,3 +1,4 @@
+import logging
 import os
 import platform
 import pandas as pd
@@ -13,6 +14,8 @@ from energym.envs.simple_house.simple_house import SimpleHouse
 from energym.envs.swiss_house.swiss_house import SwissHouse
 from energym.schedules.EProductionSchedule import EProductionSchedule
 from energym.schedules.EVSchedule import ElectricVehicleSchedule
+
+logger = logging.getLogger(__name__)
 
 
 def make(key, eval_mode=False, **kwargs):
@@ -95,8 +98,7 @@ def make(key, eval_mode=False, **kwargs):
                     **kwargs
                 )  # SeilabThermal(**kwargs)
             except BaseException as e:
-                print(e)
-                raise Exception("Unable to build model")
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SEILAB_GRID_V0.value:
         ev_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         if eval_mode:
@@ -152,8 +154,8 @@ def make(key, eval_mode=False, **kwargs):
                     EV_schedule=ev_schedule,
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SMARTLAB_THERMAL_V0.value:
         ev1_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         ev2_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
@@ -218,8 +220,8 @@ def make(key, eval_mode=False, **kwargs):
                     EV2_schedule=ev2_schedule,
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SMARTLAB_GRID_V0.value:
         ev1_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         ev2_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
@@ -284,8 +286,8 @@ def make(key, eval_mode=False, **kwargs):
                     EV2_schedule=ev2_schedule,
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.OFFICES_THERMOSTAT_V0.value:
         if eval_mode:
             return Offices(
@@ -309,8 +311,8 @@ def make(key, eval_mode=False, **kwargs):
                     ),
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SILO_FAN_FCU_V0.value:
         if eval_mode:
             return Silo(
@@ -334,8 +336,8 @@ def make(key, eval_mode=False, **kwargs):
                     ),
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SEMINARCENTER_THERMOSTAT_V0.value:
 
         CO2_dataframe = pd.read_csv(
@@ -398,8 +400,8 @@ def make(key, eval_mode=False, **kwargs):
                     CO2_schedule=CO2_schedule,
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SEMINARCENTER_FULL_V0.value:
 
         CO2_dataframe = pd.read_csv(
@@ -462,183 +464,231 @@ def make(key, eval_mode=False, **kwargs):
                     CO2_schedule=CO2_schedule,
                     **kwargs
                 )
-            except:
-                raise Exception("Unable to build model")
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SIMPLE_HOUSE_RAD_V0.value:
         if eval_mode:
-            return SimpleHouse(
-                model_path=os.path.join(
-                    "simple_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_simple_house_src_HP_u_Rad_1RC_Sun_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SimpleHouse(
+                    model_path=os.path.join(
+                        "simple_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_simple_house_src_HP_u_Rad_1RC_Sun_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SimpleHouse(
-                model_path=os.path.join(
-                    "simple_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_simple_house_src_HP_u_Rad_1RC_Sun_",
-                ),
-                **kwargs
-            )
+            try:
+                return SimpleHouse(
+                    model_path=os.path.join(
+                        "simple_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_simple_house_src_HP_u_Rad_1RC_Sun_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SIMPLE_HOUSE_SLAB_V0.value:
         if eval_mode:
-            return SimpleHouse(
-                model_path=os.path.join(
-                    "simple_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_simple_house_src_HP_u_Slab_1RC_Sun_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SimpleHouse(
+                    model_path=os.path.join(
+                        "simple_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_simple_house_src_HP_u_Slab_1RC_Sun_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SimpleHouse(
-                model_path=os.path.join(
-                    "simple_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_simple_house_src_HP_u_Slab_1RC_Sun_",
-                ),
-                **kwargs
-            )
+            try:
+                return SimpleHouse(
+                    model_path=os.path.join(
+                        "simple_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_simple_house_src_HP_u_Slab_1RC_Sun_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SWISSHOUSE_RAD_S16_V0.value:
         if eval_mode:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S16_v0_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S16_v0_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S16_v0_",
-                ),
-                **kwargs
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S16_v0_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SWISSHOUSE_RAD_S18_V0.value:
         if eval_mode:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S18_v0_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S18_v0_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S18_v0_",
-                ),
-                **kwargs
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S18_v0_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SWISSHOUSE_RAD_S20_V0.value:
         if eval_mode:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0_",
-                ),
-                **kwargs
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SWISSHOUSE_SLAB_S16_V0.value:
         if eval_mode:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0_",
-                ),
-                **kwargs
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SWISSHOUSE_SLAB_S18_V0.value:
         if eval_mode:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0_",
-                ),
-                **kwargs
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     elif key == EnvNames.SWISSHOUSE_SLAB_S20_V0.value:
         if eval_mode:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0_",
-                ),
-                weather="CH_ZH_Maur",
-                simulation_days=365,
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0_",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
         else:
-            return SwissHouse(
-                model_path=os.path.join(
-                    "swiss_house",
-                    "fmus",
-                    op_sys,
-                    "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0_",
-                ),
-                **kwargs
-            )
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0_",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
     else:
         raise Exception("Invalid environment name.")

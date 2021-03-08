@@ -1,11 +1,9 @@
-from pathlib import Path
-import os
 import sys
+from pathlib import Path
 
 sys.path.append("..")
 
 from energym import make
-from energym.envs.env_names import EnvNames
 from energym.envs.utils.kpi import KPI
 from energym.envs.utils.weather import EPW, MOS
 

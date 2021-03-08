@@ -2,6 +2,7 @@ import pandas as pd
 import csv
 import random
 import math
+import logging
 
 
 default_keys = ["Dry Bulb Temperature", "Direct Normal Radiation"]
@@ -303,8 +304,8 @@ class EPW(Weather):
                 & (self.prediction_df["Day"] == day)
                 & (self.prediction_df["Hour"] == hour)
             )
-        except:
-            raise Exception("Wrong weather file format")
+        except BaseException as e:
+            raise Exception(f"Wrong weather file format. {e}")
         prediction_keys = [key + " Prediction" for key in default_keys]
         index = [i for i, val in enumerate(date_bool_array) if val][0]
         if change_ind:
@@ -322,10 +323,10 @@ class EPW(Weather):
             ).to_dict()
         else:
             day_slice = self.prediction_df.iloc[
-                index : index + forecast_length
+                index: index + forecast_length
             ].to_dict()
         del_keys = [
-            key for key in day_slice if not key in prediction_keys
+            key for key in day_slice if key not in prediction_keys
         ]
         for key in del_keys:
             del day_slice[key]
@@ -445,7 +446,7 @@ class MOS(Weather):
             ]
 
         forecast = self.prediction_df.loc[
-            time : time + 3600 * (forecast_length - 1), prediction_keys
+            time: time + 3600 * (forecast_length - 1), prediction_keys
         ]
 
         return forecast.to_dict(orient="list")

@@ -1,17 +1,9 @@
 import os
-import numpy as np
-import shutil
-import time
-import collections
 
-from energym.envs.env_fmu import EnvFMU
-
-from energym.spaces.box import Box
-from energym.spaces.discrete import Discrete
-from energym.spaces.dict import Dict
-from energym.envs.utils.weather import EPW  # replace_ep_version,
-from energym.envs.weather_names import WeatherFile as wf
 import energym
+from energym.envs.env_fmu import EnvFMU
+from energym.envs.utils.weather import EPW
+from energym.envs.weather_names import WEATHERNAMES
 
 
 class EnvEPlusFMU(EnvFMU):
@@ -67,7 +59,7 @@ class EnvEPlusFMU(EnvFMU):
         """
         weather_epw = EPW()
         if default_path:
-            if weather in wf.NAMES:
+            if weather in WEATHERNAMES:
 
                 path = os.path.abspath(energym.__file__)
                 path = os.path.abspath(os.path.join(path, "..", ".."))
@@ -76,7 +68,7 @@ class EnvEPlusFMU(EnvFMU):
                     path,
                     "simulation",
                     "energyplus",
-                    model_path + wf.NAMES[weather] + ".fmu",
+                    model_path + WEATHERNAMES[weather] + ".fmu",
                 )
                 weather_file = os.path.join(
                     path,
@@ -84,7 +76,7 @@ class EnvEPlusFMU(EnvFMU):
                     "energyplus",
                     model_path.split(os.sep)[0],
                     "wf",
-                    wf.NAMES[weather] + ".epw",
+                    WEATHERNAMES[weather] + ".epw",
                 )
 
                 weather_epw.read(weather_file)

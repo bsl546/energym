@@ -1,4 +1,4 @@
-
+import abc
 from .utils import np_random
 
 
@@ -15,21 +15,23 @@ class Space(object):
         self.np_random = None
         self.seed()
 
+    @abc.abstractmethod
     def sample(self):
         """Uniformly randomly sample a random element of this space. """
-        raise NotImplementedError
+        pass
 
     def seed(self, seed=None):
         """Seed the PRNG of this space. """
         self.np_random, seed = np_random(seed)
         return [seed]
 
+    @abc.abstractmethod
     def contains(self, x):
         """
         Return boolean specifying if x is a valid
         member of this space
         """
-        raise NotImplementedError
+        pass
 
     def __contains__(self, x):
         return self.contains(x)

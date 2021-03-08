@@ -8,7 +8,6 @@ import logging
 import uuid
 
 import numpy as np
-from fmpy.util import plot_result, download_test_file
 from fmpy.fmi1 import FMU1Slave, FMU1Model
 from fmpy.fmi2 import FMU2Slave, FMU2Model
 from fmpy import read_model_description, extract
@@ -19,7 +18,6 @@ from energym.envs.utils.kpi import KPI
 from energym.spaces.dict import Dict
 from energym.spaces.discrete import Discrete
 from energym.spaces.box import Box
-
 
 logger = logging.getLogger(__name__)
 
@@ -111,16 +109,16 @@ class EnvFMU(Env):
     """
 
     def __init__(
-        self,
-        model_path,
-        start_time,
-        stop_time,
-        step_size,
-        weather=None,
-        input_specs=None,
-        output_specs=None,
-        kpi_options=None,
-        default_path=True,
+            self,
+            model_path,
+            start_time,
+            stop_time,
+            step_size,
+            weather=None,
+            input_specs=None,
+            output_specs=None,
+            kpi_options=None,
+            default_path=True,
     ):
         """
         Parameters
@@ -232,11 +230,6 @@ class EnvFMU(Env):
 
         The inputs have to be contained in input_specs  but
         not every key of the two needs to be an input to the specific model.
-
-        Notes
-        -----
-        TODO: This should be a method of the parent class probably  (Why???)
-        -> conflicting with the simulation object intialization, I would keep it here.
 
         Parameters
         ----------
@@ -414,7 +407,7 @@ class EnvFMU(Env):
         date = time.localtime(base_time + self.time)
         return date[4], date[3], date[2], date[1]
 
-    def step(self, inputs={}):
+    def step(self, inputs=None):
         """Advances the simulation one timestep.
 
         Applies input for current step, simulate the system in FMU and retrieves outputs.
@@ -430,6 +423,8 @@ class EnvFMU(Env):
         outputs: dict
             Outputs for the system.
         """
+        if inputs is None:
+            inputs = {}
         # Initializes FMU is not already
         if not self.is_fmu_initialized:
             self.__initialize_fmu()
@@ -548,7 +543,7 @@ class EnvFMU(Env):
         action = self.input_space.sample()
         return dict(list(action.items()))
 
-    def get_forecast(self, forecast_length=24, **kwargs):
+    def get_forecast(self, forecast_length=24):
         """Generates a weather forecast of a given length.
 
         Parameters
@@ -567,17 +562,17 @@ class EnvFMU(Env):
             hourly_steps = int(60 / (self.step_size / 60))
             tot_length = math.ceil(forecast_length / hourly_steps) + 2
             forecast = self.weather.get_forecast(
-                hour, day, month, tot_length, **kwargs
+                hour, day, month, tot_length
             )
             forecast = self._interpolate_forecast(forecast, hourly_steps)
             for key in forecast:
                 forecast[key] = forecast[key][
-                    start_index : forecast_length + start_index
-                ]
+                                start_index: forecast_length + start_index
+                                ]
             return forecast
         elif isinstance(self.weather, MOS):
             return self.weather.get_forecast(
-                self.time, forecast_length, **kwargs
+                self.time, forecast_length
             )
 
     def _interpolate_forecast(self, forecast, hourly_steps):
@@ -689,32 +684,32 @@ class EnvFMU(Env):
 
     def close(self, save=True):
         """Terminates the FMU and removes leftover folders."""
-        instanceName = self.fmu.instanceName
+        instance_name = self.fmu.instanceName
         self.fmu.terminate()
         self.fmu.freeInstance()
         self.is_fmu_initialized = False
         try:
             shutil.rmtree(self.unzipdir)
-        except PermissionError:
-            print("Folder could not be removed.")
+        except PermissionError as e:
+            logger.error(f"Folder could not be removed. {e}")
         cwd = os.getcwd()
         wd_sub_list = os.listdir(cwd)
         if save:
-            for dir in wd_sub_list:
-                if instanceName in dir:
+            for directory in wd_sub_list:
+                if instance_name in directory:
                     try:
                         shutil.move(
-                            os.path.join(cwd, dir),
-                            os.path.join(self.runs_path, dir),
+                            os.path.join(cwd, directory),
+                            os.path.join(self.runs_path, directory),
                         )
-                    except PermissionError:
-                        print("Folder could not be moved.")
+                    except PermissionError as e:
+                        logger.error(f"Folder could not be moved. {e}")
         else:
-            for dir in wd_sub_list:
-                if instanceName in dir:
+            for directory in wd_sub_list:
+                if instance_name in directory:
                     try:
                         shutil.rmtree(
-                            os.path.join(cwd, dir),
+                            os.path.join(cwd, directory),
                         )
-                    except PermissionError:
-                        print("Folder could not be removed.")
+                    except PermissionError as e:
+                        logger.error(f"Folder could not be removed. {e}")

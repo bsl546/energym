@@ -67,7 +67,7 @@ class SimpleController(object):
         """
 
         for control in control_list:
-            if not "T_Thermostat_sp" in control:
+            if "T_Thermostat_sp" not in control:
 
                 raise TypeError(
                     "Only thermostat setpoints are supported by this controller!"
@@ -231,6 +231,7 @@ class LabController(object):
             Dict containing the control inputs.
         """
         controls = {}
+        ctrl = "P{}_T_Thermostat_sp"
         if self.nighttime_setback:
             if hour < self.nighttime_end or hour > self.nighttime_start:
                 for control in self.thermostat_controls:
@@ -248,7 +249,7 @@ class LabController(object):
             controls[control] = [obs[obs_name]]
         for measurement in self.observations:
             number = math.ceil(int(measurement[2]) / 2)
-            control_name = "P" + str(number) + "_T_Thermostat_sp"
+            control_name = ctrl.format(number)
             observation = obs[measurement]
             control_temp = controls[control_name][0]
             if (
@@ -401,6 +402,7 @@ class SeminarcenterFullController(object):
             Dict containing the control inputs.
         """
         controls = {}
+        ctrl = "{}_Thermostat_sp"
         if self.nighttime_setback:
             if hour < self.nighttime_end or hour > self.nighttime_start:
                 for control in self.thermostat_controls:
@@ -427,10 +429,9 @@ class SeminarcenterFullController(object):
             controls[control] = [40]
 
         for control in self.HP_onoff_controls:
-            # obs_name = control + "_out"
             controls[control] = [0]  # obs[obs_name]
         for measurement in self.observations:
-            control_name = measurement + "_Thermostat_sp"
+            control_name = ctrl.format(measurement)
             observation = obs[measurement]
             control_temp = controls[control_name][0]
             if (
@@ -488,7 +489,6 @@ class SeminarcenterFullController(object):
                     controls[control] = [33]
             controls[control_name][0] = control_temp
         return controls
-
 
 
 class SiloController(object):
@@ -589,6 +589,9 @@ class SiloController(object):
             Dict containing the control inputs.
         """
         controls = {}
+        ctrl = "{}_Thermostat_sp"
+        ahu = "Bd_T_{}_sp"
+        fan = "Bd_Fl_{}_sp"
         if self.nighttime_setback:
             if hour < self.nighttime_end or hour > self.nighttime_start:
                 control_temp = self.nighttime_temp
@@ -608,15 +611,15 @@ class SiloController(object):
             controls[control] = [temp_sp]
         for measurement in self.observations:
             observation = obs[measurement]
-            control_name = measurement + "_Thermostat_sp"
+            control_name = ctrl.format(measurement)
             if "Z05" in measurement:
                 AHU_name = "AHU1"
                 Fl_max = 10
             else:
                 AHU_name = "AHU2"
                 Fl_max = 1
-            AHU_control = "Bd_T_" + AHU_name + "_sp"
-            fan_name = "Bd_Fl_" + AHU_name + "_sp"
+            AHU_control = ahu.format(AHU_name)
+            fan_name = fan.format(AHU_name)
             if self.tol1 < observation - control_temp < self.tol2:
                 controls[control_name] = [control_temp - 1]
                 controls[fan_name] = [math.ceil(Fl_max / 2)]

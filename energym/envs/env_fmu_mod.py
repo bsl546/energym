@@ -1,9 +1,12 @@
+import logging
 import os
 
 from energym.envs.env_fmu import EnvFMU
 from energym.envs.utils.weather import MOS
-from energym.envs.weather_names import WeatherFile as wf
+from energym.envs.weather_names import WEATHERNAMES
 import energym
+
+logger = logging.getLogger(__name__)
 
 
 class EnvModFMU(EnvFMU):
@@ -21,16 +24,16 @@ class EnvModFMU(EnvFMU):
     """
 
     def __init__(
-        self,
-        model_path,
-        start_time,
-        stop_time,
-        step_size,
-        weather,
-        input_specs,
-        output_specs,
-        kpi_options,
-        default_path=True,
+            self,
+            model_path,
+            start_time,
+            stop_time,
+            step_size,
+            weather,
+            input_specs,
+            output_specs,
+            kpi_options,
+            default_path=True,
     ):
         """
         Parameters
@@ -64,7 +67,7 @@ class EnvModFMU(EnvFMU):
             available weather files
         """
         if default_path:
-            if weather in wf.NAMES:
+            if weather in WEATHERNAMES:
                 path = os.path.abspath(energym.__file__)
                 path = os.path.abspath(os.path.join(path, "..", ".."))
 
@@ -72,7 +75,7 @@ class EnvModFMU(EnvFMU):
                     path,
                     "simulation",
                     "modelica",
-                    model_path + wf.NAMES[weather] + ".fmu",
+                    model_path + WEATHERNAMES[weather] + ".fmu",
                 )
             else:
                 raise Exception("Unknown weather file")
@@ -94,14 +97,14 @@ class EnvModFMU(EnvFMU):
         else:
             weather_mos = MOS()
             if default_path:
-                if weather in wf.NAMES:
+                if weather in WEATHERNAMES:
                     weather_file = os.path.join(
                         path,
                         "simulation",
                         "modelica",
                         model_path.split(os.sep)[0],
                         "wf",
-                        wf.NAMES[weather] + ".mos",
+                        WEATHERNAMES[weather] + ".mos",
                     )
 
                     weather_mos.read(weather_file)

@@ -1,6 +1,10 @@
+import logging
 import os
+import abc
 from pathlib import Path
 from os.path import expanduser
+
+logger = logging.getLogger(__name__)
 
 
 class Env:
@@ -12,19 +16,10 @@ class Env:
 
     Notes
     -----
-    Are the functions render() and seed() needed? TODO
-    Is this class in general useful? Do we plan to incorporate other
-    simulation models which are not FMUs? TODO
     Accept field keys or identify them? Maybe not a good idea... # TODO
 
     Attributes
     ----------
-    input_space
-        The Space object corresponding to valid actions
-    output_space
-        The Space object corresponding to valid observations
-    reward_range : tuple
-        A tuple corresponding to the min and max possible rewards
     energym_path : str
         Absolute path to the energym folder.
     runs_path : str
@@ -45,14 +40,6 @@ class Env:
 
     """
 
-    metadata = {"render.modes": []}
-    reward_range = (-float("inf"), float("inf"))
-    spec = None
-
-    # Set these in ALL subclasses
-    input_space = None
-    output_space = None
-
     def __init__(self):
         """ """
         self.energym_path = Path(__file__).resolve().parent.parent.parent
@@ -61,9 +48,10 @@ class Env:
         if not os.path.isdir(self.runs_path):
             try:
                 os.mkdir(self.runs_path)
-            except:
-                raise Exception("Unable to create folder 'runs'")
+            except BaseException as e:
+                logger.exception(f"Unable to create folder 'Energym_runs'. {e}")
 
+    @abc.abstractmethod
     def step(self, action):
         """Advances the simulation by one timestep.
 
@@ -78,8 +66,9 @@ class Env:
         ------
         NotImplementedError
         """
-        raise NotImplementedError
+        pass
 
+    @abc.abstractmethod
     def reset(self):
         """Resets the simulation environment.
 
@@ -89,8 +78,9 @@ class Env:
         ------
         NotImplementedError
         """
-        raise NotImplementedError
+        pass
 
+    @abc.abstractmethod
     def close(self):
         """Closes the simulation environment.
 
@@ -100,9 +90,10 @@ class Env:
         ------
         NotImplementedError
         """
-        raise NotImplementedError
+        pass
 
-    def get_forecast(self, **kwargs):
+    @abc.abstractmethod
+    def get_forecast(self):
         """Return forecasts for the environment.
 
         Not implemented. Subclasses should override this method.
@@ -111,8 +102,9 @@ class Env:
         ------
         NotImplementedError
         """
-        return None
+        pass
 
+    @abc.abstractmethod
     def get_output(self):
         """Gets the outputs of the last simulation step.
 
@@ -120,8 +112,7 @@ class Env:
 
         Raises NotImplementedError
         """
-
-        raise NotImplementedError
+        pass
 
     @property
     def unwrapped(self):
@@ -222,11 +213,13 @@ class OutputsWrapper(Wrapper):
     def get_output(self):
         return self.outputs(self.env.get_output())
 
+    @abc.abstractmethod
     def outputs(self, outputs):
-        raise NotImplementedError
+        pass
 
+    @abc.abstractmethod
     def revert_outputs(self, outputs):
-        raise NotImplementedError
+        pass
 
 
 class StepWrapper(Wrapper):
@@ -235,8 +228,9 @@ class StepWrapper(Wrapper):
     def reset(self, **kwargs):
         return self.env.reset(**kwargs)
 
+    @abc.abstractmethod
     def step(self, inputs):
-        raise NotImplementedError
+        pass
 
 
 class InputsWrapper(Wrapper):
@@ -248,8 +242,10 @@ class InputsWrapper(Wrapper):
     def step(self, inputs):
         return self.env.step(self.inputs(inputs))
 
+    @abc.abstractmethod
     def inputs(self, inputs):
-        raise NotImplementedError
+        pass
 
+    @abc.abstractmethod
     def revert_inputs(self, inputs):
-        raise NotImplementedError
+        pass

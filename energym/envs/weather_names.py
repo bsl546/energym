@@ -1,12 +1,11 @@
-class WeatherFile:
-    """Provides the shortened names of the weather files.
+"""Provides the shortened names of the weather files.
 
-    All available weather files are listed in the NAMES dict. The names
-    are organized as follows: Country specific abbreviation _ region specific
-    abbreviation _ city (+ addiditional information abbreviated).
-    """
+All available weather files are listed in the NAMES dict. The names
+are organized as follows: Country specific abbreviation _ region specific
+abbreviation _ city (+ addiditional information abbreviated).
+"""
 
-    NAMES = {
+WEATHERNAMES = {
         "CH_ZH_Maur": "Switzerland_CHE_Maur",
         "CH_BS_Basel": "Basel_Fixed",
         "CH_TI_Bellinzona": "Bellinzona_Fixed",

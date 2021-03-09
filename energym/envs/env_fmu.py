@@ -556,24 +556,28 @@ class EnvFMU(Env):
         forecast : dict
             Forecasted values for default keys or ones specified in kwargs
         """
+        time_resolution = self.step_size / 60
+        hourly_steps = int(60 / time_resolution)
+        tot_length = math.ceil(forecast_length / hourly_steps) + 2
         if isinstance(self.weather, EPW):
             minute, hour, day, month = self.get_date()
-            start_index = int(minute / 15)
-            hourly_steps = int(60 / (self.step_size / 60))
-            tot_length = math.ceil(forecast_length / hourly_steps) + 2
+            start_index = int(minute / time_resolution)
             forecast = self.weather.get_forecast(
                 hour, day, month, tot_length
             )
-            forecast = self._interpolate_forecast(forecast, hourly_steps)
-            for key in forecast:
-                forecast[key] = forecast[key][
-                                start_index: forecast_length + start_index
-                                ]
-            return forecast
+
         elif isinstance(self.weather, MOS):
-            return self.weather.get_forecast(
-                self.time, forecast_length
+            res = self.time % 3600
+            start_index = int(res / time_resolution)
+            forecast = self.weather.get_forecast(
+                self.time - res, forecast_length
             )
+        forecast = self._interpolate_forecast(forecast, hourly_steps)
+        for key in forecast:
+            forecast[key] = forecast[key][
+                            start_index: forecast_length + start_index
+                            ]
+        return forecast
 
     def _interpolate_forecast(self, forecast, hourly_steps):
         for key in forecast:
@@ -590,7 +594,8 @@ class EnvFMU(Env):
             forecast[key] = new_list
         return forecast
 
-    def look_for_weather_file(self, name=None):
+    def look_for_weather_file(self, name=None, generate_forecasts=True, generate_forecast_method='perfect',
+                              generate_forecast_keys=None):
         """Finds a weather file in the FMU.
 
         Parameters
@@ -622,10 +627,12 @@ class EnvFMU(Env):
             wf = weather_folder / possible_weather_files[0]
             if wf.suffix == ".mos":
                 self.weather = MOS()
-                self.weather.read(wf)
+                self.weather.read(wf, generate_forecasts, generate_forecast_method,
+                                  generate_forecast_keys)
             elif wf.suffix == ".epw":
                 self.weather = EPW()
-                self.weather.read(wf)
+                self.weather.read(wf, generate_forecasts, generate_forecast_method,
+                                  generate_forecast_keys)
             else:
                 raise Exception(
                     "File {} cannot be interpreted as a weather file".format(

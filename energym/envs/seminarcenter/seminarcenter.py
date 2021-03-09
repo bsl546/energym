@@ -426,6 +426,10 @@ class Seminarcenter(EnvEPlusFMU):
         simulation_days=10,
         weather="DNK_MJ_Horsens1",
         kpi_options=None,
+        default_path=True,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
     ):
         """
         Parameters
@@ -471,6 +475,10 @@ class Seminarcenter(EnvEPlusFMU):
             INPUTS_SPECS,
             OUTPUTS_SPECS,
             kpi_options,
+            default_path,
+            generate_forecasts,
+            generate_forecast_method,
+            generate_forecast_keys,
         )
 
     def step(self, inputs):

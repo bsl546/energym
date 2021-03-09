@@ -34,6 +34,9 @@ class EnvModFMU(EnvFMU):
             output_specs,
             kpi_options,
             default_path=True,
+            generate_forecasts=True,
+            generate_forecast_method='perfect',
+            generate_forecast_keys=None
     ):
         """
         Parameters
@@ -107,11 +110,13 @@ class EnvModFMU(EnvFMU):
                         WEATHERNAMES[weather] + ".mos",
                     )
 
-                    weather_mos.read(weather_file)
+                    weather_mos.read(weather_file, generate_forecasts, generate_forecast_method,
+                                     generate_forecast_keys)
                 else:
                     raise Exception("Unknown weather file")
             else:
-                weather_mos.read(weather)
+                weather_mos.read(weather, generate_forecasts, generate_forecast_method,
+                                 generate_forecast_keys)
 
             super().__init__(
                 fmu_file,
@@ -136,7 +141,7 @@ class EnvModFMU(EnvFMU):
             list of values to set
         """
         if self.is_fmu_initialized:
-            logger.warn(
+            logger.warning(
                 "FMU is already initialized. Values set may not be propagated in model as expected."
             )
         if isinstance(variables, str):

@@ -14,17 +14,20 @@ class EnvEPlusFMU(EnvFMU):
     """
 
     def __init__(
-        self,
-        model_path,
-        start_time,
-        stop_time,
-        step_size,
-        # ep_version,
-        weather,
-        input_specs,
-        output_specs,
-        kpi_options,
-        default_path=True,
+            self,
+            model_path,
+            start_time,
+            stop_time,
+            step_size,
+            # ep_version,
+            weather,
+            input_specs,
+            output_specs,
+            kpi_options,
+            default_path=True,
+            generate_forecasts=True,
+            generate_forecast_method='perfect',
+            generate_forecast_keys=None
     ):
         """
         Parameters
@@ -79,11 +82,13 @@ class EnvEPlusFMU(EnvFMU):
                     WEATHERNAMES[weather] + ".epw",
                 )
 
-                weather_epw.read(weather_file)
+                weather_epw.read(weather_file, generate_forecasts, generate_forecast_method,
+                                 generate_forecast_keys)
             else:
                 raise Exception("Unknown weather file")
         else:
-            weather_epw.read(weather)
+            weather_epw.read(weather, generate_forecasts, generate_forecast_method,
+                             generate_forecast_keys)
             fmu_file = model_path
 
         super().__init__(
@@ -110,7 +115,9 @@ class EnvEPlusFMU(EnvFMU):
         self._last_output = {}
         _ = self.step({})
 
-    def step(self, inputs={}):
+    def step(self, inputs=None):
+        if inputs is None:
+            inputs = {}
         output = super().step(inputs)
         self._last_output = output
         return output

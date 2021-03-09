@@ -5,7 +5,7 @@ from energym.spaces.box import Box
 
 
 class RescaleOutputs(OutputsWrapper):
-    r"""Rescales the continuous outputs space of the environment to a given range. By default, variables are rescaed
+    r"""Rescales the continuous outputs space of the environment to a given range. By default, variables are rescaled
     between 0 and 1."""
 
     def __init__(

@@ -366,6 +366,10 @@ class Smartlab(EnvEPlusFMU):
         simulation_days=10,
         weather="ESP_CT_Barcelona",
         kpi_options=None,
+        default_path=True,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
     ):
         """
         Parameters
@@ -412,6 +416,10 @@ class Smartlab(EnvEPlusFMU):
             INPUTS_SPECS,
             OUTPUTS_SPECS,
             kpi_options,
+            default_path,
+            generate_forecasts,
+            generate_forecast_method,
+            generate_forecast_keys,
         )
 
     def step(self, inputs):
@@ -467,6 +475,7 @@ class Smartlab(EnvEPlusFMU):
 
     def get_forecast(self, forecast_length=24, **kwargs):
         forecasts = super().get_forecast(forecast_length, **kwargs)
+        print(forecasts)
         predictions = self.predict_ev(steps=forecast_length)
         forecasts = {**forecasts, **predictions}
         return forecasts

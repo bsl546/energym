@@ -232,6 +232,10 @@ class SimpleHouse(EnvModFMU):
         simulation_days=21,
         weather="CH_BS_Basel",
         kpi_options=None,
+        default_path=True,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
     ):
         """
         Parameters
@@ -286,6 +290,10 @@ class SimpleHouse(EnvModFMU):
             INPUTS_SPECS,
             outputs_specs,
             kpi_options,
+            default_path,
+            generate_forecasts,
+            generate_forecast_method,
+            generate_forecast_keys,
         )
 
         self.set_model_variables(

@@ -4,6 +4,7 @@ import random
 import math
 import logging
 
+logger = logging.getLogger(__name__)
 
 default_keys = ["Dry Bulb Temperature", "Direct Normal Radiation"]
 translate_dictionary_Eplus = {
@@ -51,16 +52,38 @@ class Weather:
         self.names = names
         self.delimiter = delimiter
 
-    def read(self, fp):
-        """Reads a weather file.
+    def read(
+        self,
+        fp,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
+    ):
+        """Reads a weather file. Generates associated forecasts if asked
 
         Parameters
         ----------
         fp : str
             The path to the file.
+        generate_forecasts: bool, optional
+            If True, generate forecasts dataframe
+        generate_forecast_method: {'stochastic', 'perfect', 'persistence'}, optional
+            If 'stochastic', generate random forecast, If 'perfect', use actual weather as forecast.
+            If 'persistence', persitence forecast from previous day
+        generate_forecast_keys: list, optional
+            List of keys to generate forecast for. By default is ["Dry Bulb Temperature", "Global Horizontal Radiation"]
         """
         self.headers = self._read_headers(fp)
         self.dataframe = self._read_data(fp)
+        if generate_forecast_keys is None:
+            generate_forecast_keys = default_keys
+        if generate_forecasts:
+            self.prediction_df = self._get_prediction_df(
+                generate_forecast_keys, generate_forecast_method
+            )
+            self.forecast_keys = [
+                k + " Prediction" for k in generate_forecast_keys
+            ]
 
     def _read_headers(self, fp):
         """Reads the headers of a weather file.
@@ -239,29 +262,35 @@ class EPW(Weather):
         ]
         super().__init__(names, ",")
 
-    def read(self, fp):
-        """Reads a weather file from EPW.
-
-        Overrides the read method of Weather.
-
-        Parameters
-        -----------
-        fp : str
-            The path to the file.
-        """
-        super().read(fp)
-        self.prediction_df = self._get_prediction_df(default_keys)
-
-    def _get_prediction_df(self, keylist):
+    def _get_prediction_df(self, keylist, method):
         df_list = [
             self.dataframe["Month"],
             self.dataframe["Day"],
             self.dataframe["Hour"],
         ]
-        for key in keylist:
-            df = self._generate_prediction_sequence(key)
-            df_list.append(df[key + " Prediction"])
-        pred_df = pd.concat(df_list, axis=1)
+        if method == "stochastic":
+            for key in keylist:
+                df = self._generate_prediction_sequence(key)
+                df_list.append(df[key + " Prediction"])
+            pred_df = pd.concat(df_list, axis=1)
+        elif method == "perfect":
+            pred_df = self.dataframe[
+                ["Month", "Day", "Hour"] + keylist
+            ].copy()
+            pred_df.rename(
+                columns={k: k + " Prediction" for k in keylist},
+                inplace=True,
+            )
+        elif method == "persistence":
+            raise NotImplementedError(
+                "persistence forecast not yet implmented"
+            )
+        else:
+            raise ValueError(
+                "Method {} not defined for generating forecast".format(
+                    method
+                )
+            )
         return pred_df
 
     def get_forecast(self, hour, day, month, forecast_length):
@@ -305,8 +334,8 @@ class EPW(Weather):
                 & (self.prediction_df["Hour"] == hour)
             )
         except BaseException as e:
-            raise Exception(f"Wrong weather file format. {e}")
-        prediction_keys = [key + " Prediction" for key in default_keys]
+            logger.exception(f"Wrong weather file format. {e}")
+        prediction_keys = self.forecast_keys
         index = [i for i, val in enumerate(date_bool_array) if val][0]
         if change_ind:
             if day > 1 or month > 1:
@@ -389,7 +418,36 @@ class MOS(Weather):
         ]
         super().__init__(names, "\t")
 
-    def read(self, fp):
+    def _read_headers(self, fp):
+        """Reads the headers of a MOS weather file. Overrides parent method because headers are different from rest
+
+        Parameters
+        ----------
+        fp : str
+            The path to the file.
+
+        Returns
+        -------
+        d1 : dict
+            A dictionary containing the header rows.
+        """
+        d0 = super()._read_headers(fp)
+        d1 = {}
+        for k, v in d0.items():
+            if k.startswith("#"):
+                list_k = k.split(",")
+                d1[list_k[0]] = list_k[1:]
+            else:
+                d1[k] = v
+        return d1
+
+    def read(
+        self,
+        fp,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
+    ):
         """Reads a weather file from MOS.
 
         Overrides the read method of Weather.
@@ -399,17 +457,38 @@ class MOS(Weather):
         fp : str
             The path to the file.
         """
-        super().read(fp)
-        self.prediction_df = self._get_prediction_df(default_keys)
+        super().read(
+            fp,
+            generate_forecasts,
+            generate_forecast_method,
+            generate_forecast_keys,
+        )
         self.prediction_df.index = self.prediction_df["Time"]
         self.dataframe.index = self.dataframe["Time"]
 
-    def _get_prediction_df(self, keylist):
+    def _get_prediction_df(self, keylist, method):
         df_list = [self.dataframe["Time"]]
-        for key in keylist:
-            df = self._generate_prediction_sequence(key)
-            df_list.append(df[key + " Prediction"])
-        pred_df = pd.concat(df_list, axis=1)
+        if method == "stochastic":
+            for key in keylist:
+                df = self._generate_prediction_sequence(key)
+                df_list.append(df[key + " Prediction"])
+            pred_df = pd.concat(df_list, axis=1)
+        elif method == "perfect":
+            pred_df = self.dataframe[["Time"] + keylist].copy()
+            pred_df.rename(
+                columns={k: k + " Prediction" for k in keylist},
+                inplace=True,
+            )
+        elif method == "persistence":
+            raise NotImplementedError(
+                "persistence forecast not yet implemented"
+            )
+        else:
+            raise ValueError(
+                "Method {} not defined for generating forecast".format(
+                    method
+                )
+            )
         return pred_df
 
     def get_forecast(self, time, forecast_length):
@@ -435,10 +514,10 @@ class MOS(Weather):
         length = len(self.prediction_df)
         if length == 0:
             raise Exception("No weather file")
-        prediction_keys = [key + " Prediction" for key in default_keys]
+        prediction_keys = self.forecast_keys
 
         if time not in self.prediction_df.index:
-            logging.warning(
+            logger.warning(
                 "Start of forecast is not in weather file index. using closest time"
             )
             time = self.prediction_df.index[
@@ -446,7 +525,7 @@ class MOS(Weather):
             ]
 
         forecast = self.prediction_df.loc[
-            time: time + 3600 * (forecast_length - 1), prediction_keys
+            time : time + 3600 * (forecast_length - 1), prediction_keys
         ]
 
         return forecast.to_dict(orient="list")

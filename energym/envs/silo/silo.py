@@ -227,6 +227,10 @@ class Silo(EnvEPlusFMU):
         simulation_days=10,
         weather="GRC_A_Athens",
         kpi_options=None,
+        default_path=True,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
     ):
         """
         Parameters
@@ -268,4 +272,8 @@ class Silo(EnvEPlusFMU):
             INPUTS_SPECS,
             OUTPUTS_SPECS,
             kpi_options,
+            default_path,
+            generate_forecasts,
+            generate_forecast_method,
+            generate_forecast_keys,
         )

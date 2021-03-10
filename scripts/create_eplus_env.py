@@ -97,7 +97,7 @@ if __name__ == "__main__":
             idf_reduced = [args.src[:-4]]
 
         if args.wf is None:
-            w_files = [os.path.join(w_path, p) for p in os.listdir(w_path)]
+            w_files = [os.path.join(w_path, "weather.epw")]
             w_reduced = [p[:-4] for p in os.listdir(w_path)]
         else:
             w_files = [os.path.join(w_path, args.wf)]
@@ -132,7 +132,7 @@ if __name__ == "__main__":
                 os.system(cmd)
 
                 # move fmu files
-                name_file_red = idf_reduced[i] + "_" + w_reduced[k] + ".fmu"
+                name_file_red = idf_reduced[i] + ".fmu"
                 name_file = os.path.join(fmus_path, name_file_red)
                 if name_file_red in os.listdir(fmus_path):
                     os.remove(name_file)  # Remove existing files

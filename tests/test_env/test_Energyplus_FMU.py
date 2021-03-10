@@ -230,3 +230,4 @@ if __name__ == "__main__":
     test_KPI_construct()
     test_KPI_add()
     test_KPI_cumulative()
+

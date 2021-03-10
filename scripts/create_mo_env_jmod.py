@@ -72,6 +72,10 @@ if __name__ == "__main__":
             list_mo = f.read().splitlines()
 
         if args.src is None:
+<<<<<<< HEAD
+=======
+            mo_full = [os.path.join(src_path, "weather.mos")]
+>>>>>>> wp with all weather files
             mo_reduced = list_mo
         else:
             mo_reduced = [args.src[:-3]]

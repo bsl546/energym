@@ -11,6 +11,10 @@ translate_dictionary_Eplus = {
     "Dry Bulb Temperature Prediction": "Ext_T",
     "Direct Normal Radiation Prediction": "Ext_Irr",
 }
+translate_dictionary_Mod = {
+    "Dry Bulb Temperature Prediction": "TOut.T",
+    "Direct Normal Radiation Prediction": "sunRad.y",
+}
 
 
 class Weather:
@@ -53,11 +57,11 @@ class Weather:
         self.delimiter = delimiter
 
     def read(
-        self,
-        fp,
-        generate_forecasts=True,
-        generate_forecast_method="perfect",
-        generate_forecast_keys=None,
+            self,
+            fp,
+            generate_forecasts=True,
+            generate_forecast_method="perfect",
+            generate_forecast_keys=None,
     ):
         """Reads a weather file. Generates associated forecasts if asked
 
@@ -162,11 +166,11 @@ class Weather:
         extr["min"] = self.dataframe[key][
             (self.dataframe[key].shift(1) > self.dataframe[key])
             & (self.dataframe[key].shift(-1) > self.dataframe[key])
-        ]
+            ]
         extr["max"] = self.dataframe[key][
             (self.dataframe[key].shift(1) < self.dataframe[key])
             & (self.dataframe[key].shift(-1) < self.dataframe[key])
-        ]
+            ]
         return extr
 
     def _generate_prediction_sequence(self, key):
@@ -185,22 +189,22 @@ class Weather:
                 dist = new_ind - last_ind
                 for interm in range(last_ind, new_ind):
                     df.loc[interm, (key + " Prediction",)] = df[key][
-                        interm
-                    ] * (
-                        (new_ind - interm) / dist * last_rate
-                        + (interm - last_ind) / dist * new_rate
-                    )
+                                                                 interm
+                                                             ] * (
+                                                                     (new_ind - interm) / dist * last_rate
+                                                                     + (interm - last_ind) / dist * new_rate
+                                                             )
                 last_ind = new_ind
         new_ind = df.index[-1]
         new_rate = random.uniform(0.85, 1.15)
         df.loc[new_ind, (key + " Prediction",)] = (
-            df[key][new_ind] * new_rate
+                df[key][new_ind] * new_rate
         )
         dist = new_ind - last_ind
         for interm in range(last_ind, new_ind):
             df.loc[interm, (key + " Prediction",)] = df[key][interm] * (
-                (new_ind - interm) / dist * last_rate
-                + (interm - last_ind) / dist * new_rate
+                    (new_ind - interm) / dist * last_rate
+                    + (interm - last_ind) / dist * new_rate
             )
         return df
 
@@ -276,7 +280,7 @@ class EPW(Weather):
         elif method == "perfect":
             pred_df = self.dataframe[
                 ["Month", "Day", "Hour"] + keylist
-            ].copy()
+                ].copy()
             pred_df.rename(
                 columns={k: k + " Prediction" for k in keylist},
                 inplace=True,
@@ -329,9 +333,9 @@ class EPW(Weather):
             raise Exception("No weather file")
         try:
             date_bool_array = (
-                (self.prediction_df["Month"] == month)
-                & (self.prediction_df["Day"] == day)
-                & (self.prediction_df["Hour"] == hour)
+                    (self.prediction_df["Month"] == month)
+                    & (self.prediction_df["Day"] == day)
+                    & (self.prediction_df["Hour"] == hour)
             )
         except BaseException as e:
             logger.exception(f"Wrong weather file format. {e}")
@@ -352,8 +356,8 @@ class EPW(Weather):
             ).to_dict()
         else:
             day_slice = self.prediction_df.iloc[
-                index: index + forecast_length
-            ].to_dict()
+                        index: index + forecast_length
+                        ].to_dict()
         del_keys = [
             key for key in day_slice if key not in prediction_keys
         ]
@@ -442,11 +446,11 @@ class MOS(Weather):
         return d1
 
     def read(
-        self,
-        fp,
-        generate_forecasts=True,
-        generate_forecast_method="perfect",
-        generate_forecast_keys=None,
+            self,
+            fp,
+            generate_forecasts=True,
+            generate_forecast_method="perfect",
+            generate_forecast_keys=None,
     ):
         """Reads a weather file from MOS.
 
@@ -524,8 +528,18 @@ class MOS(Weather):
                 (self.prediction_df["Time"] - time).abs().argsort()[0]
             ]
 
-        forecast = self.prediction_df.loc[
-            time : time + 3600 * (forecast_length - 1), prediction_keys
-        ]
+        day_slice = self.prediction_df.loc[
+                   time: time + 3600 * (forecast_length - 1), prediction_keys
+                   ].to_dict(orient="list")
 
-        return forecast.to_dict(orient="list")
+        # Carry out translation to standard name so as to have same naming as FMU outputs
+        forecast = {}
+        for key in day_slice:
+            if key in list(translate_dictionary_Mod):
+                forecast[translate_dictionary_Mod[key]] = day_slice[key]
+            else:
+                forecast[key] = day_slice[key]
+        for key in forecast:
+            if ".T" in key:
+                forecast[key] = [val + 273.15 for val in forecast[key]]
+        return forecast

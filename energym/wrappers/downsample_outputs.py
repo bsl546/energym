@@ -2,7 +2,7 @@ import numpy as np
 from energym.envs.env import StepWrapper
 
 
-class DonwsampleOutputs(StepWrapper):
+class DownsampleOutputs(StepWrapper):
     r"""Transform the outputs via an arbitrary function.
 
     Example::
@@ -18,7 +18,7 @@ class DonwsampleOutputs(StepWrapper):
     """
 
     def __init__(self, env, steps: int, downsampling_dic: dict):
-        super(DonwsampleOutputs, self).__init__(env)
+        super(DownsampleOutputs, self).__init__(env)
         for key in downsampling_dic:
             assert callable(downsampling_dic[key])
         self.downsampling_dic = downsampling_dic
@@ -38,8 +38,8 @@ class DonwsampleOutputs(StepWrapper):
 
         return output_dic
 
-    def get_forecast(self, **kwargs):
-        forecast = self.env.get_forecast(**kwargs)
+    def get_forecast(self, forecast_length=24):
+        forecast = self.env.get_forecast(forecast_length=forecast_length*self.steps)
         for key in forecast:
             forecast[key] = self.downsampling_dic[key](
                 np.array(forecast[key])[

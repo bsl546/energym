@@ -356,8 +356,8 @@ default_kpi_options = {
 }
 
 
-class Seilab(EnvEPlusFMU):
-    """Containing information for the models SeilabThermal-v0 and SeilabGrid-v0.
+class Apartments(EnvEPlusFMU):
+    """Containing information for the models ApartmentsThermal-v0 and ApartmentsGrid-v0.
 
     Subclasses EnvEPlusFMU and inherits its behavior. Simulation based details are
     specified in this class and passed to the constructor of EnvEPlusFMU.

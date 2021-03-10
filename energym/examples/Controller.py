@@ -135,7 +135,7 @@ class SimpleController(object):
 class LabController(object):
     """Rule-based controller for temperature control.
 
-    Supports the models SeilabThermal-v0, SeilabGrid-v0,
+    Supports the models ApartmentsThermal-v0, ApartmentsGrid-v0,
     SmartlabThermal-v0 and SmartlabGrid-v0.
 
     Attributes

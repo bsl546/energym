@@ -1,12 +1,12 @@
-.. _SeilabThermal:
+.. _ApartmentsThermal:
 
 
-SeilabThermal
-----------------
+ApartmentsThermal
+--------------------
 
 .. image:: images/irec_picture.PNG
 
-Seilab Thermal is a 8 zones building located in Spain, Tarragona.  It has a total surface area of 417.12m\ :sup:`2` and a total volume of 1042.83m\ :sup:`3`. 
+ApartmentsThermal is a 8 zones building located in Spain, Tarragona.  It has a total surface area of 417.12m\ :sup:`2` and a total volume of 1042.83m\ :sup:`3`. 
 
 
 Building and thermal zones
@@ -22,7 +22,7 @@ Building and thermal zones
 Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SEILAB thermal system consists of a centralized water-to-water geothermal heat pump (HP) system, which extracts heat from the ground through a vertical ground heat exchanger,
+Apartments thermal system consists of a centralized water-to-water geothermal heat pump (HP) system, which extracts heat from the ground through a vertical ground heat exchanger,
 and provides hot water for the indoor fan coil units (two units per apartment) and the Domestic Hot Water (DHW). The DHW system is composed by four storage systems,
 one for each household, and consist in a four node-stratified tank. Heating loop circuit from the heat pump is connected to the bottom half part of the tanks and electrical
 heaters are placed on the top part acting as auxiliary systems.
@@ -32,8 +32,8 @@ heaters are placed on the top part acting as auxiliary systems.
 Electrical systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Regarding the electrical part, SEILAB system includes a PV array, a community battery and an electric vehicle (EV). 
-In the thermal scenario, community battery and electric vehicle charging are disregarded; see :ref:`Seilabgrid`.
+Regarding the electrical part, Apartments system includes a PV array, a community battery and an electric vehicle (EV). 
+In the thermal scenario, community battery and electric vehicle charging are disregarded; see :ref:`Apartmentsgrid`.
 
 
 
@@ -77,12 +77,12 @@ Summer season in Spain can reach high temperature such as 35°C. This strategy a
 Simulation inputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For more detail, please check the documentation :ref:`seilab_doc` or the source code :py:class:`energym.envs.irec_seilab.seilab.Seilab`.
+For more detail, please check the documentation :ref:`apartments_doc` or the source code :py:class:`energym.envs.apartments.apartments.Apartments`.
 
 
 .. exec::
     import json
-    from energym.envs.irec_seilab.seilab import INPUTS_SPECS
+    from energym.envs.apartments.apartments import INPUTS_SPECS
     inputs_list = ["P1_T_Thermostat_sp",
     "P2_T_Thermostat_sp",
     "P3_T_Thermostat_sp",
@@ -112,7 +112,7 @@ Simulation outputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. exec::
     import json
-    from energym.envs.irec_seilab.seilab import OUTPUTS_SPECS
+    from energym.envs.apartments.apartments import OUTPUTS_SPECS
     outputs_list = ["Ext_T",
     "Ext_RH",
     "Ext_Irr",
@@ -193,7 +193,7 @@ Simulation outputs
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The evaluation scenario for the `SeilabThermal-v0` model consists of a control from January to April with the objective of minimizing the grid exchange, while keeping the zone temperatures between 19 and 24°C.
+The evaluation scenario for the `ApartmentsThermal-v0` model consists of a control from January to April with the objective of minimizing the grid exchange, while keeping the zone temperatures between 19 and 24°C.
 For this goal, the tracked KPIs are the average exchanged energy (absolute value of the difference of produced and consumed energy), and the average temperature deviation and total temperature violations with respect to the interval [19, 24].
 
 
@@ -203,4 +203,4 @@ Notebook example
    :maxdepth: 1
    :caption:  Here is a notebook example:
 
-   notebooks/SeilabThermal
+   notebooks/ApartmentsThermal

@@ -84,9 +84,9 @@ of the buildings, their inputs and outputs.
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`SmartlabGrid-v0 <SmartlabGrid>`                               |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`SeilabThermal-v0 <SeilabThermal>`                             |:gre:`con` |:gre:`con`  |:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
+| :ref:`ApartmentsThermal-v0 <ApartmentsThermal>`                     |:gre:`con` |:gre:`con`  |:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`SeilabGrid-v0 <SeilabGrid>`                                   |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
+| :ref:`ApartmentsGrid-v0 <ApartmentsGrid>`                           |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`OfficesThermostat-v0 <Offices>`                               |:gre:`con` |:red:`abs`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+

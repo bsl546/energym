@@ -42,17 +42,17 @@ energym.envs.seminarcenter.seminarcenter
 
 .. autoclass:: energym.envs.seminarcenter.seminarcenter.Seminarcenter
 
-.. _seilab_doc:
+.. _apartments_doc:
 
-energym.envs.irec_seilab.seilab
---------------------------------
+energym.envs.apartments.apartments
+------------------------------------
 
-.. autoclass:: energym.envs.irec_seilab.seilab.Seilab
+.. autoclass:: energym.envs.apartments.apartments.Apartments
 
 .. _smartlab_doc:
 
 energym.envs.irec_smartlab.smartlab
-------------------------------------
+-----------------------------------------
 
 .. autoclass:: energym.envs.irec_smartlab.smartlab.Smartlab
 

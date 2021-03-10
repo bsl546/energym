@@ -6,8 +6,8 @@ class EnvNames(Enum):
 
     SMARTLAB_THERMAL_V0 = "SmartlabThermal-v0"
     SMARTLAB_GRID_V0 = "SmartlabGrid-v0"
-    SEILAB_THERMAL_V0 = "SeilabThermal-v0"
-    SEILAB_GRID_V0 = "SeilabGrid-v0"
+    APARTMENTS_THERMAL_V0 = "ApartmentsThermal-v0"
+    APARTMENTS_GRID_V0 = "ApartmentsGrid-v0"
     OFFICES_THERMOSTAT_V0 = "OfficesThermostat-v0"
     MIXEDUSE_FAN_FCU_V0 = "MixedUseFanFCU-v0"
     SEMINARCENTER_THERMOSTAT_V0 = "SeminarcenterThermostat-v0"

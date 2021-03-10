@@ -48,7 +48,7 @@ if __name__ == "__main__":
         "-folder_name",
         action="store",
         default=None,
-        help="Name of the environment folder, e.g. irec_seilab. All energyplus folders are used if not specified.",
+        help="Name of the environment folder, e.g. apartments. All energyplus folders are used if not specified.",
     )
 
     parser.add_argument(

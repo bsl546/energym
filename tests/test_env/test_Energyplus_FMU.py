@@ -8,20 +8,8 @@ from energym.envs.utils.kpi import KPI
 from energym.envs.utils.weather import EPW, MOS
 
 
-"""def test_can_make_every_env():
-
-    for enum_elem in EnvNames:
-        env = make(enum_elem.value)"""
-
-
-"""def test_can_reset():
-    env = make(EnvNames.SEILAB_THERMAL_V0.name)
-    env.reset()
-    env.stop()"""
-
-
-def test_can_run_gym_interface_on_seilab_thermal():
-    env = make("SeilabThermal-v0")
+def test_can_run_gym_interface_on_apartments_thermal():
+    env = make("ApartmentsThermal-v0")
     episodes = 2
     n_steps_per_episode = 100
     for _ in range(episodes):
@@ -35,8 +23,8 @@ def test_can_run_gym_interface_on_seilab_thermal():
     env.close()
 
 
-def test_can_run_gym_interface_on_seilab_grid():
-    env = make("SeilabGrid-v0")
+def test_can_run_gym_interface_on_apartments_grid():
+    env = make("ApartmentsGrid-v0")
     episodes = 2
     n_steps_per_episode = 100
     for _ in range(episodes):
@@ -141,8 +129,8 @@ def test_can_run_gym_interface_on_seminarcenter_full():
 
 
 def full_test():
-    test_can_run_gym_interface_on_seilab_thermal()
-    test_can_run_gym_interface_on_seilab_grid()
+    test_can_run_gym_interface_on_apartments_thermal()
+    test_can_run_gym_interface_on_apartments_grid()
     test_can_run_gym_interface_on_smartlab_thermal()
     test_can_run_gym_interface_on_smartlab_grid()
     test_can_run_gym_interface_on_offices_thermostat()
@@ -237,14 +225,8 @@ def test_KPI_cumulative():
 
 
 if __name__ == "__main__":
-    # test_can_run_gym_interface_on_seilab_thermal()
-    # test_can_run_gym_interface_on_seilab_grid()
-    # test_can_run_gym_interface_on_smartlab_thermal()
-    # test_can_run_gym_interface_on_smartlab_grid()
-    # test_can_run_gym_interface_on_offices_thermostat()
     full_test()
-    # test_can_run_gym_interface_on_seilab_thermal()
     epw_test()
-    # test_KPI_construct()
-    # test_KPI_add()
-    # test_KPI_cumulative()
+    test_KPI_construct()
+    test_KPI_add()
+    test_KPI_cumulative()

@@ -5,7 +5,7 @@ import pandas as pd
 import datetime
 
 from energym.envs.env_names import EnvNames
-from energym.envs.irec_seilab.seilab import Seilab
+from energym.envs.apartments.apartments import Apartments
 from energym.envs.irec_smartlab.smartlab import Smartlab
 from energym.envs.offices.offices import Offices
 from energym.envs.mixeduse.mixeduse import MixedUse
@@ -42,7 +42,7 @@ def make(key, eval_mode=False, **kwargs):
     op_sys = platform.system().lower()
     dir_path = os.path.dirname(os.path.realpath(__file__))
 
-    if key == EnvNames.SEILAB_THERMAL_V0.value:
+    if key == EnvNames.APARTMENTS_THERMAL_V0.value:
         ev_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         if eval_mode:
             start_day = 1
@@ -55,12 +55,12 @@ def make(key, eval_mode=False, **kwargs):
             ev_schedule.generate_profile(
                 schedule_start, basefreq=3, seed=seed
             )
-            return Seilab(
+            return Apartments(
                 model_path=os.path.join(
-                    "irec_seilab",
+                    "apartments",
                     "fmus",
                     op_sys,
-                    "IREC_SEILAB_heavy_pump_",
+                    "Apartments_heavy_pump_",
                 ),
                 EV_schedule=ev_schedule,
                 simulation_days=120,
@@ -87,19 +87,19 @@ def make(key, eval_mode=False, **kwargs):
                 ev_schedule.generate_profile(
                     schedule_start, basefreq=3, seed=seed
                 )
-                return Seilab(
+                return Apartments(
                     model_path=os.path.join(
-                        "irec_seilab",
+                        "apartments",
                         "fmus",
                         op_sys,
-                        "IREC_SEILAB_heavy_pump_",
+                        "Apartments_heavy_pump_",
                     ),
                     EV_schedule=ev_schedule,
                     **kwargs
-                )  # SeilabThermal(**kwargs)
+                )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SEILAB_GRID_V0.value:
+    elif key == EnvNames.APARTMENTS_GRID_V0.value:
         ev_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         if eval_mode:
             start_day = 1
@@ -112,12 +112,12 @@ def make(key, eval_mode=False, **kwargs):
             ev_schedule.generate_profile(
                 schedule_start, basefreq=3, seed=seed
             )
-            return Seilab(
+            return Apartments(
                 model_path=os.path.join(
-                    "irec_seilab",
+                    "apartments",
                     "fmus",
                     op_sys,
-                    "IREC_SEILAB_heavy_th_",
+                    "Apartments_heavy_th_",
                 ),
                 EV_schedule=ev_schedule,
                 simulation_days=365,
@@ -144,12 +144,12 @@ def make(key, eval_mode=False, **kwargs):
                 ev_schedule.generate_profile(
                     schedule_start, basefreq=3, seed=seed
                 )
-                return Seilab(
+                return Apartments(
                     model_path=os.path.join(
-                        "irec_seilab",
+                        "apartments",
                         "fmus",
                         op_sys,
-                        "IREC_SEILAB_heavy_th_",
+                        "Apartments_heavy_th_",
                     ),
                     EV_schedule=ev_schedule,
                     **kwargs

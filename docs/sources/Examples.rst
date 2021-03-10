@@ -18,9 +18,9 @@ Building Examples
 
    MixedUseFanFCU-v0 <notebooks/MixedUse>
 
-   SeilabGrid-v0 <notebooks/SeilabGrid>
+   ApartmentsGrid-v0 <notebooks/ApartmentsGrid>
 
-   SeilabThermal-v0 <notebooks/SeilabThermal>
+   ApartmentsThermal-v0 <notebooks/ApartmentsThermal>
 
    SmartlabGrid-v0 <notebooks/SmartlabGrid>
 

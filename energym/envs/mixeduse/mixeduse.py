@@ -211,8 +211,8 @@ default_kpi_options = {
 }
 
 
-class Silo(EnvEPlusFMU):
-    """Containing information for the model SiloFanFCU-v0.
+class MixedUse(EnvEPlusFMU):
+    """Containing information for the model MixedUseFanFCU-v0.
 
     Subclasses EnvEPlusFMU and inherits its behavior. Simulation based details are
     specified in this class and passed to the constructor of EnvEPlusFMU.

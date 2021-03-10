@@ -491,10 +491,10 @@ class SeminarcenterFullController(object):
         return controls
 
 
-class SiloController(object):
+class MixedUseController(object):
     """Rule-based controller for temperature control.
 
-    Supports the model SiloFanFCU-v0.
+    Supports the model MixedUseFanFCU-v0.
 
     Attributes
     ----------

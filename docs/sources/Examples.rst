@@ -16,7 +16,7 @@ Building Examples
 
    SeminarcenterThermostat-v0 <notebooks/SeminarcenterThermostat>
 
-   SiloFanFCU-v0 <notebooks/Silo>
+   MixedUseFanFCU-v0 <notebooks/MixedUse>
 
    SeilabGrid-v0 <notebooks/SeilabGrid>
 

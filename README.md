@@ -56,7 +56,7 @@ Environment | Thermostat | Heat Pump | Battery | AHU | EV | PV | Software
 `SeilabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `SeilabGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `OfficesThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :large_orange_diamond: | E+
-`SiloFanFCU-v0` | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: | :x: | E+
+`MixedUseFanFCU-v0` | :heavy_check_mark: | :x: | :x: | :heavy_check_mark: | :x: | :x: | E+
 `SeminarcenterThermostat-v0` | :heavy_check_mark: | :large_orange_diamond: | :x: | :x: | :x: | :large_orange_diamond: | E+
 `SeminarcenterFull-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | E+
 `SimpleHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod

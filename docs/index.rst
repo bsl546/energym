@@ -90,7 +90,7 @@ of the buildings, their inputs and outputs.
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`OfficesThermostat-v0 <Offices>`                               |:gre:`con` |:red:`abs`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`SiloFanFCU-v0 <Silo>`                                         |:gre:`con` |:red:`abs`  |:gre:`con`  |:red:`abs`|:red:`abs`|:red:`abs`  | E+|
+| :ref:`MixedUseFanFCU-v0 <MixedUse>`                                 |:gre:`con` |:red:`abs`  |:gre:`con`  |:red:`abs`|:red:`abs`|:red:`abs`  | E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`SeminarcenterThermostat-v0 <SeminarcenterThermostat>`         |:gre:`con` |:yel:`uncon`|:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
@@ -121,7 +121,7 @@ of the buildings, their inputs and outputs.
 
    sources/offices
 
-   sources/silo
+   sources/mixeduse
 
    sources/seminart
 

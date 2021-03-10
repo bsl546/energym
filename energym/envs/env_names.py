@@ -9,7 +9,7 @@ class EnvNames(Enum):
     SEILAB_THERMAL_V0 = "SeilabThermal-v0"
     SEILAB_GRID_V0 = "SeilabGrid-v0"
     OFFICES_THERMOSTAT_V0 = "OfficesThermostat-v0"
-    SILO_FAN_FCU_V0 = "SiloFanFCU-v0"
+    MIXEDUSE_FAN_FCU_V0 = "MixedUseFanFCU-v0"
     SEMINARCENTER_THERMOSTAT_V0 = "SeminarcenterThermostat-v0"
     SEMINARCENTER_FULL_V0 = "SeminarcenterFull-v0"
     SIMPLE_HOUSE_RAD_V0 = "SimpleHouseRad-v0"

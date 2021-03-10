@@ -63,12 +63,12 @@ energym.envs.offices.offices
 
 .. autoclass:: energym.envs.offices.offices.Offices
 
-.. _silo_doc:
+.. _mixeduse_doc:
 
-energym.envs.silo.silo
+energym.envs.mixeduse.mixeduse
 --------------------------------
 
-.. autoclass:: energym.envs.silo.silo.Silo
+.. autoclass:: energym.envs.mixeduse.mixeduse.MixedUse
 
 .. _simplehouse_doc:
 

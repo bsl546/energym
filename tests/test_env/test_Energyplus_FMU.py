@@ -95,8 +95,8 @@ def test_can_run_gym_interface_on_offices_thermostat():
     env.close()
 
 
-def test_can_run_gym_interface_on_silo_fan_fcu():
-    env = make("SiloFanFCU-v0")
+def test_can_run_gym_interface_on_mixeduse_fan_fcu():
+    env = make("MixedUseFanFCU-v0")
     episodes = 2
     n_steps_per_episode = 100
     for _ in range(episodes):
@@ -146,7 +146,7 @@ def full_test():
     test_can_run_gym_interface_on_smartlab_thermal()
     test_can_run_gym_interface_on_smartlab_grid()
     test_can_run_gym_interface_on_offices_thermostat()
-    test_can_run_gym_interface_on_silo_fan_fcu()
+    test_can_run_gym_interface_on_mixeduse_fan_fcu()
     test_can_run_gym_interface_on_seminarcenter_thermostat()
     test_can_run_gym_interface_on_seminarcenter_full()
 
@@ -242,7 +242,6 @@ if __name__ == "__main__":
     # test_can_run_gym_interface_on_smartlab_thermal()
     # test_can_run_gym_interface_on_smartlab_grid()
     # test_can_run_gym_interface_on_offices_thermostat()
-    # test_can_run_gym_interface_on_silo_fan_fcu()
     full_test()
     # test_can_run_gym_interface_on_seilab_thermal()
     epw_test()

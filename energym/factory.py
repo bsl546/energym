@@ -8,7 +8,7 @@ from energym.envs.env_names import EnvNames
 from energym.envs.irec_seilab.seilab import Seilab
 from energym.envs.irec_smartlab.smartlab import Smartlab
 from energym.envs.offices.offices import Offices
-from energym.envs.silo.silo import Silo
+from energym.envs.mixeduse.mixeduse import MixedUse
 from energym.envs.seminarcenter.seminarcenter import Seminarcenter
 from energym.envs.simple_house.simple_house import SimpleHouse
 from energym.envs.swiss_house.swiss_house import SwissHouse
@@ -313,26 +313,26 @@ def make(key, eval_mode=False, **kwargs):
                 )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SILO_FAN_FCU_V0.value:
+    elif key == EnvNames.MIXEDUSE_FAN_FCU_V0.value:
         if eval_mode:
-            return Silo(
+            return MixedUse(
                 model_path=os.path.join(
-                    "silo",
+                    "mixeduse",
                     "fmus",
                     op_sys,
-                    "Silo_ahu_",
+                    "MixedUse_ahu_",
                 ),
                 simulation_days=365,
                 weather="GRC_TC_Lamia1",
             )
         else:
             try:
-                return Silo(
+                return MixedUse(
                     model_path=os.path.join(
-                        "silo",
+                        "mixeduse",
                         "fmus",
                         op_sys,
-                        "Silo_ahu_",
+                        "MixedUse_ahu_",
                     ),
                     **kwargs
                 )

@@ -66,8 +66,7 @@ class EnvFMU(Env):
         Simulation object
     time : int or double
         Current simulation time (int for EnergyPlus, double for Modelica)
-    last_output : collections.OrderedDict or None
-        Output of the last simulation step
+
 
     Methods
     -------
@@ -119,6 +118,7 @@ class EnvFMU(Env):
             output_specs=None,
             kpi_options=None,
             default_path=True,
+            weather_file_path =None
     ):
         """
         Parameters
@@ -159,6 +159,7 @@ class EnvFMU(Env):
         self.model_description = read_model_description(self.fmu_file)
         self.step_size = step_size
         self.weather = weather
+        self.weather_file_path = weather_file_path
         self.is_fmu_initialized = False
 
         # Extract variables references
@@ -327,6 +328,14 @@ class EnvFMU(Env):
         )
         os.mkdir(fmu_path)
         self.unzipdir = extract(self.fmu_file, unzipdir=fmu_path)
+        weather_folder = Path(self.unzipdir) / "resources"
+        possible_weather_files = list(
+                weather_folder.rglob("*.mos")
+            ) + list(weather_folder.rglob("*.epw"))
+        weather_default_file_path = weather_folder / possible_weather_files[0]
+        print(weather_default_file_path)
+        os.remove(weather_default_file_path)
+        shutil.copy(self.weather_file_path,weather_default_file_path)
         # initialize
         instance_name = "instance" + init_time
 
@@ -559,6 +568,9 @@ class EnvFMU(Env):
         time_resolution = self.step_size / 60
         hourly_steps = int(60 / time_resolution)
         tot_length = math.ceil(forecast_length / hourly_steps) + 2
+        start_index = 0
+        forecast={}
+
         if isinstance(self.weather, EPW):
             minute, hour, day, month = self.get_date()
             start_index = int(minute / time_resolution)

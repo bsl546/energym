@@ -60,6 +60,7 @@ class EnvEPlusFMU(EnvFMU):
             If the passed weather file is not contained in the list of
             available weather files
         """
+
         weather_epw = EPW()
         if default_path:
             if weather in WEATHERNAMES:
@@ -71,7 +72,7 @@ class EnvEPlusFMU(EnvFMU):
                     path,
                     "simulation",
                     "energyplus",
-                    model_path + WEATHERNAMES[weather] + ".fmu",
+                    model_path + ".fmu",
                 )
                 weather_file = os.path.join(
                     path,
@@ -87,6 +88,7 @@ class EnvEPlusFMU(EnvFMU):
             else:
                 raise Exception("Unknown weather file")
         else:
+            weather_file = weather
             weather_epw.read(weather, generate_forecasts, generate_forecast_method,
                              generate_forecast_keys)
             fmu_file = model_path
@@ -101,7 +103,9 @@ class EnvEPlusFMU(EnvFMU):
             output_specs,
             kpi_options,
             default_path,
+            weather_file
         )
+
 
     def initialize(self):
 

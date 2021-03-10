@@ -70,20 +70,18 @@ class EnvModFMU(EnvFMU):
             available weather files
         """
         if default_path:
-            if weather in WEATHERNAMES:
-                path = os.path.abspath(energym.__file__)
-                path = os.path.abspath(os.path.join(path, "..", ".."))
+            path = os.path.abspath(energym.__file__)
+            path = os.path.abspath(os.path.join(path, "..", ".."))
+            fmu_file = os.path.join(
+                path,
+                "simulation",
+                "modelica",
+                model_path + WEATHERNAMES[weather] + ".fmu",
+            )
 
-                fmu_file = os.path.join(
-                    path,
-                    "simulation",
-                    "modelica",
-                    model_path + WEATHERNAMES[weather] + ".fmu",
-                )
-            else:
-                raise Exception("Unknown weather file")
         else:
             fmu_file = model_path
+
         if weather is None:
             super().__init__(
                 fmu_file,
@@ -115,6 +113,7 @@ class EnvModFMU(EnvFMU):
                 else:
                     raise Exception("Unknown weather file")
             else:
+                weather_file = weather
                 weather_mos.read(weather, generate_forecasts, generate_forecast_method,
                                  generate_forecast_keys)
 
@@ -128,7 +127,9 @@ class EnvModFMU(EnvFMU):
                 output_specs,
                 kpi_options,
                 default_path,
+                weather_file
             )
+
 
     def set_model_variables(self, variables, values):
         """Sets value of model variables.
@@ -169,15 +170,13 @@ class EnvModFMU(EnvFMU):
         out_values = self.fmu.getReal(
             [self.vrs[key] for key in list_vars]
         )
-        res = []
-        res.append((self.time, out_values))
+        res = [(self.time, out_values)]
         return self.post_process(list_vars, res)
 
     def get_output(self):
         out = self.fmu.getReal(
             [self.vrs[key] for key in self.output_keys]
         )
-        res = []
-        res.append((self.time, out))
+        res = [(self.time, out)]
         output = self.post_process(self.output_keys, res, arrays=False)
         return output

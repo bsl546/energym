@@ -336,8 +336,8 @@ default_kpi_options = {
 }
 
 
-class Smartlab(EnvEPlusFMU):
-    """Containing information for the models SmartlabThermal-v0 and SmartlabGrid-v0.
+class Apartments2(EnvEPlusFMU):
+    """Containing information for the models Apartments2Thermal-v0 and Apartments2Grid-v0.
 
     Subclasses EnvEPlusFMU and inherits its behavior. Simulation based details are
     specified in this class and passed to the constructor of EnvEPlusFMU.

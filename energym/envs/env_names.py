@@ -4,8 +4,8 @@ from enum import Enum
 class EnvNames(Enum):
     """Defines the keys for the simulation environment names."""
 
-    SMARTLAB_THERMAL_V0 = "SmartlabThermal-v0"
-    SMARTLAB_GRID_V0 = "SmartlabGrid-v0"
+    APARTMENTS2_THERMAL_V0 = "Apartments2Thermal-v0"
+    APARTMENTS2_GRID_V0 = "Apartments2Grid-v0"
     APARTMENTS_THERMAL_V0 = "ApartmentsThermal-v0"
     APARTMENTS_GRID_V0 = "ApartmentsGrid-v0"
     OFFICES_THERMOSTAT_V0 = "OfficesThermostat-v0"

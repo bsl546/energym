@@ -6,7 +6,7 @@ import datetime
 
 from energym.envs.env_names import EnvNames
 from energym.envs.apartments.apartments import Apartments
-from energym.envs.irec_smartlab.smartlab import Smartlab
+from energym.envs.apartments2.apartments2 import Apartments2
 from energym.envs.offices.offices import Offices
 from energym.envs.mixeduse.mixeduse import MixedUse
 from energym.envs.seminarcenter.seminarcenter import Seminarcenter
@@ -156,7 +156,7 @@ def make(key, eval_mode=False, **kwargs):
                 )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SMARTLAB_THERMAL_V0.value:
+    elif key == EnvNames.APARTMENTS2_THERMAL_V0.value:
         ev1_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         ev2_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         if eval_mode:
@@ -173,12 +173,12 @@ def make(key, eval_mode=False, **kwargs):
             ev2_schedule.generate_profile(
                 schedule_start, basefreq=3, seed=seed * 100
             )
-            return Smartlab(
+            return Apartments2(
                 model_path=os.path.join(
-                    "irec_smartlab",
+                    "apartments2",
                     "fmus",
                     op_sys,
-                    "IREC_SMARTLAB_heavy_insulated_pump_",
+                    "Apartments2_heavy_insulated_pump_",
                 ),
                 EV1_schedule=ev1_schedule,
                 EV2_schedule=ev2_schedule,
@@ -209,12 +209,12 @@ def make(key, eval_mode=False, **kwargs):
                 ev2_schedule.generate_profile(
                     schedule_start, basefreq=3, seed=seed + 100
                 )
-                return Smartlab(
+                return Apartments2(
                     model_path=os.path.join(
-                        "irec_smartlab",
+                        "apartments2",
                         "fmus",
                         op_sys,
-                        "IREC_SMARTLAB_heavy_insulated_pump_",
+                        "Apartments2_heavy_insulated_pump_",
                     ),
                     EV1_schedule=ev1_schedule,
                     EV2_schedule=ev2_schedule,
@@ -222,7 +222,7 @@ def make(key, eval_mode=False, **kwargs):
                 )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SMARTLAB_GRID_V0.value:
+    elif key == EnvNames.APARTMENTS2_GRID_V0.value:
         ev1_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         ev2_schedule = ElectricVehicleSchedule(30, 50, 37 / 200)
         if eval_mode:
@@ -239,12 +239,12 @@ def make(key, eval_mode=False, **kwargs):
             ev2_schedule.generate_profile(
                 schedule_start, basefreq=3, seed=seed * 100
             )
-            return Smartlab(
+            return Apartments2(
                 model_path=os.path.join(
-                    "irec_smartlab",
+                    "apartments2",
                     "fmus",
                     op_sys,
-                    "IREC_SMARTLAB_heavy_insulated_",
+                    "Apartments2_heavy_insulated_",
                 ),
                 EV1_schedule=ev1_schedule,
                 EV2_schedule=ev2_schedule,
@@ -275,12 +275,12 @@ def make(key, eval_mode=False, **kwargs):
                 ev2_schedule.generate_profile(
                     schedule_start, basefreq=3, seed=seed + 100
                 )
-                return Smartlab(
+                return Apartments2(
                     model_path=os.path.join(
-                        "irec_smartlab",
+                        "apartments2",
                         "fmus",
                         op_sys,
-                        "IREC_SMARTLAB_heavy_insulated_",
+                        "Apartments2_heavy_insulated_",
                     ),
                     EV1_schedule=ev1_schedule,
                     EV2_schedule=ev2_schedule,

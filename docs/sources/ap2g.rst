@@ -1,13 +1,13 @@
 
-.. _SmartlabThermal:
+.. _Apartments2Grid:
 
 
-SmartlabThermal
+Apartments2Grid
 ----------------
 
 .. image:: images/irec_picture.PNG
 
-Smartlab Thermal is a 8 zones building located in Spain, Tarragona.  It has a total surface area of 417.12m\ :sup:`2` and a total volume of 1042.83m\ :sup:`3`. 
+Apartments2 Grid is a 8 zones building located in Spain, Tarragona.  It has a total surface area of 417.12m\ :sup:`2` and a total volume of 1042.83m\ :sup:`3`.
 
 
 Building and thermal zones
@@ -23,7 +23,7 @@ Building and thermal zones
 Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Smartlab thermal system consists in four air-to-water heat pumps with integrated water tanks. 
+Apartments2 thermal system consists in four air-to-water heat pumps with integrated water tanks.
 Each apartment has an individual HVAC system to provide hot water for fan coils heating coils and DHW consumption. 
 Due to system configuration, it is not possible to control (change over time) the HP supply temperature neither storage tanks temperature.
 This is because DHW consumption profiles have been evaluated taking into account a fixed DHW consumption temperature (50°C).
@@ -33,11 +33,12 @@ This is because DHW consumption profiles have been evaluated taking into account
 Electrical systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Regarding the electrical part, SMARTLAB system includes a PV array, a community battery and two EV. 
-The first EV is assigned to the second apartment while the second one to the third apartment. 
-In the thermal scenario, community battery and electric vehicles charging are disregarded; see :ref:`Smartlabgrid`.
-
-
+Regarding the electrical part, Apartments2 system includes a PV array, a community battery and an electric vehicle (EV).
+The active surface area of the PV panels is 58m2 with an inclination of 40° and south oriented. Rated electrical power output of the PV generator is 10750W.
+In the grid scenario, community battery and electric vehicles charging are used to reduce the amount of electricity exchanged from the grid.
+The community battery capacity is 10kWh and it is composed by a single string of 5 modules in series. The maximum power for charging is 4000W and for discharging is 4000W.
+Both EV batteries have a capacity of 20kWh and two modules in parallel compose each of them. The maximum power for charging is 3700W. 
+The first EV is assigned to the second apartment while the second one to the third apartment.
 
 Controllable components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -61,24 +62,28 @@ The user has the possibility to control the on/off mode of the four individual p
 No active cooling system is implemented, a free cooling strategy is applied during summer season. This strategy is modelled with an enhanced air infiltration rate from June to September. 
 Summer season in Spain can reach high temperature such as 35°C. This strategy allows maintaining rooms’ temperature into an acceptable range.
 
+Electric components control
+"""""""""""""""""""""""""""
+It is possible to interact directly with the power charge/discharge of the community battery.
+On the other hand, it can only interact with the charging profile of the EV batteries, as the discharge profile is a predefined behaviour of the EVs. 
+In practice, this control works with a predefined constant design value (maximum battery charge/discharge power) and with a correction fraction that comes from the optimization.
+.. image:: images/electric_seilab.PNG
+
 
 Simulation inputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For more detail, please check the documentation :ref:`smartlab_doc` or the source code :py:class:`energym.envs.irec_smartlab.smartlab.Smartlab`.
+For more detail, please check the documentation :ref:`apartments2_doc` or the source code :py:class:`energym.envs.apartments2.apartments2.Apartments2`.
 
 
 .. exec::
     import json
-    from energym.envs.irec_smartlab.smartlab import INPUTS_SPECS
+    from energym.envs.apartments2.apartments2 import INPUTS_SPECS
     inputs_list = ["P1_T_Thermostat_sp",
     "P2_T_Thermostat_sp",
     "P3_T_Thermostat_sp",
     "P4_T_Thermostat_sp",
-    "P1_onoff_HP_sp",
-    "P2_onoff_HP_sp",
-    "P3_onoff_HP_sp",
-    "P4_onoff_HP_sp",
+    "Bd_Pw_Bat_sp",
     "Bd_Ch_EV1Bat_sp",
     "Bd_Ch_EV2Bat_sp"]
     table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
@@ -98,7 +103,7 @@ Simulation outputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. exec::
     import json
-    from energym.envs.irec_smartlab.smartlab import OUTPUTS_SPECS
+    from energym.envs.apartments2.apartments2 import OUTPUTS_SPECS
     outputs_list = ["Ext_T",
     "Ext_RH",
     "Ext_Irr",
@@ -181,8 +186,9 @@ Simulation outputs
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The evaluation scenario for the `SmartlabThermal-v0` model consists of a control from January to April with the objective of minimizing the grid exchange, while keeping the zone temperatures between 19 and 24°C.
+The evaluation scenario for the `Apartments2Grid-v0` model consists of a full year control with the objective of minimizing the grid exchange, while keeping the zone temperatures between 19 and 24°C.
 For this goal, the tracked KPIs are the average exchanged energy (absolute value of the difference of produced and consumed energy), and the average temperature deviation and total temperature violations with respect to the interval [19, 24].
+
 
 
 Notebook example
@@ -191,4 +197,4 @@ Notebook example
    :maxdepth: 1
    :caption:  Here is a notebook example:
 
-   notebooks/SmartlabThermal
+   notebooks/Apartments2Grid

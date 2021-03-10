@@ -51,8 +51,8 @@ Following environments are available:
 
 Environment | Thermostat | Heat Pump | Battery | AHU | EV | PV | Software
 ---|---|---|---|---|---|---|---
-`SmartlabThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
-`SmartlabGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
+`Apartments2Thermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
+`Apartments2Grid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `ApartmentsThermal-v0` | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `ApartmentsGrid-v0` | :heavy_check_mark: | :large_orange_diamond: | :heavy_check_mark: | :x: | :heavy_check_mark: | :large_orange_diamond: | E+
 `OfficesThermostat-v0` | :heavy_check_mark: | :x: | :x: | :x: | :x: | :large_orange_diamond: | E+
@@ -75,7 +75,7 @@ An examplatory usage of Energym (assuming a function `get_input()` for computing
 ```python
 import energym
 
-envName = "SmartlabGrid-v0"
+envName = "Apartments2Grid-v0"
 nsteps = 10
 env = energym.make(envName, simulation_days=100)
 obs = env.get_output()

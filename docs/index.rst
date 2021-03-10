@@ -80,13 +80,13 @@ of the buildings, their inputs and outputs.
 | Technical systems/                                                  |Thermostat | Heatpump   | AHU        | Battery  |  EV      |  PV        |Prg|
 | Buildings                                                           |           |            |            |          |          |            |   |
 +=====================================================================+===========+============+============+==========+==========+============+===+
-| :ref:`SmartlabThermal-v0 <SmartlabThermal>`                         |:gre:`con` |:gre:`con`  |:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
-+---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`SmartlabGrid-v0 <SmartlabGrid>`                               |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
-+---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`ApartmentsThermal-v0 <ApartmentsThermal>`                     |:gre:`con` |:gre:`con`  |:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`ApartmentsGrid-v0 <ApartmentsGrid>`                           |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
++---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
+| :ref:`Apartments2Thermal-v0 <Apartments2Thermal>`                   |:gre:`con` |:gre:`con`  |:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
++---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
+| :ref:`Apartments2Grid-v0 <Apartments2Grid>`                         |:gre:`con` |:yel:`uncon`|:red:`abs`  |:gre:`con`|:gre:`con`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`OfficesThermostat-v0 <Offices>`                               |:gre:`con` |:red:`abs`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`| E+|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
@@ -141,7 +141,7 @@ The usage of Energym is straight forward, as in this simplified code example, as
 
    import energym
 
-   envName = "SmartlabGrid-v0"
+   envName = "Apartments2Grid-v0"
    nsteps = 10
    env = energym.make(envName, simulation_days=100)
    obs = env.get_output()

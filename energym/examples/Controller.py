@@ -136,7 +136,7 @@ class LabController(object):
     """Rule-based controller for temperature control.
 
     Supports the models ApartmentsThermal-v0, ApartmentsGrid-v0,
-    SmartlabThermal-v0 and SmartlabGrid-v0.
+    Apartments2Thermal-v0 and Apartments2Grid-v0.
 
     Attributes
     ----------

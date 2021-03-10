@@ -49,12 +49,12 @@ energym.envs.apartments.apartments
 
 .. autoclass:: energym.envs.apartments.apartments.Apartments
 
-.. _smartlab_doc:
+.. _apartments2_doc:
 
-energym.envs.irec_smartlab.smartlab
+energym.envs.apartments2.apartments2
 -----------------------------------------
 
-.. autoclass:: energym.envs.irec_smartlab.smartlab.Smartlab
+.. autoclass:: energym.envs.apartments2.apartments2.Apartments2
 
 .. _offices_doc:
 

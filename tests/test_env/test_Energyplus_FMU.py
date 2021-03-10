@@ -38,8 +38,8 @@ def test_can_run_gym_interface_on_apartments_grid():
     env.close()
 
 
-def test_can_run_gym_interface_on_smartlab_thermal():
-    env = make("SmartlabThermal-v0")
+def test_can_run_gym_interface_on_apartments2_thermal():
+    env = make("Apartments2Thermal-v0")
     episodes = 2
     n_steps_per_episode = 100
     for _ in range(episodes):
@@ -53,8 +53,8 @@ def test_can_run_gym_interface_on_smartlab_thermal():
     env.close()
 
 
-def test_can_run_gym_interface_on_smartlab_grid():
-    env = make("SmartlabGrid-v0")
+def test_can_run_gym_interface_on_apartments2_grid():
+    env = make("Apartments2Grid-v0")
     episodes = 2
     n_steps_per_episode = 100
     for _ in range(episodes):
@@ -131,8 +131,8 @@ def test_can_run_gym_interface_on_seminarcenter_full():
 def full_test():
     test_can_run_gym_interface_on_apartments_thermal()
     test_can_run_gym_interface_on_apartments_grid()
-    test_can_run_gym_interface_on_smartlab_thermal()
-    test_can_run_gym_interface_on_smartlab_grid()
+    test_can_run_gym_interface_on_apartments2_thermal()
+    test_can_run_gym_interface_on_apartments2_grid()
     test_can_run_gym_interface_on_offices_thermostat()
     test_can_run_gym_interface_on_mixeduse_fan_fcu()
     test_can_run_gym_interface_on_seminarcenter_thermostat()

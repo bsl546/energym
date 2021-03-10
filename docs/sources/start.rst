@@ -38,11 +38,11 @@ To use Energym, it has to be imported like any other Python module using the com
 
     import energym
 
-A simulation environment can then be created using the ``make`` command. Here we demonstrate the usage for the model :ref:`SmartlabGrid-v0 <SmartlabGrid>`.:
+A simulation environment can then be created using the ``make`` command. Here we demonstrate the usage for the model :ref:`Apartments2Grid-v0 <Apartments2Grid>`.:
 
 .. code-block:: python
 
-    envName = "SmartlabGrid-v0"
+    envName = "Apartments2Grid-v0"
     env = energym.make(envName)
 
 To create a simulation environment with a different model, substitute ``envName`` with a string containing the name of one of the available models (see e.g. here :ref:`envs`).
@@ -96,19 +96,19 @@ gives the same outputs as the  gym step method, i.e. outputs, reward, done, info
 .. code-block:: python
 
     import energym
-    from energym.wrappers.downsample_outputs import DonwsampleOutputs
+    from energym.wrappers.downsample_outputs import DownsampleOutputs
     from energym.wrappers.rescale_outputs import RescaleOutputs
     from energym.wrappers.rl_wrapper import RLWrapper
 
     weather = "ESP_CT_Barcelona"
-    env = energym.make("SmartlabThermal-v0", weather=weather, simulation_days=300)
+    env = energym.make("Apartments2Thermal-v0", weather=weather, simulation_days=300)
 
     downsampling_dic = ...  #define how keys are downsampled (e.g. {key1: np.mean, key2: ... }
     lower_bound =  ... #define how keys are rescaled (lower and upper bounds) (e.g. lower_bound = {key1: 0.0, ...}, upper_bound ={key1:20.0,...}
     def reward = ... #define the reward function
 
 
-    env_down = DonwsampleOutputs(env, steps, downsampling_dic)
+    env_down = DownsampleOutputs(env, steps, downsampling_dic)
     env_down_res = RescaleOutputs(env_down,lower_bound,upper_bound)
     env_down_RL = RLWrapper(env_down_res, reward)
 

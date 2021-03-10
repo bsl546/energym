@@ -22,9 +22,9 @@ Building Examples
 
    ApartmentsThermal-v0 <notebooks/ApartmentsThermal>
 
-   SmartlabGrid-v0 <notebooks/SmartlabGrid>
+   Apartments2Grid-v0 <notebooks/Apartments2Grid>
 
-   SmartlabThermal-v0 <notebooks/SmartlabThermal>
+   Apartments2Thermal-v0 <notebooks/Apartments2Thermal>
 
 .. _kpi_ex:
 

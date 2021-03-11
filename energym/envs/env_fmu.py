@@ -333,9 +333,12 @@ class EnvFMU(Env):
                 weather_folder.rglob("*.mos")
             ) + list(weather_folder.rglob("*.epw"))
         weather_default_file_path = weather_folder / possible_weather_files[0]
-        print(weather_default_file_path)
-        os.remove(weather_default_file_path)
-        shutil.copy(self.weather_file_path,weather_default_file_path)
+        try:
+            os.remove(weather_default_file_path)
+            shutil.copy(self.weather_file_path,weather_default_file_path)
+        except BaseException as e:
+            logging.error(e)
+            logging.error("Problem with the weather file handling")
         # initialize
         instance_name = "instance" + init_time
 

@@ -48,13 +48,9 @@ def make(key, eval_mode=False, **kwargs):
             start_day = 1
             start_month = 1
             start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
+            schedule_start = datetime.datetime(start_year, start_month, start_day)
             seed = 1
-            ev_schedule.generate_profile(
-                schedule_start, basefreq=3, seed=seed
-            )
+            ev_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
             return Apartments(
                 model_path=os.path.join(
                     "apartments",
@@ -80,13 +76,9 @@ def make(key, eval_mode=False, **kwargs):
                     start_year = kwargs["start_year"]
                 else:
                     start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
+                schedule_start = datetime.datetime(start_year, start_month, start_day)
                 seed = datetime.datetime.now().microsecond
-                ev_schedule.generate_profile(
-                    schedule_start, basefreq=3, seed=seed
-                )
+                ev_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
                 return Apartments(
                     model_path=os.path.join(
                         "apartments",
@@ -105,13 +97,9 @@ def make(key, eval_mode=False, **kwargs):
             start_day = 1
             start_month = 1
             start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
+            schedule_start = datetime.datetime(start_year, start_month, start_day)
             seed = 1
-            ev_schedule.generate_profile(
-                schedule_start, basefreq=3, seed=seed
-            )
+            ev_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
             return Apartments(
                 model_path=os.path.join(
                     "apartments",
@@ -137,13 +125,9 @@ def make(key, eval_mode=False, **kwargs):
                     start_year = kwargs["start_year"]
                 else:
                     start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
+                schedule_start = datetime.datetime(start_year, start_month, start_day)
                 seed = datetime.datetime.now().microsecond
-                ev_schedule.generate_profile(
-                    schedule_start, basefreq=3, seed=seed
-                )
+                ev_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
                 return Apartments(
                     model_path=os.path.join(
                         "apartments",
@@ -163,16 +147,10 @@ def make(key, eval_mode=False, **kwargs):
             start_day = 1
             start_month = 1
             start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
+            schedule_start = datetime.datetime(start_year, start_month, start_day)
             seed = 1
-            ev1_schedule.generate_profile(
-                schedule_start, basefreq=3, seed=seed
-            )
-            ev2_schedule.generate_profile(
-                schedule_start, basefreq=3, seed=seed * 100
-            )
+            ev1_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
+            ev2_schedule.generate_profile(schedule_start, basefreq=3, seed=seed * 100)
             return Apartments2(
                 model_path=os.path.join(
                     "apartments2",
@@ -199,13 +177,9 @@ def make(key, eval_mode=False, **kwargs):
                     start_year = kwargs["start_year"]
                 else:
                     start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
+                schedule_start = datetime.datetime(start_year, start_month, start_day)
                 seed = datetime.datetime.now().microsecond
-                ev1_schedule.generate_profile(
-                    schedule_start, basefreq=3, seed=seed
-                )
+                ev1_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
                 ev2_schedule.generate_profile(
                     schedule_start, basefreq=3, seed=seed + 100
                 )
@@ -229,16 +203,10 @@ def make(key, eval_mode=False, **kwargs):
             start_day = 1
             start_month = 1
             start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
+            schedule_start = datetime.datetime(start_year, start_month, start_day)
             seed = 1
-            ev1_schedule.generate_profile(
-                schedule_start, basefreq=3, seed=seed
-            )
-            ev2_schedule.generate_profile(
-                schedule_start, basefreq=3, seed=seed * 100
-            )
+            ev1_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
+            ev2_schedule.generate_profile(schedule_start, basefreq=3, seed=seed * 100)
             return Apartments2(
                 model_path=os.path.join(
                     "apartments2",
@@ -265,13 +233,9 @@ def make(key, eval_mode=False, **kwargs):
                     start_year = kwargs["start_year"]
                 else:
                     start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
+                schedule_start = datetime.datetime(start_year, start_month, start_day)
                 seed = datetime.datetime.now().microsecond
-                ev1_schedule.generate_profile(
-                    schedule_start, basefreq=3, seed=seed
-                )
+                ev1_schedule.generate_profile(schedule_start, basefreq=3, seed=seed)
                 ev2_schedule.generate_profile(
                     schedule_start, basefreq=3, seed=seed + 100
                 )
@@ -341,9 +305,7 @@ def make(key, eval_mode=False, **kwargs):
     elif key == EnvNames.SEMINARCENTER_THERMOSTAT_V0.value:
 
         CO2_dataframe = pd.read_csv(
-            os.path.join(
-                dir_path, "schedules", "ScheduleFiles", "ProductionDE.csv"
-            ),
+            os.path.join(dir_path, "schedules", "ScheduleFiles", "ProductionDE.csv"),
             index_col=0,
         )
         CO2_schedule = EProductionSchedule(CO2_dataframe)
@@ -351,13 +313,9 @@ def make(key, eval_mode=False, **kwargs):
             start_day = 1
             start_month = 1
             start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
+            schedule_start = datetime.datetime(start_year, start_month, start_day)
             seed = 1
-            CO2_schedule.generate_profile(
-                schedule_start, basefreq=10, seed=seed
-            )
+            CO2_schedule.generate_profile(schedule_start, basefreq=10, seed=seed)
             return Seminarcenter(
                 model_path=os.path.join(
                     "seminarcenter",
@@ -383,13 +341,9 @@ def make(key, eval_mode=False, **kwargs):
                     start_year = kwargs["start_year"]
                 else:
                     start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
+                schedule_start = datetime.datetime(start_year, start_month, start_day)
                 seed = datetime.datetime.now().microsecond
-                CO2_schedule.generate_profile(
-                    schedule_start, basefreq=10, seed=seed
-                )
+                CO2_schedule.generate_profile(schedule_start, basefreq=10, seed=seed)
                 return Seminarcenter(
                     model_path=os.path.join(
                         "seminarcenter",
@@ -405,9 +359,7 @@ def make(key, eval_mode=False, **kwargs):
     elif key == EnvNames.SEMINARCENTER_FULL_V0.value:
 
         CO2_dataframe = pd.read_csv(
-            os.path.join(
-                dir_path, "schedules", "ScheduleFiles", "ProductionDE.csv"
-            ),
+            os.path.join(dir_path, "schedules", "ScheduleFiles", "ProductionDE.csv"),
             index_col=0,
         )
         CO2_schedule = EProductionSchedule(CO2_dataframe)
@@ -415,13 +367,9 @@ def make(key, eval_mode=False, **kwargs):
             start_day = 1
             start_month = 1
             start_year = 2019
-            schedule_start = datetime.datetime(
-                start_year, start_month, start_day
-            )
+            schedule_start = datetime.datetime(start_year, start_month, start_day)
             seed = 1
-            CO2_schedule.generate_profile(
-                schedule_start, basefreq=10, seed=seed
-            )
+            CO2_schedule.generate_profile(schedule_start, basefreq=10, seed=seed)
             return Seminarcenter(
                 model_path=os.path.join(
                     "seminarcenter",
@@ -447,13 +395,9 @@ def make(key, eval_mode=False, **kwargs):
                     start_year = kwargs["start_year"]
                 else:
                     start_year = 2019
-                schedule_start = datetime.datetime(
-                    start_year, start_month, start_day
-                )
+                schedule_start = datetime.datetime(start_year, start_month, start_day)
                 seed = datetime.datetime.now().microsecond
-                CO2_schedule.generate_profile(
-                    schedule_start, basefreq=10, seed=seed
-                )
+                CO2_schedule.generate_profile(schedule_start, basefreq=10, seed=seed)
                 return Seminarcenter(
                     model_path=os.path.join(
                         "seminarcenter",
@@ -474,7 +418,7 @@ def make(key, eval_mode=False, **kwargs):
                         "simple_house",
                         "fmus",
                         op_sys,
-                        "modelica_simple_house_src_HP_u_Rad_1RC_Sun",
+                        "HP_u_Rad_1RC_Sun",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -488,7 +432,7 @@ def make(key, eval_mode=False, **kwargs):
                         "simple_house",
                         "fmus",
                         op_sys,
-                        "modelica_simple_house_src_HP_u_Rad_1RC_Sun",
+                        "HP_u_Rad_1RC_Sun",
                     ),
                     **kwargs
                 )
@@ -502,7 +446,7 @@ def make(key, eval_mode=False, **kwargs):
                         "simple_house",
                         "fmus",
                         op_sys,
-                        "modelica_simple_house_src_HP_u_Slab_1RC_Sun",
+                        "HP_u_Slab_1RC_Sun",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -516,7 +460,7 @@ def make(key, eval_mode=False, **kwargs):
                         "simple_house",
                         "fmus",
                         op_sys,
-                        "modelica_simple_house_src_HP_u_Slab_1RC_Sun",
+                        "HP_u_Slab_1RC_Sun",
                     ),
                     **kwargs
                 )
@@ -586,7 +530,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0",
+                        "HP_u_Rad_1RC_Sun_S20_v0",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -600,7 +544,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Rad_1RC_Sun_S20_v0",
+                        "HP_u_Rad_1RC_Sun_S20_v0",
                     ),
                     **kwargs
                 )
@@ -614,7 +558,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0",
+                        "HP_u_Slab_1RC_Sun_S16_v0",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -628,7 +572,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S16_v0",
+                        "HP_u_Slab_1RC_Sun_S16_v0",
                     ),
                     **kwargs
                 )
@@ -642,7 +586,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0",
+                        "HP_u_Slab_1RC_Sun_S18_v0",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -656,7 +600,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S18_v0",
+                        "HP_u_Slab_1RC_Sun_S18_v0",
                     ),
                     **kwargs
                 )
@@ -670,7 +614,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0",
+                        "HP_u_Slab_1RC_Sun_S20_v0",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -684,7 +628,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "modelica_swiss_house_src_HP_u_Slab_1RC_Sun_S20_v0",
+                        "HP_u_Slab_1RC_Sun_S20_v0",
                     ),
                     **kwargs
                 )

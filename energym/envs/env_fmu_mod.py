@@ -24,19 +24,19 @@ class EnvModFMU(EnvFMU):
     """
 
     def __init__(
-            self,
-            model_path,
-            start_time,
-            stop_time,
-            step_size,
-            weather,
-            input_specs,
-            output_specs,
-            kpi_options,
-            default_path=True,
-            generate_forecasts=True,
-            generate_forecast_method='perfect',
-            generate_forecast_keys=None
+        self,
+        model_path,
+        start_time,
+        stop_time,
+        step_size,
+        weather,
+        input_specs,
+        output_specs,
+        kpi_options,
+        default_path=True,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
     ):
         """
         Parameters
@@ -76,7 +76,7 @@ class EnvModFMU(EnvFMU):
                 path,
                 "simulation",
                 "modelica",
-                model_path + WEATHERNAMES[weather] + ".fmu",
+                model_path + ".fmu",
             )
 
         else:
@@ -108,14 +108,22 @@ class EnvModFMU(EnvFMU):
                         WEATHERNAMES[weather] + ".mos",
                     )
 
-                    weather_mos.read(weather_file, generate_forecasts, generate_forecast_method,
-                                     generate_forecast_keys)
+                    weather_mos.read(
+                        weather_file,
+                        generate_forecasts,
+                        generate_forecast_method,
+                        generate_forecast_keys,
+                    )
                 else:
                     raise Exception("Unknown weather file")
             else:
                 weather_file = weather
-                weather_mos.read(weather, generate_forecasts, generate_forecast_method,
-                                 generate_forecast_keys)
+                weather_mos.read(
+                    weather,
+                    generate_forecasts,
+                    generate_forecast_method,
+                    generate_forecast_keys,
+                )
 
             super().__init__(
                 fmu_file,
@@ -127,9 +135,8 @@ class EnvModFMU(EnvFMU):
                 output_specs,
                 kpi_options,
                 default_path,
-                weather_file
+                weather_file,
             )
-
 
     def set_model_variables(self, variables, values):
         """Sets value of model variables.
@@ -167,16 +174,12 @@ class EnvModFMU(EnvFMU):
         """
 
         # get the values
-        out_values = self.fmu.getReal(
-            [self.vrs[key] for key in list_vars]
-        )
+        out_values = self.fmu.getReal([self.vrs[key] for key in list_vars])
         res = [(self.time, out_values)]
         return self.post_process(list_vars, res)
 
     def get_output(self):
-        out = self.fmu.getReal(
-            [self.vrs[key] for key in self.output_keys]
-        )
+        out = self.fmu.getReal([self.vrs[key] for key in self.output_keys])
         res = [(self.time, out)]
         output = self.post_process(self.output_keys, res, arrays=False)
         return output

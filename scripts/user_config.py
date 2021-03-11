@@ -15,7 +15,7 @@ config_dict["mxb"] = {
     "libs": [
         r"C:\Data\Projects\ModeLib\lbl-srg\modelica-buildings\Buildings",
         r"C:\Data\Projects\ModeLib\ibpsa\modelica-ibpsa\IBPSA",
-        r"C:\Data\Projects\ModeLib\best\simulation\modelica",
+        r"C:\Data\Projects\ModeLib\energym\simulation\modelica",
     ]
 }
 
@@ -33,7 +33,7 @@ config_dict["bsl"] = {
     "libs": [
         r"C:\Users\bsl\Documents\90_Other_scripts\Buildings-v7.0.0\Buildings 7.0.0",
         r"C:\Users\bsl\Documents\90_Other_scripts\modelica-ibpsa",
-        r"C:\Users\bsl\Documents\20_Python_Scripts\170_Building_lib\code_refac\best\simulation\modelica",
+        r"C:\Users\bsl\Documents\20_Python_Scripts\170_Building_lib\code_refac\energym\simulation\modelica",
     ]
 }
 

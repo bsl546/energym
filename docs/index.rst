@@ -29,7 +29,7 @@ Energym
 ================================
 
 
-Energym is a calibrated open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
+Energym is an open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
  
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the `Gym <https://gym.openai.com/>`_ used in the robotic control community. Energym relies on the `functional mockup interface (FMI) <https://fmi-standard.org/>`_ standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in `Modelica <https://www.modelica.org/>`_ and `EnergyPlus <https://energyplus.net/>`_  as well as specific classes for simulating weather forecasts and appliances consumption figures.
  
@@ -165,7 +165,7 @@ To create a new model, please  follow the steps described in :ref:`add_model`. T
 Cite
 -------
 
-If you use our library for your publication, please cite our paper. 
+If you use our library for your publication, please cite our github address. 
 
 
 
@@ -178,8 +178,7 @@ Plese contact the maintainers <psh@csem.ch> and <bsl@csem.ch>.
 License
 -------
 
-The project except all files in "dependencies" is licensed under the BSD license. For dependencies licenses, please refer to the dependencies folder.
-
+The project except all files in "dependencies" is licensed under the BSD license. 
 
 Thanks
 -------

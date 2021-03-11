@@ -1,6 +1,4 @@
 -----------------------------------------------------------------------------
-Files: All files of the library EXCEPT the files in the dependencies folder
-
 
 Copyright (c) 2020, Energym developper team. All rights reserved.
 

@@ -13913,10 +13913,6 @@
     Zone Thermostat Heating Setpoint Temperature,  !- Output:Variable Name
     P1_T_Thermostat_sp_out;  !- FMU Variable Name
 
-  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    HPsupply_setpoint,       !- Output:Variable Index Key Name
-    Schedule Value,          !- Output:Variable Name
-    Bd_T_HP_sp_out;          !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     T_set_TankBottomP1,      !- Output:Variable Index Key Name
@@ -14191,6 +14187,23 @@
     Bd_FracCh_Bat;           !- FMU Variable Name
 
 !!HP and tanks
+
+  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
+    System Node Mass Flow Rate,    !- Output:Variable Name
+    Bd_Fl_HP;                   !- FMU Variable Name
+
+ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Outlet Node,               !- Output:Variable Index Key Name
+    System Node Temperature,    !- Output:Variable Name
+    Bd_T_HP_supply;                   !- FMU Variable Name
+
+ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
+    System Node Temperature,    !- Output:Variable Name
+    Bd_T_HP_return;                   !- FMU Variable Name
+
+
 !ExternalInterface:FunctionalMockupUnitExport:From:Variable,
 !    DHW Water Heater,               !- Output:Variable Index Key Name
 !    Water Heater Electric Energy,    !- Output:Variable Name
@@ -14533,6 +14546,13 @@
   Output:Variable,EMS,DHWdemand,Timestep;
 
   Output:Variable,*,Water Heater Tank Temperature,Timestep;
+
+
+  Output:Variable,Water to Water Heat Pump Heating HW Inlet Node,System Node Mass Flow Rate,Timestep;
+
+  Output:Variable, Water to Water Heat Pump Heating HW Outlet Node,System Node Temperature,Timestep;
+
+  Output:Variable, Water to Water Heat Pump Heating HW Inlet Node,System Node Temperature,Timestep;
 
 ! ======== Global Energy outputs  ========
 

@@ -43,7 +43,7 @@ Firstly `git clone` the present repository and move inside with `cd energym`. Th
 
 ### Docker version
 
-For users willing to use containers, a dockerfile, called `Dockerfile`, is made available. It creates an Ubuntu 20.04 container, with EnergyPlus 9.4 and Python 3.8. This docker file is not made to compile .idf or .mo files  and works with the precompiled FMU's. For this latter particular task, another dockerfile is provided, that downloads a pre-built docker iage on dockerhub.
+For users willing to use containers, a dockerfile, called `Dockerfile`, is made available. It creates an Ubuntu 20.04 container, with EnergyPlus 9.4 and Python 3.8. This docker file is not made to compile .idf or .mo files  and works with the precompiled FMU's. For this latter particular task, another dockerfile is provided, that downloads a pre-built docker image on dockerhub.
 
 
 ## Available environments

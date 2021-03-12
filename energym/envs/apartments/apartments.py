@@ -106,7 +106,17 @@ OUTPUTS_SPECS = {
         "lower_bound": 16,
         "upper_bound": 26,
     },
-    "Bd_T_HP_sp_out": {
+    "Bd_Fl_HP": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 2,
+    },
+    "Bd_T_HP_return": {
+        "type": "scalar",
+        "lower_bound": 35,
+        "upper_bound": 55,
+    },
+    "Bd_T_HP_supply": {
         "type": "scalar",
         "lower_bound": 35,
         "upper_bound": 55,
@@ -417,9 +427,7 @@ class Apartments(EnvEPlusFMU):
         start_date = datetime.date(year, start_month, start_day)
         delta = start_date - datetime.date(year, 1, 1)
         start_time = delta.total_seconds()
-        stop_time = (
-            start_time + n_steps * 24 * simulation_days * step_size
-        )
+        stop_time = start_time + n_steps * 24 * simulation_days * step_size
         if kpi_options is None:
             kpi_options = default_kpi_options
 

@@ -13909,11 +13909,6 @@
     P1_T_Thermostat_sp_out;  !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    WATER TO WATER HEAT PUMP HEATING HW OUTLET NODE,  !- Output:Variable Index Key Name
-    System Node Temperature, !- Output:Variable Name
-    Bd_T_HP_sp_out;          !- FMU Variable Name
-
-  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     T_set_TankBottomP1,      !- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
     P1_T_Tank_sp_out;        !- FMU Variable Name
@@ -14367,6 +14362,23 @@
     Bd_T_HP_sp,              !- FMU Variable Name
     55.0;                    !- Initial Value
 
+
+  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
+    System Node Mass Flow Rate,    !- Output:Variable Name
+    Bd_Fl_HP;                   !- FMU Variable Name
+
+  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Outlet Node,               !- Output:Variable Index Key Name
+    System Node Temperature,    !- Output:Variable Name
+    Bd_T_HP_supply;                   !- FMU Variable Name
+
+  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
+    System Node Temperature,    !- Output:Variable Name
+    Bd_T_HP_return;                   !- FMU Variable Name
+
+
 !Tanks temperatures
 
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
@@ -14487,7 +14499,12 @@
 
   Output:Variable,DHWtgn4yearly,Schedule Value,Timestep;
 
-  Output:Variable,WATER TO WATER HEAT PUMP HEATING HW OUTLET NODE,System Node Temperature,Timestep;
+
+  Output:Variable,Water to Water Heat Pump Heating HW Inlet Node,System Node Mass Flow Rate,Timestep;
+
+  Output:Variable, Water to Water Heat Pump Heating HW Outlet Node,System Node Temperature,Timestep;
+
+  Output:Variable, Water to Water Heat Pump Heating HW Inlet Node,System Node Temperature,Timestep;
 
 ! ======== Batterie outputs  ===============
 ! Batteries

@@ -29,25 +29,26 @@ Energym
 ================================
 
 
-Energym is an open source building simulation library designed for the control community to test climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
+Energym is an open source building simulation library designed for the control community to test  climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
  
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the `Gym <https://gym.openai.com/>`_ used in the robotic control community. Energym relies on the `functional mockup interface (FMI) <https://fmi-standard.org/>`_ standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in `Modelica <https://www.modelica.org/>`_ and `EnergyPlus <https://energyplus.net/>`_  as well as specific classes for simulating weather forecasts and appliances consumption figures.
  
-With the models already incorporated, Energym offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). In summary, the models already incorporated are representative of cases that can be encountered in real-world control deployment.
+Energym has to date 11 models integrated and  offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). 
 
+New models and new control capabilities are under development und will be added to the library in due course.
 
 .. It runs on top of Energyplus and JModellica. Both are available for free and can be installed automatically using conda forge; see :ref:`my-installation`.
 
 
 The library is compatible both for windows 10 and linux os and provides precompiled fmu files for both operating systems. 
-A docker container file is also provided for users wanting to build the library within a container.
+Two docker files (one for running current models, one for compiling new models) that download dockerhub pre-built images are also at user disposal to speed up use and testing.
 
 
 .. raw:: html
 
-    <style> .red {color:#aa0060; font-weight:bold; font-size:16px} </style>
+    <style> .red {color:#DC143C; font-weight:bold; font-size:16px} </style>
     <style> .gre {color:#32cd32; font-weight:bold; font-size:16px} </style>
-    <style> .yel {color:#f9ee44; font-weight:bold; font-size:16px} </style>
+    <style> .yel {color:#E6E6FA; font-weight:bold; font-size:16px} </style>
 
 
 .. role:: red
@@ -62,9 +63,10 @@ A docker container file is also provided for users wanting to build the library 
 Features
 --------
 
-- Works directly (pre-compiled buildings .fmu files)
+- Works directly on Windows and Linux (pre-compiled buildings .fmu files)
 - Works with E+ and Modelica
 - Works with Python 3.*
+
 
 .. _envs:
 
@@ -135,7 +137,7 @@ of the buildings, their inputs and outputs.
 Example
 ----------
 
-The usage of Energym is straight forward, as in this simplified code example, assuming the implementation of a ``get_input()`` function:
+The usage of Energym is straight forward, as in this simplified code example, assuming the implementation of a ``get_input()`` function made by the user:
 
 .. code-block:: python
 
@@ -153,10 +155,25 @@ The usage of Energym is straight forward, as in this simplified code example, as
 For an introduction to Energym see :ref:`start` and for more in depth control examples see :ref:`Examples`.
 
 
+Philosophy
+--------------
+
+Energym  has been designed such that you are entirely free in your controller strategy and design. 
+
+In particular, if you use Model Predictive Control or Reinforcement Learning strategies, a set of meteo files at different locations close to the real location is provided to carry out system identification/ RL training.
+
+When a controller/model has been trained, it can be finally evaluated on the predefined period of time under the predefined meto condition and KPIs.
+
+Furthermore, models can be launched in parallels, making Energym models also usable for flexibility control strategies at multi-building level.
+
+
+
+
+
 Contribute
 ----------
 
-Users are encouraged to upload any new environment that present an interest for building or energy system control.
+Users are encouraged to upload new environments that present an interest for building or energy system control.
 
 To do so, follow the full installation steps described  in :ref:`install_full`.
 
@@ -172,13 +189,13 @@ If you use our library for your publication, please cite our github address.
 Support
 -------
 
-If you are having issues, please let us know. We are happy to let Energym grow and help you in a reasonable amount of time.
-Plese contact the maintainers <psh@csem.ch> and <bsl@csem.ch>.
+If you are having issues, please let us know and open an issue on github. We are happy to let Energym grow and help you in a reasonable amount of time.
+
 
 License
 -------
 
-The project except all files in "dependencies" is licensed under the BSD license. 
+The project  is licensed under the BSD license. 
 
 Thanks
 -------

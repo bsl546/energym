@@ -5,6 +5,9 @@ SeminarcenterFull
 -------------------
 
 .. image:: images/seminarcenter_picture.PNG
+    :width: 600
+    :align: center
+
 
 
 Seminarcenter test site is located in Denmark. It is a one-story building situated at an altitude of 248 meters over sea level,
@@ -28,12 +31,18 @@ Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/seminarcenter_ground.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/seminarcenter_top.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/seminarcenter_zones.PNG
+    :width: 600
+    :align: center
 
 
 Thermal systems

@@ -20,14 +20,20 @@ Before starting, you must have a running version of Python>=3.6. Check `here <ht
     - Search "edit environment variables" in the taskbar, open the purposed link, click on Environment Variables.
 
     .. image:: images/env_var_windows1.PNG
+        :width: 400
+        :align: center
 
     - Click on "Path" and then Edit as displayed below.
     
     .. image:: images/env_var_windows2.PNG
+        :width: 400
+        :align: center
 
     - Add your Energyplus installation path.
 
     .. image:: images/env_var_windows3.PNG
+        :width: 400
+        :align: center
 
 
 3. Install Energym::
@@ -94,7 +100,7 @@ For users willing to launch the library within a docker (just for model evaluati
         docker build --pull --rm -f "Dockerfile" -t energym:latest "."
         docker run -d -p 80:80 energym:latest
 
-    - On Linux. Use the dockerlauncher in the main repository. Replace the name 'DockerfileFullInstall3.dockerfile' by 'Dockerfile' and execute the launcher::
+    - On Linux. Use the dockerlauncher in the main repository::
         
         ./dockerlauncher
 

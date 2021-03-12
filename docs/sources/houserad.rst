@@ -20,6 +20,8 @@ A Heat pump with Carnot HX connected to a simple room model with radiator. A sch
 
 
 .. image:: images/HP_u_Rad_1_RC_Sun.png
+    :width: 600
+    :align: center
 
 
 Electrical systems

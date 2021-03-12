@@ -5,6 +5,8 @@ MixedUse
 ----------------
 
 .. image:: images/silo_picture.PNG
+    :width: 600
+    :align: center
 
 The MixedUse building is located in Greece. It is situated at an altitude of 10 meters over sea level, and has a total surface area of 566.38m\ :sup:`2` and a total air volume of 2208.27m\ :sup:`3`.
 
@@ -14,13 +16,22 @@ Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/silo_ground.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/silo_first.PNG
+    :width: 600
+    :align: center
 
 .. image:: images/silo_second.PNG
+    :width: 600
+    :align: center
 
 .. image:: images/silo_zones.PNG
+    :width: 600
+    :align: center
+
 
 
 Thermal systems

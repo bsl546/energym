@@ -19,13 +19,11 @@ Energym can be installed in two ways:
 
 - via a **full installation**, that requires to install all dependencies to compile new models. This installation mode should only be used by users willing to contribute to Energym models library; See :ref:`install_full`.
 
-To ease both installation cases, three dockerfiles are provided to the users:
+To ease  installation on shared machines/cloud or run the library on Mac OS, two dockerfiles are provided:
 
-- the standard dockerfile (called Dockerfile) will proceed to a minimal installation within a Ubuntu 20.04 container.
+- a standard dockerfile (called Dockerfile)  that downloads a pre-built image from Dockerhub with Ubuntu 20.04 and installs the library.
 
-- the JModelica dockerfile (called JModelica) will proceed to a full installation within a Ubuntu 18.04 container. It uses the latest freely available version of JModelica (provided in the code as a zip file), as well as Python2.7. Unfortunately, JModelica and Python2.7 are not (freely) maintained anymore, and hence this dockerfile will be deprecated in future versions, replaced by the OpenModelica one (see below).
-
-- the Openmodelica dockerfile (called OpenModelica) will proceed to a full installation within a Ubuntu 20.04 container with Python3. The compatibility with the modelica buildings library is however still not fully guaranteed.
+- a JModelica dockerfile (called JModelica)  that downloads a pre-built image from Dockerhub with Ubuntu 18.04, JModelica and EnergyplustoFMU. It uses the latest freely available version of JModelica as well as Python2.7.
 
 For more details, see :ref:`install_full`.
 
@@ -104,7 +102,7 @@ gives the same outputs as the  gym step method, i.e. outputs, reward, done, info
     env = energym.make("Apartments2Thermal-v0", weather=weather, simulation_days=300)
 
     downsampling_dic = ...  #define how keys are downsampled (e.g. {key1: np.mean, key2: ... }
-    lower_bound =  ... #define how keys are rescaled (lower and upper bounds) (e.g. lower_bound = {key1: 0.0, ...}, upper_bound ={key1:20.0,...}
+    lower_bound =  ... #define how keys are rescaled (lower and upper bounds) (e.g. lower_bound = {key1: 0.0, ...})
     def reward = ... #define the reward function
 
 

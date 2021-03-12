@@ -12,6 +12,7 @@ import platform
 # PLEASE, adapt the two line below for your local energyplus installation and the energyplustofmu local installation.
 # The script run both on windows, ubuntu, centos and debian (TODO: the tests on ubuntu, centos and debian)
 
+"""
 ENERGYPLUS_PATH = os.path.join("C:\\", "EnergyPlusV9-4-0", "Energy+.idd")
 ENERGYPLUSTOFMU_PATH = os.path.join(
     "C:\\",
@@ -23,16 +24,18 @@ ENERGYPLUSTOFMU_PATH = os.path.join(
     "Scripts",
     "EnergyPlusToFMU.py",
 )
+"""
 
-""" #############################  Docker paths  ############################
+#############################  Docker paths  ############################
 ENERGYPLUS_PATH = "/usr/local/EnergyPlus-9-4-0/Energy+.idd"
 ENERGYPLUSTOFMU_PATH = os.path.join(
-    "/home","libraries",
+    "/home",
+    "libraries",
     "EnergyPlusToFMU",
     "Scripts",
     "EnergyPlusToFMU.py",
 )
-"""
+
 
 PLATFORM = platform.system().lower()
 if PLATFORM == "linux":

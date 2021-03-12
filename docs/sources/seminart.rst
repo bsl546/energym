@@ -5,6 +5,8 @@ SeminarcenterThermostat
 ------------------------
 
 .. image:: images/seminarcenter_picture.PNG
+    :width: 600
+    :align: center
 
 
 Seminarcenter test site is located in Denmark. It is a one-story building situated at an altitude of 248 meters over sea level,
@@ -28,12 +30,18 @@ Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/seminarcenter_ground.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/seminarcenter_top.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/seminarcenter_zones.PNG
+    :width: 600
+    :align: center
 
 
 Thermal systems
@@ -42,6 +50,8 @@ The endpoint thermal distribution setup of Seminarcenter’s HVAC system consist
 that operate cooperatively with an Air Handling Unit (AHU) to provide heating to the different spaces. There is no cooling in this building.
 
 .. image:: images/seminarcenter_loops.PNG
+    :width: 600
+    :align: center
 
 The HVAC supply system allows it to serve the combined demand for heating and domestic hot water on the building. Thus, the HVAC system is composed by six different circuits or loops, one air loop,
 one domestic hot water loop, four heating water loops that supply heating for all the utilities, including the water convectors, 

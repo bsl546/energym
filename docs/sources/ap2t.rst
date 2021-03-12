@@ -6,6 +6,8 @@ Apartments2Thermal
 --------------------
 
 .. image:: images/irec_picture.PNG
+    :width: 600
+    :align: center
 
 Apartments2 Thermal is a 8 zones building located in Spain, Tarragona.  It has a total surface area of 417.12m\ :sup:`2` and a total volume of 1042.83m\ :sup:`3`.
 
@@ -14,9 +16,13 @@ Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/smartlab_seilab.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/smartlab_seilab_zones.PNG
+    :width: 600
+    :align: center
 
 
 
@@ -57,6 +63,8 @@ Heat pump control
 The user has the possibility to control the on/off mode of the four individual pumps. 
 
 .. image:: images/pump_smartlab.PNG
+    :width: 600
+    :align: center
 
 No active cooling system is implemented, a free cooling strategy is applied during summer season. This strategy is modelled with an enhanced air infiltration rate from June to September. 
 Summer season in Spain can reach high temperature such as 35°C. This strategy allows maintaining rooms’ temperature into an acceptable range.

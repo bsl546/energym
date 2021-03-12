@@ -5,6 +5,8 @@ ApartmentsGrid
 ----------------
 
 .. image:: images/irec_picture.PNG
+    :width: 600
+    :align: center  
 
 
 ApartmentsGrid is a 8 zones building located in Spain, Tarragona.  It has a total surface area of 417.12m\ :sup:`2` and a total volume of 1042.83m\ :sup:`3`.
@@ -14,9 +16,13 @@ Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/smartlab_seilab.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/smartlab_seilab_zones.PNG
+    :width: 600
+    :align: center
 
 
 
@@ -50,6 +56,8 @@ Fan coil control
 In order to control rooms temperature there is a single set point for each apartment. 
 
 .. image:: images/fancoil_seilab.PNG
+    :width: 600
+    :align: center
 
 Set point (thermostat) temperatures of the thermal zones are compared with the actual temperatures sensed with the Energy Management System (EMS) sensors of EnergyPlus.
 A temperature hysteresis control with a dead band of 0.51°C is implemented with an internal program. 
@@ -63,6 +71,8 @@ Storage tank control
 Storage tanks present two thermostats, one in the top part (Node 1) and the other in the middle bottom part (Node 3). Only node 3 is controlled by the user.
 
 .. image:: images/tanks_seilab.PNG
+    :width: 600
+    :align: center
 
 Node 1 temperature is controlled by an electrical heater and by a hysteresis control with a dead band of 2°C. 
 On the other hand, the bottom part is connected with the HP loop and is controlled by a hysteresis control with a dead band of 5°C. 
@@ -74,6 +84,8 @@ Heat pump control
 The user has the possibility to control the water supply temperature of the pump and the on/off mode of the pump. 
 
 .. image:: images/pump_seilab.PNG
+    :width: 600
+    :align: center
 
 No active cooling system is implemented, a free cooling strategy is applied during summer season. This strategy is modelled with an enhanced air infiltration rate from June to September. 
 Summer season in Spain can reach high temperature such as 35°C. This strategy allows maintaining rooms’ temperature into an acceptable range.

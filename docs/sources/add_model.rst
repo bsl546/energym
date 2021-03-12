@@ -27,14 +27,14 @@ Energyplus
 ^^^^^^^^^^^^^^^^^^
 
 We provide in the directory scripts a Python script *create_eplus_env.py*. Edit this file putting your Energyplus path and the EnergyplusToFMU path. You may also 
-edit the pythoncom variable depending on your platform and wether you rendered E+toFMU python3 compatible or not.
+edit the pythoncom variable depending on your platform.
 
 Then, in a command line, type::
 
     python create_eplus_env.py -src <folder_name>
 
 
-You may want to provide a weather file with the option -wf. By default, all weather files from the wf folder of your model are considered and a fmu is created to each.
+You may want to provide a weather file with the option -wf. By default, you must have at least a weather wile called weather.epw in the weather folder.
 
 If the compilation is successful, models are added to the fmus folder of your model.
 
@@ -56,7 +56,7 @@ If the compilation is successful, models are added to the fmus folder of your mo
 Test your model
 --------------------------
 
-In principle, testing and documentation updates will be done by our integration Team to ensure that your model is working properly within our framework.
+In principle, testing and documentation updates will be done by our Team to ensure that your model is working properly within our framework.
 
 However, you can already propose a pre-implemented Energym version by:
 

@@ -5,6 +5,8 @@ Offices
 ----------------
 
 .. image:: images/offices_picture.PNG
+    :width: 600
+    :align: center
 
 Offices building is located in Greece. It is situated at an altitude of 4 meters over sea level, and has a total surface area of 643.73m\ :sup:`2` and a total air volume of 2504.54m\ :sup:`3`.
 It includes the following 25 conditioned rooms:
@@ -26,12 +28,18 @@ Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. image:: images/offices_ground.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/offices_first.PNG
+    :width: 600
+    :align: center
 
 
 .. image:: images/offices_zones.PNG
+    :width: 600
+    :align: center
 
 
 Thermal systems

@@ -1,0 +1,12 @@
+#!/bin/bash
+# from https://hub.docker.com/r/nvidia/cuda/
+
+docker_dir=$(readlink -f $0 | xargs dirname)
+basename="$(dirname "$docker_dir")"
+echo $basename
+docker build --file 'DockerfileFullInstall3.dockerfile' . -t docker_energym
+
+docker run -it --name docker_energym \
+	-p 8106:8106 \
+	--volume $basename/:/home/energym \
+docker_energym

@@ -1,10 +1,36 @@
+unzip_fmu_dir*
+Output_EPExport_instance*
+[0-9]*
+
+#E+ extension files
+*.audit
+*.bnd
+*.dxf
+*.eio
+*.edd
+*.end
+*.epmdet
+*.epmidf
+*.err
+*.eso
+*.mdd
+*.mtd
+*.mtr
+*.rdd
+*.shd
+*.csv
+*.vscode
+!energym/schedules/ScheduleFiles/*.csv
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
 
-# C extensions
+# C extensions/ exe
 *.so
+*.exe
 
 # Distribution / packaging
 .Python
@@ -48,7 +74,6 @@ coverage.xml
 .pytest_cache/
 
 # Translations
-*.mo
 *.pot
 
 # Django stuff:
@@ -102,3 +127,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.vscode/launch.json

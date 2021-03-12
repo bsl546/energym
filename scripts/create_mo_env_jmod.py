@@ -4,11 +4,6 @@ import sys
 import time
 import shutil
 import platform
-<<<<<<< HEAD
-=======
-import re
-
->>>>>>> enabled runs for models with one compilation with one weather file only also for modelica
 import user_config  # for Modelica libraries
 
 # Within JModelica.org-2.14 (Python 2.7)
@@ -77,20 +72,12 @@ if __name__ == "__main__":
             list_mo = f.read().splitlines()
 
         if args.src is None:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            mo_full = [os.path.join(src_path, "weather.mos")]
->>>>>>> wp with all weather files
-=======
+
             mo_full = [os.path.join(src_path, src) for src in os.listdir(src_path)]
->>>>>>> enabled runs for models with one compilation with one weather file only also for modelica
             mo_reduced = list_mo
         else:
             mo_reduced = [args.src[:-3]]
 
-<<<<<<< HEAD
-=======
         # Handle all the weather files: create duplicates from source,
         # Remember them to remove them afterwards
         if args.wf is None:
@@ -98,64 +85,12 @@ if __name__ == "__main__":
         else:
             w_reduced = [args.wf[:-4]]
 
->>>>>>> enabled runs for models with one compilation with one weather file only also for modelica
         print("The following mo files will be used to generate fmus:")
         print(mo_reduced)
 
         for i, mo in enumerate(mo_reduced):
             print("Modelica file: ", mo)
 
-<<<<<<< HEAD
-            print("creating fmu file for: " + mo)
-            point_path = ".".join(["modelica", list_folders[n], "src", mo_reduced[i]])
-
-            # Create the fmu
-            temp_path = os.path.join(fmus_path, "tmp", mo_reduced[i])
-            # os.makedirs(temp_path, exist_ok=True)
-            if os.path.isdir(temp_path):
-                shutil.rmtree(temp_path, ignore_errors=False)
-            os.makedirs(temp_path)
-            os.chdir(temp_path)
-
-            # Compile model with options
-            fmu = compile_fmu(
-                point_path,
-                user_config.libs,
-                compiler="auto",
-                target="me+cs",
-                version="2.0",
-                compiler_options={},
-                compiler_log_level="info:%s.log" % mo,
-            )
-
-            found = [p for p in os.listdir(temp_path) if p.endswith(".fmu")][0]
-            name_file = os.path.join(fmus_path, "tmp", mo_reduced[i], found)
-
-            if point_path.replace(".", "_") + ".fmu" in os.listdir(fmus_path):
-                shutil.rmtree(
-                    os.path.join(fmus_path, point_path.replace(".", "_") + ".fmu"),
-                    ignore_errors=True,
-                )  # Remove existing fmu files
-            try:
-                shutil.copy2(
-                    name_file,
-                    fmus_path,
-                )
-            except BaseException as e:
-                print(e)
-                pass
-
-            os.chdir(fmus_path)
-            # Remove temporary folder
-            time.sleep(5)  # wait a few seconds
-            try:
-                shutil.rmtree(temp_path, ignore_errors=False)
-            except BaseException as e:
-                print(e)
-                pass
-
-            os.chdir(working_dir)
-=======
             for j, we in enumerate(w_reduced):
 
                 print("Weather file: ", mo)
@@ -247,4 +182,3 @@ if __name__ == "__main__":
                 except BaseException as e:
                     print(e)
                     pass
->>>>>>> enabled runs for models with one compilation with one weather file only also for modelica

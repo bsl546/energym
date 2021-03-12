@@ -1,16 +1,17 @@
 # General
 
-Energym is a calibrated open source building simulation library designed for the control community to test climate control and energy management strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
+Energym is an open source building simulation library designed  to test climate control and energy management strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
 
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the [Gym library](https://gym.openai.com/)
  used in the robotic control community. Energym relies on the [functional mockup interface (FMI)](https://fmi-standard.org/) standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in [Modelica](https://www.modelica.org/) and [EnergyPlus](https://energyplus.net/)  as well as specific classes for simulating weather forecasts and appliances consumption figures.
 
-With the models already incorporated, Energym offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). In summary, the models already incorporated are representative of cases that can be encountered in real-world control deployment.
+With the models already incorporated, Energym offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). 
 
+New models are under development and will be integrated in due date.
 
 ## Documentation
 
-The full documentation (with installation instructions, usage examples, buildings characteristics) is available at [Energym](https://csem.ch.gitlab.io/energym/)
+The full documentation (with installation instructions, usage examples, buildings characteristics) is available at [Energym](https://bsl546.github.io/energym-pages/)
 
 
 
@@ -38,7 +39,7 @@ Communication between the Python code and the FMU's relies on the package [FMPy]
 
 ### Install with pip
 
-Firstly `git clone` the present repository and move inside with `cd energym`. Then run `pip install -e .`.
+Firstly `git clone` the present repository and move inside with `cd energym`. Then run `pip setup.py install`.
 
 ### Docker version
 
@@ -113,7 +114,7 @@ For every environment, a list of inputs, outputs and weather files used is speci
 
 
 ## Contributing new models
-This open-source library is featured to become the reference library for building control benchmarking. Users are encouraged to upload any new environment that present an interest for building control.
+Users are encouraged to upload  new environments that present an interest for building control.
 
 ### On Windows
 Please, download the latest version of EnergyPlus as well as a C/C++ compiler (for e.g., microsoft visual studio build tools). On windows, change the default compiler address in the .bat files in EnergyPlusToFMU/Scripts/win to your current C compiler address.
@@ -124,7 +125,7 @@ To create a new model, please create a new folder in `simulation/energyplus` or 
 
 The `energym/envs` folder contains the specifics of the model: inputs, outputs as well as weather files for benchmarking and benchmarking metrics KPI's on the output
 
-Once those steps have been carried out, run the script `script/create_eplus_env.py` to build EnergyPlus FMU's or `scripts/create_mo_env.py` to build Modelica FMU's (ensure before that you have JModelica installed and running under Python 2.7). We provide a .zip file with the latest public JModelica version. Please, install this JModelica version on your machine. Detail installation steps are given in the docs. We intend to move to OpenModelica as soon as all features of the Modelica buildings library will be supported by OpenModelica.
+Once those steps have been carried out, run the script `script/create_eplus_env.py` to build EnergyPlus FMU's or `scripts/create_mo_env_jmod.py` to build Modelica FMU's (ensure before that you have JModelica installed and running under Python 2.7). We provide a .zip file with the latest public JModelica version. Please, install this JModelica version on your machine. Detail installation steps are given in the docs. We intend to move to OpenModelica as soon as all features of the Modelica buildings library will be supported by OpenModelica.
 
 ### Docker files (runs on linux machines or windows machines with WSL2)
-We provide two dockerfiles with EnergyPlus and the latest open-source JModelica version. Be aware that JModelica compiler is not open-source anymore, and hence, we intend to switch asap to OpenModelica. One container runs with Python 2.7. The other is a hack of the python source files for both EnergyPlusToFMU and pymodelica, and runs in Python 3.8.
+Two docker pre-built images are stored on dockerhub, one for model launching and interaction, and one heavier for model compilation.

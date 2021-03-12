@@ -3,7 +3,7 @@
 Energym is an open source building simulation library designed  to test climate control and energy management strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
 
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the [Gym library](https://gym.openai.com/)
- used in the robotic control community. Energym relies on the [functional mockup interface (FMI)](https://fmi-standard.org/) standard in order to support models generated in multiple modelling languages easily. It currently includes seven models developed in [Modelica](https://www.modelica.org/) and [EnergyPlus](https://energyplus.net/)  as well as specific classes for simulating weather forecasts and appliances consumption figures.
+ used in the robotic control community. Energym relies on the [functional mockup interface (FMI)](https://fmi-standard.org/) standard in order to support models generated in multiple modelling languages easily. It currently includes 11 models developed in [Modelica](https://www.modelica.org/) and [EnergyPlus](https://energyplus.net/)  as well as specific classes for simulating weather forecasts and appliances consumption figures.
 
 With the models already incorporated, Energym offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). 
 
@@ -37,9 +37,9 @@ The library runs with EnergyPlus and Modelica. To ensure that FMU models compile
 
 Communication between the Python code and the FMU's relies on the package [FMPy](https://github.com/CATIA-Systems/FMPy), which is installed with the default installation.
 
-### Install with pip
+### Installation
 
-Firstly `git clone` the present repository and move inside with `cd energym`. Then run `pip setup.py install`.
+Firstly `git clone` the present repository and move inside with `cd energym`. Then run `python setup.py install`.
 
 ### Docker version
 

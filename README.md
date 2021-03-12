@@ -43,7 +43,7 @@ Firstly `git clone` the present repository and move inside with `cd energym`. Th
 
 ### Docker version
 
-For users willing to use containers, a dockerfile, called `Dockerfile`, is made available. It creates an Ubuntu 20.04 container, with EnergyPlus and Python 3.8. This docker file is not made to compile .idf or .mo files  and works with the precompiled FMU's. For this latter particular task, two other dockers are proposed; see "Participating" below. Instructions to use the containers and install docker on windows are given in the docs.
+For users willing to use containers, a dockerfile, called `Dockerfile`, is made available. It creates an Ubuntu 20.04 container, with EnergyPlus 9.4 and Python 3.8. This docker file is not made to compile .idf or .mo files  and works with the precompiled FMU's. For this latter particular task, another dockerfile is provided, that downloads a pre-built docker iage on dockerhub.
 
 
 ## Available environments
@@ -125,7 +125,7 @@ To create a new model, please create a new folder in `simulation/energyplus` or 
 
 The `energym/envs` folder contains the specifics of the model: inputs, outputs as well as weather files for benchmarking and benchmarking metrics KPI's on the output
 
-Once those steps have been carried out, run the script `script/create_eplus_env.py` to build EnergyPlus FMU's or `scripts/create_mo_env_jmod.py` to build Modelica FMU's (ensure before that you have JModelica installed and running under Python 2.7). We provide a .zip file with the latest public JModelica version. Please, install this JModelica version on your machine. Detail installation steps are given in the docs. We intend to move to OpenModelica as soon as all features of the Modelica buildings library will be supported by OpenModelica.
+Once those steps have been carried out, run the script `script/create_eplus_env.py` to build EnergyPlus FMU's or `scripts/create_mo_env_jmod.py` to build Modelica FMU's (ensure before that you have JModelica installed and running under Python 2.7). 
 
 ### Docker files (runs on linux machines or windows machines with WSL2)
 Two docker pre-built images are stored on dockerhub, one for model launching and interaction, and one heavier for model compilation.

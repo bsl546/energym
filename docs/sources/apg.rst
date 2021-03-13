@@ -81,7 +81,7 @@ As for the fan coils, storage tanks launch a binary signal to the HP based on th
 
 Heat pump control 
 """"""""""""""""""""
-The user has the possibility to control the water return temperature of the pump. 
+The user has the possibility to control the water supply temperature of the pump. 
 
 .. image:: images/pump_seilab.PNG
     :width: 600

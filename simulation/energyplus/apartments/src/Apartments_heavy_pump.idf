@@ -14199,6 +14199,12 @@ ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     Bd_T_HP_supply;                   !- FMU Variable Name
 
 ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    HPsupply_setpoint,       !- Output:Variable Index Key Name
+    Schedule Value,          !- Output:Variable Name
+    Bd_T_HP_sp_out;          !- FMU Variable Name
+
+
+ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
     System Node Temperature,    !- Output:Variable Name
     Bd_T_HP_return;                   !- FMU Variable Name

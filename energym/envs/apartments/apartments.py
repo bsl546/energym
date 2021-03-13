@@ -121,6 +121,11 @@ OUTPUTS_SPECS = {
         "lower_bound": 35,
         "upper_bound": 55,
     },
+    "Bd_T_HP_sp_out": {
+        "type": "scalar",
+        "lower_bound": 35,
+        "upper_bound": 55,
+    },
     "P1_T_Tank_sp_out": {
         "type": "scalar",
         "lower_bound": 30,

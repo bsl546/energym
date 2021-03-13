@@ -132,6 +132,7 @@ Simulation outputs
     "Bd_Fl_HP",
     "Bd_T_HP_supply",
     "Bd_T_HP_return",
+    "Bd_T_HP_sp_out",
     "P3_T_Thermostat_sp_out",
     "P4_T_Thermostat_sp_out",
     "P2_T_Thermostat_sp_out",

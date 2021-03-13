@@ -14378,6 +14378,12 @@
     System Node Temperature,    !- Output:Variable Name
     Bd_T_HP_return;                   !- FMU Variable Name
 
+ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    HPsupply_setpoint,       !- Output:Variable Index Key Name
+    Schedule Value,          !- Output:Variable Name
+    Bd_T_HP_sp_out;          !- FMU Variable Name
+
+
 
 !Tanks temperatures
 

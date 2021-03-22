@@ -80,6 +80,19 @@ Simulation outputs
         table = table + "\n"
     print(table)
 
+Weather files
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The available weather files for this model have the following specifiers:
+
+- ``CH_ZH_Maur`` (Evaluation file)
+- ``CH_BS_Basel`` (Default)
+- ``CH_TI_Bellinzona``
+- ``CH_GR_Davos``
+- ``CH_GE_Geneva``
+- ``CH_VD_Lausanne``
+
+
 
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

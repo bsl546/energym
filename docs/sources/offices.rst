@@ -114,6 +114,23 @@ Simulation outputs
         table = table + "\n"
     print(table)
 
+Weather files
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The available weather files for this model have the following specifiers:
+
+- ``GRC_A_Athens`` (Default)
+- ``GRC_TC_Lamia1`` (Evaluation file)
+- ``GRC_TC_Lamia2``
+- ``GRC_TC_LarisaAP1``
+- ``GRC_TC_LarisaAP2``
+- ``GRC_TC_NeaAnchialosAP1``
+- ``GRC_TC_NeaAnchialosAP2``
+- ``GRC_TC_SkiathosAP``
+- ``GRC_TC_TanagraAP1``
+- ``GRC_TC_TanagraAP2``
+- ``GRC_TC_Trikala``
+
 
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -191,6 +191,28 @@ Simulation outputs
     print(table)
 
 
+Weather files
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The available weather files for this model have the following specifiers:
+
+- ``ESP_CT_Barcelona`` (Default)
+- ``ESP_CT_Barcelona_ElPratAP1`` (Evaluation file)
+- ``ESP_CT_Barcelona_ElPratAP2``
+- ``ESP_CT_Girona1``
+- ``ESP_CT_Girona2``
+- ``ESP_CT_Lleida1``
+- ``ESP_CT_Lleida2``
+- ``ESP_CT_Montseny``
+- ``ESP_CT_Reus1``
+- ``ESP_CT_Reus2``
+- ``ESP_CT_Sabadell1``
+- ``ESP_CT_Sabadell2``
+- ``ESP_CT_Talar``
+- ``ESP_CT_Tortosa1``
+- ``ESP_CT_Tortosa2``
+
+
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

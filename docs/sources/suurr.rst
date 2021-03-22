@@ -78,6 +78,20 @@ Simulation outputs
     print(table)
 
 
+Weather files
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The available weather files for this model have the following specifiers:
+
+- ``CH_ZH_Maur`` (Evaluation file)
+- ``CH_BS_Basel`` (Default)
+- ``CH_TI_Bellinzona``
+- ``CH_GR_Davos``
+- ``CH_GE_Geneva``
+- ``CH_VD_Lausanne``
+
+
+
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The evaluation scenario for the `SwissHouseRad-v0` model consists of a control from January to April with the objective of minimizing the power demand, while keeping the zone temperatures between 19 and 24°C.

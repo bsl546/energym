@@ -214,6 +214,25 @@ Simulation outputs
     print(table)
 
 
+Weather files
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The available weather files for this model have the following specifiers:
+
+- ``DNK_SD_Billund``
+- ``DNK_MJ_Horsens1`` (Default)
+- ``DNK_MJ_Horsens2`` (Evaluation file)
+- ``DNK_MJ_Isenvad1``
+- ``DNK_MJ_Isenvad2``
+- ``DNK_MJ_Karup1``
+- ``DNK_MJ_Karup2``
+- ``DNK_MJ_Lyngvig``
+- ``DNK_MJ_Mejrup1``
+- ``DNK_MJ_Mejrup2``
+- ``DNK_MJ_Odum``
+- ``DNK_MJ_Silstrup``
+
+
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 

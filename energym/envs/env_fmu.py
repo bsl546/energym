@@ -108,17 +108,17 @@ class EnvFMU(Env):
     """
 
     def __init__(
-            self,
-            model_path,
-            start_time,
-            stop_time,
-            step_size,
-            weather=None,
-            input_specs=None,
-            output_specs=None,
-            kpi_options=None,
-            default_path=True,
-            weather_file_path =None
+        self,
+        model_path,
+        start_time,
+        stop_time,
+        step_size,
+        weather=None,
+        input_specs=None,
+        output_specs=None,
+        kpi_options=None,
+        default_path=True,
+        weather_file_path=None,
     ):
         """
         Parameters
@@ -258,9 +258,7 @@ class EnvFMU(Env):
                         )
                     ]
                 elif act_specs["type"] == "discrete":
-                    input_space_list += [
-                        (act_name, Discrete(act_specs["size"]))
-                    ]
+                    input_space_list += [(act_name, Discrete(act_specs["size"]))]
                 else:
                     raise TypeError("Wrong type in INPUT_SPECS.")
 
@@ -298,18 +296,14 @@ class EnvFMU(Env):
                     )
                 ]
             elif obs_specs["type"] == "discrete":
-                output_space_list += [
-                    (obs_name, Discrete(obs_specs["size"]))
-                ]
+                output_space_list += [(obs_name, Discrete(obs_specs["size"]))]
         self.output_space = Dict(spaces=output_space_list)
         self.observation_history = []
 
     def __initialize_fmu(self):
         """Initializes the FMU after instantiation."""
         if self.fmi_version == "1.0":
-            self.fmu.initialize(
-                tStart=self.start_time, stopTime=self.stop_time
-            )
+            self.fmu.initialize(tStart=self.start_time, stopTime=self.stop_time)
         elif self.fmi_version == "2.0":
             self.fmu.enterInitializationMode()
             self.fmu.exitInitializationMode()
@@ -323,19 +317,17 @@ class EnvFMU(Env):
         """
         init_time = str(time.time())[0:10]
         random_id = str(uuid.uuid4().fields[-1])[:7]
-        fmu_path = os.path.join(
-            self.runs_path, init_time + "_" + random_id
-        )
+        fmu_path = os.path.join(self.runs_path, init_time + "_" + random_id)
         os.mkdir(fmu_path)
         self.unzipdir = extract(self.fmu_file, unzipdir=fmu_path)
         weather_folder = Path(self.unzipdir) / "resources"
-        possible_weather_files = list(
-                weather_folder.rglob("*.mos")
-            ) + list(weather_folder.rglob("*.epw"))
+        possible_weather_files = list(weather_folder.rglob("*.mos")) + list(
+            weather_folder.rglob("*.epw")
+        )
         weather_default_file_path = weather_folder / possible_weather_files[0]
         try:
             os.remove(weather_default_file_path)
-            shutil.copy(self.weather_file_path,weather_default_file_path)
+            shutil.copy(self.weather_file_path, weather_default_file_path)
         except BaseException as e:
             logging.error(e)
             logging.error("Problem with the weather file handling")
@@ -344,9 +336,7 @@ class EnvFMU(Env):
 
         # model identifier
         if self.fmi_type == "modex":
-            model_id = (
-                self.model_description.modelExchange.modelIdentifier
-            )
+            model_id = self.model_description.modelExchange.modelIdentifier
         else:
             model_id = self.model_description.coSimulation.modelIdentifier
 
@@ -370,9 +360,7 @@ class EnvFMU(Env):
 
         self.fmu.instantiate(loggingOn=True)
         if self.fmi_version == "2.0":
-            self.fmu.setupExperiment(
-                startTime=self.start_time, stopTime=self.stop_time
-            )
+            self.fmu.setupExperiment(startTime=self.start_time, stopTime=self.stop_time)
 
         # Initialize time and the last_output values
         self.time = self.start_time
@@ -473,9 +461,7 @@ class EnvFMU(Env):
             )
 
             # get the values
-            out_values = self.fmu.getReal(
-                [self.vrs[key] for key in self.output_keys]
-            )
+            out_values = self.fmu.getReal([self.vrs[key] for key in self.output_keys])
 
             # advance the time
             self.time += self.step_size
@@ -572,26 +558,20 @@ class EnvFMU(Env):
         hourly_steps = int(60 / time_resolution)
         tot_length = math.ceil(forecast_length / hourly_steps) + 2
         start_index = 0
-        forecast={}
+        forecast = {}
 
         if isinstance(self.weather, EPW):
             minute, hour, day, month = self.get_date()
             start_index = int(minute / time_resolution)
-            forecast = self.weather.get_forecast(
-                hour, day, month, tot_length
-            )
+            forecast = self.weather.get_forecast(hour, day, month, tot_length)
 
         elif isinstance(self.weather, MOS):
             res = self.time % 3600
-            start_index = int(res / time_resolution)
-            forecast = self.weather.get_forecast(
-                self.time - res, forecast_length
-            )
+            start_index = int(res / self.step_size)
+            forecast = self.weather.get_forecast(self.time - res, forecast_length)
         forecast = self._interpolate_forecast(forecast, hourly_steps)
         for key in forecast:
-            forecast[key] = forecast[key][
-                            start_index: forecast_length + start_index
-                            ]
+            forecast[key] = forecast[key][start_index : forecast_length + start_index]
         return forecast
 
     def _interpolate_forecast(self, forecast, hourly_steps):
@@ -602,15 +582,19 @@ class EnvFMU(Env):
                 for j in range(hourly_steps):
                     weight = j / hourly_steps
                     new_list.append(
-                        (1 - weight) * mod_list[i]
-                        + weight * mod_list[i + 1]
+                        (1 - weight) * mod_list[i] + weight * mod_list[i + 1]
                     )
             new_list.append(mod_list[len(mod_list) - 1])
             forecast[key] = new_list
         return forecast
 
-    def look_for_weather_file(self, name=None, generate_forecasts=True, generate_forecast_method='perfect',
-                              generate_forecast_keys=None):
+    def look_for_weather_file(
+        self,
+        name=None,
+        generate_forecasts=True,
+        generate_forecast_method="perfect",
+        generate_forecast_keys=None,
+    ):
         """Finds a weather file in the FMU.
 
         Parameters
@@ -625,9 +609,9 @@ class EnvFMU(Env):
         """
         weather_folder = Path(self.unzipdir) / "resources"
         if name is None:
-            possible_weather_files = list(
-                weather_folder.rglob("*.mos")
-            ) + list(weather_folder.rglob("*.epw"))
+            possible_weather_files = list(weather_folder.rglob("*.mos")) + list(
+                weather_folder.rglob("*.epw")
+            )
         else:
             possible_weather_files = list(weather_folder.rglob(name))
         if len(possible_weather_files) == 0:
@@ -642,17 +626,23 @@ class EnvFMU(Env):
             wf = weather_folder / possible_weather_files[0]
             if wf.suffix == ".mos":
                 self.weather = MOS()
-                self.weather.read(wf, generate_forecasts, generate_forecast_method,
-                                  generate_forecast_keys)
+                self.weather.read(
+                    wf,
+                    generate_forecasts,
+                    generate_forecast_method,
+                    generate_forecast_keys,
+                )
             elif wf.suffix == ".epw":
                 self.weather = EPW()
-                self.weather.read(wf, generate_forecasts, generate_forecast_method,
-                                  generate_forecast_keys)
+                self.weather.read(
+                    wf,
+                    generate_forecasts,
+                    generate_forecast_method,
+                    generate_forecast_keys,
+                )
             else:
                 raise Exception(
-                    "File {} cannot be interpreted as a weather file".format(
-                        wf
-                    )
+                    "File {} cannot be interpreted as a weather file".format(wf)
                 )
 
     def post_process(self, list_rel_out, res, arrays=False):

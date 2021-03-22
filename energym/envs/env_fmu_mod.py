@@ -30,6 +30,8 @@ class EnvModFMU(EnvFMU):
         stop_time,
         step_size,
         weather,
+        params,
+        init_vals,
         input_specs,
         output_specs,
         kpi_options,
@@ -69,6 +71,8 @@ class EnvModFMU(EnvFMU):
             If the passed weather file is not contained in the list of
             available weather files
         """
+        self.params = params
+        self.init_vals = init_vals
         if default_path:
             path = os.path.abspath(energym.__file__)
             path = os.path.abspath(os.path.join(path, "..", ".."))
@@ -137,6 +141,8 @@ class EnvModFMU(EnvFMU):
                 default_path,
                 weather_file,
             )
+        self.set_model_variables(list(params.keys()), list(params.values()))
+        self.set_model_variables(list(init_vals.keys()), list(init_vals.values()))
 
     def set_model_variables(self, variables, values):
         """Sets value of model variables.
@@ -183,3 +189,10 @@ class EnvModFMU(EnvFMU):
         res = [(self.time, out)]
         output = self.post_process(self.output_keys, res, arrays=False)
         return output
+
+    def reset(self):
+        super().reset()
+        self.set_model_variables(list(self.params.keys()), list(self.params.values()))
+        self.set_model_variables(
+            list(self.init_vals.keys()), list(self.init_vals.values())
+        )

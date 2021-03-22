@@ -261,9 +261,7 @@ class SimpleHouse(EnvModFMU):
         start_date = datetime.date(year, start_month, start_day)
         delta = start_date - datetime.date(year, 1, 1)
         start_time = delta.total_seconds()
-        stop_time = (
-            start_time + n_steps * 24 * simulation_days * step_size
-        )
+        stop_time = start_time + n_steps * 24 * simulation_days * step_size
         params = {
             "P_nominal": 5e3,
             "COP_nominal": 5.0,
@@ -287,6 +285,8 @@ class SimpleHouse(EnvModFMU):
             stop_time,
             step_size,
             weather,
+            params,
+            init_vals,
             INPUTS_SPECS,
             outputs_specs,
             kpi_options,
@@ -294,11 +294,4 @@ class SimpleHouse(EnvModFMU):
             generate_forecasts,
             generate_forecast_method,
             generate_forecast_keys,
-        )
-
-        self.set_model_variables(
-            list(params.keys()), list(params.values())
-        )
-        self.set_model_variables(
-            list(init_vals.keys()), list(init_vals.values())
         )

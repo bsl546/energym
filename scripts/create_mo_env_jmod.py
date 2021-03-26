@@ -4,6 +4,7 @@ import sys
 import time
 import shutil
 import platform
+import re
 import user_config  # for Modelica libraries
 
 # Within JModelica.org-2.14 (Python 2.7)

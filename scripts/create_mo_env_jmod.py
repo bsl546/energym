@@ -79,10 +79,10 @@ if __name__ == "__main__":
             list_mo = f.read().splitlines()
 
         if args.src is None:
-
             mo_full = [os.path.join(src_path, src) for src in os.listdir(src_path)]
             mo_reduced = list_mo
         else:
+            mo_full = [os.path.join(src_path, args.src)]
             mo_reduced = [args.src[:-3]]
 
         # Handle all the weather files: create duplicates from source,

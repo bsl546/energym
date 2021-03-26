@@ -37,6 +37,13 @@ if __name__ == "__main__":
         help="If specified, only the specified mo file will be transformed to fmu. Otherwise, all mo files in the folder are used.",
     )
 
+    parser.add_argument(
+        "-wf",
+        action="store",
+        default=None,
+        help="If specified, only the specified wf file will be transformed to fmu. Otherwise, the file weather.mo will be used",
+    )
+
     args = parser.parse_args()
 
     # Put correct path

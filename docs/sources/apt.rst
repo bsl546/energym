@@ -107,13 +107,14 @@ For more detail, please check the documentation :ref:`apartments_doc` or the sou
     "HVAC_onoff_HP_sp",
     "Bd_Pw_Bat_sp",
     "Bd_Ch_EVBat_sp"]
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in inputs_list:
         table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
         if INPUTS_SPECS[var]["type"] == "scalar":
             table = table + str(INPUTS_SPECS[var]["lower_bound"]) + ", " + str(INPUTS_SPECS[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(INPUTS_SPECS[var]["size"])
+        table = table + ", " + str(INPUTS_SPECS[var]["description"])
         table = table + "\n"
     print(table)
         
@@ -194,13 +195,14 @@ Simulation outputs
     "Fa_E_All",
     "Fa_E_Light",
     "Fa_E_Appl"]
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in outputs_list:
         table = table + "    " + var + ", " + "" + OUTPUTS_SPECS[var]["type"] + ", "
         if OUTPUTS_SPECS[var]["type"] == "scalar":
             table = table + str(OUTPUTS_SPECS[var]["lower_bound"]) + ", " + str(OUTPUTS_SPECS[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(OUTPUTS_SPECS[var]["size"])
+        table = table + ", " + str(OUTPUTS_SPECS[var]["description"])
         table = table + "\n"
     print(table)
 

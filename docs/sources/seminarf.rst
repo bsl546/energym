@@ -141,13 +141,14 @@ For more detail, please check the documentation :ref:`seminarcenter_doc` or the 
     "Z20_T_Thermostat_sp",
     "Z21_T_Thermostat_sp",
     "Z22_T_Thermostat_sp"]
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in inputs_list:
         table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
         if INPUTS_SPECS[var]["type"] == "scalar":
             table = table + str(INPUTS_SPECS[var]["lower_bound"]) + ", " + str(INPUTS_SPECS[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(INPUTS_SPECS[var]["size"])
+        table = table + ", " + str(INPUTS_SPECS[var]["description"])
         table = table + "\n"
     print(table)
         
@@ -224,13 +225,14 @@ Simulation outputs
     "Z22_T",
     "Z22_T_Thermostat_sp_out",
     "Bd_CO2"]
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in outputs_list:
         table = table + "    " + var + ", " + "" + OUTPUTS_SPECS[var]["type"] + ", "
         if OUTPUTS_SPECS[var]["type"] == "scalar":
             table = table + str(OUTPUTS_SPECS[var]["lower_bound"]) + ", " + str(OUTPUTS_SPECS[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(OUTPUTS_SPECS[var]["size"])
+        table = table + ", " + str(OUTPUTS_SPECS[var]["description"])
         table = table + "\n"
     print(table)
 

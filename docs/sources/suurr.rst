@@ -49,13 +49,14 @@ For more detail, please check the documentation :ref:`swisshouse_doc` or the sou
 .. exec::
     import json
     from energym.envs.swiss_house.swiss_house import INPUTS_SPECS
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in INPUTS_SPECS:
         table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
         if INPUTS_SPECS[var]["type"] == "scalar":
             table = table + str(INPUTS_SPECS[var]["lower_bound"]) + ", " + str(INPUTS_SPECS[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(INPUTS_SPECS[var]["size"])
+        table = table + ", " + str(INPUTS_SPECS[var]["description"])
         table = table + "\n"
     print(table)
         
@@ -67,13 +68,14 @@ Simulation outputs
 .. exec::
     import json
     from energym.envs.swiss_house.swiss_house import OUTPUTS_SPECS_RAD
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in OUTPUTS_SPECS_RAD:
         table = table + "    " + var + ", " + "" + OUTPUTS_SPECS_RAD[var]["type"] + ", "
         if OUTPUTS_SPECS_RAD[var]["type"] == "scalar":
             table = table + str(OUTPUTS_SPECS_RAD[var]["lower_bound"]) + ", " + str(OUTPUTS_SPECS_RAD[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(OUTPUTS_SPECS_RAD[var]["size"])
+        table = table + ", " + str(OUTPUTS_SPECS_RAD[var]["description"])
         table = table + "\n"
     print(table)
 

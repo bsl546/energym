@@ -54,13 +54,14 @@ For more detail, please check the documentation :ref:`simplehouse_doc` or the so
 .. exec::
     import json
     from energym.envs.simple_house.simple_house import INPUTS_SPECS
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in INPUTS_SPECS:
         table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
         if INPUTS_SPECS[var]["type"] == "scalar":
             table = table + str(INPUTS_SPECS[var]["lower_bound"]) + ", " + str(INPUTS_SPECS[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(INPUTS_SPECS[var]["size"])
+        table = table + ", " + str(INPUTS_SPECS[var]["description"])
         table = table + "\n"
     print(table)
         
@@ -72,13 +73,14 @@ Simulation outputs
 .. exec::
     import json
     from energym.envs.simple_house.simple_house import OUTPUTS_SPECS_SLAB
-    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States\n\n"
+    table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in OUTPUTS_SPECS_SLAB:
         table = table + "    " + var + ", " + "" + OUTPUTS_SPECS_SLAB[var]["type"] + ", "
         if OUTPUTS_SPECS_SLAB[var]["type"] == "scalar":
             table = table + str(OUTPUTS_SPECS_SLAB[var]["lower_bound"]) + ", " + str(OUTPUTS_SPECS_SLAB[var]["upper_bound"]) + ", "
         else:
             table = table + ", , " + str(OUTPUTS_SPECS_SLAB[var]["size"])
+        table = table + ", " + str(OUTPUTS_SPECS_SLAB[var]["description"])
         table = table + "\n"
     print(table)
 

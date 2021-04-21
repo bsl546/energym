@@ -241,7 +241,7 @@ OUTPUTS_SPECS_SLAB = {
         "type": "scalar",
         "lower_bound": 0,
         "upper_bound": 10,
-        "description": "Slab mass flow rate (W).",
+        "description": "Slab mass flow rate (kg/s).",
     },
     "sla.surf_a.T": {
         "type": "scalar",

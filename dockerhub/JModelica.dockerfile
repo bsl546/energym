@@ -122,11 +122,6 @@ RUN apt-get update \
 
 
 
-#Add python3 to make the tests
-RUN apt-get update \
-    && apt-get install -y python3-pip python3-dev
-
-
 VOLUME /var/simdata/energyplus
 WORKDIR /var/simdata/energyplus
 

@@ -134,8 +134,8 @@ OUTPUTS_SPECS_RAD = {
     },
     "y": {
         "type": "scalar",
-        "lower_bound": -10,
-        "upper_bound": 70,
+        "lower_bound": 263.15,
+        "upper_bound": 343.15,
         "description": "Indoor temperature (K).",
     },
 }

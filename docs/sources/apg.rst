@@ -96,6 +96,7 @@ Electric components control
 It is possible to interact directly with the power charge/discharge of the community battery.
 On the other hand, it can only interact with the charging profile of the EV battery, as the discharge profile is a predefined behaviour of the EV. 
 In practice, this control works with a predefined constant design value (maximum battery charge/discharge power) and with a correction fraction that comes from the optimization.
+
 .. image:: images/electric_seilab.PNG
 
 

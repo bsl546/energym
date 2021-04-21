@@ -129,3 +129,10 @@ Once those steps have been carried out, run the script `script/create_eplus_env.
 
 ### Docker files (runs on linux machines or windows machines with WSL2)
 Two docker pre-built images are stored on dockerhub, one for model launching and interaction, and one heavier for model compilation.
+
+
+## Cite
+If you use our library for your work, please cite our paper: 
+
+Scharnhorst, P.; Schubnel, B.; Fernández Bandera, C.; Salom, J.; Taddeo, P.; Boegli, M.; Gorecki, T.; Stauffer, Y.; Peppas, A.; Politi, C. Energym: A Building Model Library for Controller Benchmarking. Appl. Sci. 2021, 11, 3518. https://doi.org/10.3390/app11083518 
+

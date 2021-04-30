@@ -1,6 +1,6 @@
 ﻿within modelica.swiss_house.src;
-model HP_u_Slab_1RC_Sun_S20_v0
-  "Heat pump with Carnot HX connected to a simple room model with floor heating"
+model HP_u_Rad_1RC_Sun_v0
+  "Heat pump with Carnot HX connected to a simple room model with radiator"
   extends Modelica.Icons.Example;
   replaceable package MediumA =
       Buildings.Media.Air "Medium model for air";
@@ -14,12 +14,8 @@ model HP_u_Slab_1RC_Sun_S20_v0
   // Heat Pump
   parameter Real COP_nominal = 3
     "Nominal COP";
-  parameter Modelica.SIunits.Power P_nominal = 39.8e3
+  parameter Modelica.SIunits.Power P_nominal = 1000
     "Nominal compressor power (at y=1)";
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 3*39.8e3
-    "Nominal heat flow rate of radiator";
-  parameter Modelica.SIunits.MassFlowRate mHeaPum_flow_nominal = Q_flow_nominal/4200/10
-    "Heat pump nominal mass flow rate";
   parameter Modelica.SIunits.TemperatureDifference dTEva_nominal = -10
     "Temperature difference evaporator outlet-inlet";
   parameter Modelica.SIunits.TemperatureDifference dTCon_nominal = 10
@@ -29,22 +25,22 @@ model HP_u_Slab_1RC_Sun_S20_v0
   parameter Modelica.SIunits.TemperatureDifference TEva_nominal = 273.15 + 5
     "Evaporator Temperature used to compute COP_nominal";
 
-  // Floor heating radiant slab
-  parameter Modelica.SIunits.Area slab_surf = 7836
-    "Surface area of radiant slab (m^2)";
-  parameter Modelica.SIunits.ThermalConductance slab_G_Abo = 81.0e3
-    "Combined convection and radiation resistance above the slab (W/K)";  //G=2*area/0.05
-  parameter Modelica.SIunits.ThermalConductance slab_G_Bel = 120
-    "Combined convection and radiation resistance below the slab (W/K)";  //G=0.05*area/0.4
-  parameter Modelica.SIunits.Temperature slab_T_Bel = 273.15 + 10
-    "Radiant temperature below the slab (K)";
+  // Radiator
+  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 3000
+    "Nominal heat flow rate of radiator";
+  parameter Modelica.SIunits.Temperature TRadSup_nominal = 273.15 + 40
+    "Radiator nominal supply water temperature";
+  parameter Modelica.SIunits.Temperature TRadRet_nominal = 273.15 + 35
+    "Radiator nominal return water temperature";
+  parameter Modelica.SIunits.MassFlowRate mHeaPum_flow_nominal = Q_flow_nominal/4200/5
+    "Heat pump nominal mass flow rate";
 
   // Building envelope
-  parameter Modelica.SIunits.ThermalConductance therm_cond_G = 4051
-    "Envelope Thermal Conductance (W/K)";  // G=Qheat/40
-  parameter Modelica.SIunits.HeatCapacity heat_capa_C = 5.64e9
-    "Envelope Heat Capacity (J/K)";  // C=2*180*1.2*1006
-  parameter Modelica.SIunits.Volume room_vol_V = 10e3
+  parameter Modelica.SIunits.ThermalConductance therm_cond_G = 100
+    "Envelope Thermal Conductance (W/K)";  // G=Qheat/max(Tin-Tout)
+  parameter Modelica.SIunits.HeatCapacity heat_capa_C = 40e6
+    "Envelope Heat Capacity (J/K)";  // C=0.2 MJ/m2K
+  parameter Modelica.SIunits.Volume room_vol_V = 750
     "Room volume (m^3)";
   parameter Modelica.SIunits.MassFlowRate mA_flow_nominal = room_vol_V*6/3600
     "Air nominal mass flow rate (kg/s)";
@@ -55,7 +51,7 @@ model HP_u_Slab_1RC_Sun_S20_v0
   parameter Real tilt_C = 90 "Surface tilt (°C)";
   parameter Real azimuth_C = 0 "Surface azimuth (°C)";
   parameter Real latitude_C = 47.14 "Latitude (°C)";
-  parameter Real sun_heat_gain = 195.9 "Sun heat gain";
+  parameter Real sun_heat_gain = 2.5 "Sun heat gain";
 
   // Weather data
   parameter String weafile = Modelica.Utilities.Files.loadResource(
@@ -76,6 +72,15 @@ model HP_u_Slab_1RC_Sun_S20_v0
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heaCap(C=heat_capa_C)
     "Heat capacity for furniture and walls"
     annotation (Placement(transformation(extent={{40,40},{60,60}})));
+  Buildings.Fluid.HeatExchangers.Radiators.RadiatorEN442_2 rad(
+    redeclare package Medium = MediumW,
+    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
+    Q_flow_nominal=Q_flow_nominal,
+    T_a_nominal=TRadSup_nominal,
+    T_b_nominal=TRadRet_nominal,
+    m_flow_nominal=mHeaPum_flow_nominal,
+    T_start=TRadSup_nominal)     "Radiator"
+    annotation (Placement(transformation(extent={{-20,-50},{-40,-30}})));
   Modelica.Thermal.HeatTransfer.Sensors.TemperatureSensor temRoo
     "Room temperature" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
@@ -97,7 +102,7 @@ model HP_u_Slab_1RC_Sun_S20_v0
     COP_nominal=COP_nominal,
     TCon_nominal=TCon_nominal,
     TEva_nominal=TEva_nominal) "Heat pump model"
-    annotation (Placement(transformation(extent={{-46,-166},{-14,-134}})));
+    annotation (Placement(transformation(extent={{-46,-146},{-14,-114}})));
 
 //---------------------------------------------------------------------------//
 
@@ -106,38 +111,38 @@ model HP_u_Slab_1RC_Sun_S20_v0
     m_flow_nominal=mHeaPum_flow_nominal,
     y_start=1,
     m_flow_start=0.85,
-    T_start=TCon_nominal,
+    T_start=TRadSup_nominal,
     nominalValuesDefineDefaultPressureCurve=true,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
     "Pump for radiator side" annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
-        origin={-80,-90})));
+        origin={-80,-70})));
 //---------------------------------------------------------------------------//
 
   Buildings.Fluid.Sensors.TemperatureTwoPort temSup(
     redeclare package Medium = MediumW,
     m_flow_nominal=mHeaPum_flow_nominal,
-    T_start=TCon_nominal)  "Supply water temperature"
+    T_start=TRadSup_nominal)  "Supply water temperature"
       annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=0,
-        origin={0,-50})));
+        origin={0,-40})));
 
   Buildings.Fluid.Sensors.TemperatureTwoPort temRet(
     redeclare package Medium = MediumW,
     m_flow_nominal=mHeaPum_flow_nominal,
-    T_start=TCon_nominal)  "Return water temperature"
+    T_start=TRadSup_nominal)  "Return water temperature"
       annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=0,
-        origin={-60,-50})));
+        origin={-60,-40})));
 
 //---------------------------------------------------------------------------//
 
   Modelica.Blocks.Math.Gain gaiHP(k=1) "Gain for Heat Pump"
-    annotation (Placement(transformation(extent={{-106,-128},{-90,-112}})));
+    annotation (Placement(transformation(extent={{-106,-108},{-90,-92}})));
 
 //---------------------------------------------------------------------------//
 
@@ -154,12 +159,12 @@ model HP_u_Slab_1RC_Sun_S20_v0
 
   Buildings.Fluid.Storage.ExpansionVessel exp(redeclare package Medium =
         MediumW)
-    annotation (Placement(transformation(extent={{30,-130},{50,-110}})));
+    annotation (Placement(transformation(extent={{30,-110},{50,-90}})));
   Buildings.Fluid.Sources.Boundary_pT hole(redeclare package Medium = MediumW,
       nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
-        origin={-80,-200})));
+        origin={-80,-180})));
   Buildings.Fluid.Sources.MassFlowSource_T mf_sou(
     redeclare package Medium = MediumW,
     m_flow=mHeaPum_flow_nominal,
@@ -167,58 +172,16 @@ model HP_u_Slab_1RC_Sun_S20_v0
     nPorts=1) annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
-        origin={20,-190})));
+        origin={20,-170})));
   Modelica.Blocks.Sources.Constant gnd_temp(k=10 + 273.15)
-    annotation (Placement(transformation(extent={{-40,-210},{-20,-190}})));
+    annotation (Placement(transformation(extent={{-20,-210},{0,-190}})));
 
 //---------------------------------------------------------------------------//
 
-  Buildings.Fluid.HeatExchangers.RadiantSlabs.SingleCircuitSlab
-       sla(
-    m_flow_nominal=mHeaPum_flow_nominal,
-    redeclare package Medium = MediumW,
-    layers=layers,
-    iLayPip=1,
-    pipe=pipe,
-    sysTyp=Buildings.Fluid.HeatExchangers.RadiantSlabs.Types.SystemType.Floor,
-    disPip=0.2,
-    A=slab_surf,
-    energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    heatTransfer=Buildings.Fluid.HeatExchangers.RadiantSlabs.Types.HeatTransfer.EpsilonNTU)
-    "Slabe with embedded pipes"
-    annotation (Placement(transformation(extent={{-20,-60},{-40,-40}})));
-  parameter Buildings.HeatTransfer.Data.OpaqueConstructions.Generic layers(nLay=3,
-      material={Buildings.HeatTransfer.Data.Solids.Generic(
-        x=0.08,
-        k=1.13,
-        c=1000,
-        d=1400,
-        nSta=5),Buildings.HeatTransfer.Data.Solids.Generic(
-        x=0.05,
-        k=0.04,
-        c=1400,
-        d=10),Buildings.HeatTransfer.Data.Solids.Generic(
-        x=0.2,
-        k=1.8,
-        c=1100,
-        d=2400)})
-    "Material layers from surface a to b (8cm concrete, 5 cm insulation, 20 cm reinforced concrete)"
-    annotation (Placement(transformation(extent={{-200,-176},{-180,-156}})));
-  parameter Buildings.Fluid.Data.Pipes.PEX_RADTEST pipe "Pipe material"
-    annotation (Placement(transformation(extent={{-200,-200},{-180,-180}})));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor conAbo(G=slab_G_Abo)
-    "Combined convection and radiation resistance above the slab"
-    annotation (Placement(transformation(extent={{-20,-30},{0,-10}})));
-  Modelica.Thermal.HeatTransfer.Components.ThermalConductor conBel(G=slab_G_Bel)
-    "Combined convection and radiation resistance below the slab"
-    annotation (Placement(transformation(extent={{0,-90},{-20,-70}})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature TBel(T=slab_T_Bel)
-    "Radiant temperature below the slab"
-    annotation (Placement(transformation(extent={{60,-90},{40,-70}})));
+  Modelica.Blocks.Interfaces.RealInput u
+    annotation (Placement(transformation(extent={{-172,-82},{-148,-58}})));
   Modelica.Blocks.Interfaces.RealOutput y
     annotation (Placement(transformation(extent={{-150,-10},{-170,10}})));
-  Modelica.Blocks.Interfaces.RealInput u
-    annotation (Placement(transformation(extent={{-172,-102},{-148,-78}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow preHea
     "Prescribed heat flow"
     annotation (Placement(transformation(extent={{58,70},{38,90}})));
@@ -254,6 +217,14 @@ equation
       points={{-90,0},{40,0}},
       color={191,0,0},
       smooth=Smooth.None));
+  connect(rad.heatPortCon, vol.heatPort) annotation (Line(
+      points={{-28,-32.8},{-28,0},{40,0}},
+      color={191,0,0},
+      smooth=Smooth.None));
+  connect(rad.heatPortRad, vol.heatPort) annotation (Line(
+      points={{-32,-32.8},{-32,0},{40,0}},
+      color={191,0,0},
+      smooth=Smooth.None));
 
   connect(weaDat.weaBus, weaBus) annotation (Line(
       points={{-180,40},{-130,40}},
@@ -276,43 +247,33 @@ equation
       color={191,0,0},
       smooth=Smooth.None));
 
-  connect(gaiHP.y, heaPum.y) annotation (Line(points={{-89.2,-120},{-60,-120},{
-          -60,-135.6},{-49.2,-135.6}},              color={0,0,127}));
-  connect(heaPum.port_b2, hole.ports[1]) annotation (Line(points={{-46,-159.6},
-          {-80,-159.6},{-80,-190}},
+  connect(gaiHP.y, heaPum.y) annotation (Line(points={{-89.2,-100},{-60,-100},{
+          -60,-115.6},{-49.2,-115.6}},              color={0,0,127}));
+  connect(heaPum.port_b2, hole.ports[1]) annotation (Line(points={{-46,-139.6},
+          {-80,-139.6},{-80,-170}},
                                  color={0,127,255}));
-  connect(mf_sou.ports[1], heaPum.port_a2) annotation (Line(points={{20,-180},{
-          20,-159.6},{-14,-159.6}},   color={0,127,255}));
-  connect(gnd_temp.y, mf_sou.T_in) annotation (Line(points={{-19,-200},{-8,-200},
-          {-8,-210},{16,-210},{16,-202}},
-                             color={0,0,127}));
-  connect(heaPum.port_b1, temSup.port_a) annotation (Line(points={{-14,-140.4},
-          {20,-140.4},{20,-50},{10,-50}},color={0,127,255}));
-  connect(temRet.port_b, pumHeaPum.port_a) annotation (Line(points={{-70,-50},{
-          -80,-50},{-80,-80}}, color={0,127,255}));
-  connect(pumHeaPum.port_b, heaPum.port_a1) annotation (Line(points={{-80,-100},
-          {-80,-140},{-46,-140},{-46,-140.4}}, color={0,127,255}));
-  connect(heaPum.port_b1, exp.port_a) annotation (Line(points={{-14,-140.4},{20,
-          -140.4},{20,-140},{40,-140},{40,-130}},color={0,127,255}));
-  connect(temSup.port_b, sla.port_a)
-    annotation (Line(points={{-10,-50},{-20,-50}},
+  connect(mf_sou.ports[1], heaPum.port_a2) annotation (Line(points={{20,-160},{
+          20,-139.6},{-14,-139.6}},   color={0,127,255}));
+  connect(gnd_temp.y, mf_sou.T_in) annotation (Line(points={{1,-200},{16,-200},
+          {16,-182}},        color={0,0,127}));
+  connect(heaPum.port_b1, temSup.port_a) annotation (Line(points={{-14,-120.4},
+          {20,-120.4},{20,-40},{10,-40}},color={0,127,255}));
+  connect(temSup.port_b, rad.port_a)
+    annotation (Line(points={{-10,-40},{-20,-40}},
                                                 color={0,127,255}));
-  connect(sla.port_b, temRet.port_a)
-    annotation (Line(points={{-40,-50},{-50,-50}}, color={0,127,255}));
-  connect(sla.surf_a, conAbo.port_a)
-    annotation (Line(points={{-34,-40},{-34,-20},{-20,-20}},
-                                                        color={191,0,0}));
-  connect(conBel.port_b, sla.surf_b)
-    annotation (Line(points={{-20,-80},{-34,-80},{-34,-60}},
-                                                           color={191,0,0}));
-  connect(conAbo.port_b, vol.heatPort)
-    annotation (Line(points={{0,-20},{20,-20},{20,0},{40,0}},color={191,0,0}));
-  connect(TBel.port, conBel.port_a)
-    annotation (Line(points={{40,-80},{0,-80}},  color={191,0,0}));
+  connect(rad.port_b, temRet.port_a)
+    annotation (Line(points={{-40,-40},{-50,-40}}, color={0,127,255}));
+  connect(temRet.port_b, pumHeaPum.port_a) annotation (Line(points={{-70,-40},{
+          -80,-40},{-80,-60}}, color={0,127,255}));
+  connect(pumHeaPum.port_b, heaPum.port_a1) annotation (Line(points={{-80,-80},
+          {-80,-120},{-46,-120},{-46,-120.4}}, color={0,127,255}));
+  connect(heaPum.port_b1, exp.port_a) annotation (Line(points={{-14,-120.4},{20,
+          -120.4},{20,-120},{40,-120},{40,-110}},color={0,127,255}));
   connect(u, pumHeaPum.m_flow_in)
-    annotation (Line(points={{-160,-90},{-92,-90}}, color={0,0,127}));
-  connect(u, gaiHP.u) annotation (Line(points={{-160,-90},{-120,-90},{-120,-120},
-          {-107.6,-120}},color={0,0,127}));
+    annotation (Line(points={{-160,-70},{-92,-70}}, color={0,0,127}));
+  connect(u, gaiHP.u) annotation (Line(points={{-160,-70},{-120,-70},{-120,-100},
+          {-107.6,-100}},
+                        color={0,0,127}));
   connect(temRoo.T, y)
     annotation (Line(points={{-110,0},{-160,0}},  color={0,0,127}));
   connect(timTab.y[1],preHea. Q_flow) annotation (Line(
@@ -329,10 +290,10 @@ equation
     annotation (Line(points={{38,80},{20,80},{20,0},{40,0}}, color={191,0,0}));
   annotation (Documentation(info="<html>
 <p>Example that simulates one room equipped with a radiator. Hot water is produced by a <i>24</i> kW nominal capacity heat pump. The source side water temperature to the heat pump is constant at <i>10</i>&deg;C.</p>
-<p>The heat pump is activated through a PI controller to regulate the room temperature around 20&deg;C.</p>
+<p>The heat pump is activated with an external controller connected to the input u.</p>
 </html>", revisions="<html>
 <ul>
-<li>April 2020, by Max Boegli:<br>Replaced the radiator by a radiant slab.</li>
+<li>March 2020, by Max Boegli:<br>Replaced the feedback controller by an input u for external activation.</li>
 <li>Sometime in 2019, by Max Boegli:<br>Replaced the hysteresis loop by a PI controller.</li>
 <li>March 3, 2017, by Michael Wetter:<br>Changed mass flow test to use a hysteresis as a threshold test can cause chattering. </li>
 <li>January 27, 2017, by Massimo Cimmino:<br>First implementation. </li>
@@ -346,4 +307,4 @@ equation
     experiment(
       StopTime=172800,
       Tolerance=1e-08));
-end HP_u_Slab_1RC_Sun_S20_v0;
+end HP_u_Rad_1RC_Sun_v0;

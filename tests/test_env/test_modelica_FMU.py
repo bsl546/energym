@@ -7,14 +7,13 @@ import matplotlib.pyplot as plt
 
 import energym
 
-
 # ============================================================================
 # Constants
 # ============================================================================
 op_sys = platform.system().lower()
 
-T0 = 273.15   # [K] Zero degree Celsius in Kelvin
-cp = 4180   # [J/(kg K)] Water specific heat capacity
+T0 = 273.15  # [K] Zero degree Celsius in Kelvin
+cp = 4180  # [J/(kg K)] Water specific heat capacity
 
 
 # ============================================================================
@@ -173,12 +172,12 @@ def run_model(model_name: str):
     )
 
     param_fmu = {
-        # "P_nominal": 25e3,
+        # "P_nominal": 1e3,
         # "COP_nominal": 4,
-        # "therm_cond_G": 2000 #1000,
-        # "heat_capa_C": 1e9,
+        # "therm_cond_G": 100,
+        # "heat_capa_C": 40e6,
         # "TCon_nominal": T0 + 30,
-        # "room_vol_V": 10e3,
+        # "room_vol_V": 750,
     }
     # get_param = env.get_variable_data(["P_nominal"])
     # param_fmu["P_nominal"] = get_param["P_nominal"]*0.5
@@ -196,7 +195,7 @@ def run_model(model_name: str):
         })
     elif "slab" in model_name.lower():
         param_fmu = dict(**param_fmu, **{
-            # "slab_surf": 10e3,
+            # "slab_surf": 200,
             # "slab_G_Abo": 1e3, #10e3,
             # "slab_G_Bel": 1e3, #120,
         })
@@ -225,7 +224,6 @@ def run_model(model_name: str):
     # Run feedback loop
     tic = time.time()
     for dt in record.index:
-
         # Get control law
         uval = controller(out["temRoo.T"], param_ctrl)
 
@@ -245,17 +243,15 @@ def run_model(model_name: str):
 def test_models():
     # List of models to be tested
     # to_test = ["SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
-    to_test = ["SwissHouseRad-v0","SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
-    # to_test = ["SuurstoffiRadS16-v0", "SuurstoffiRadS18-v0", "SuurstoffiRadS20-v0"]
-    # to_test = ["SuurstoffiSlabS16-v0", "SuurstoffiSlabS18-v0", "SuurstoffiSlabS20-v0"]
+    # to_test = ["SwissHouseRad-v0"]
+    to_test = ["SwissHouseRad-v0", "SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
     records, envs = {}, {}
 
     for model_name in to_test:
-
         record, env = run_model(model_name)
         assert record.to_numpy().sum() != 0
         records[model_name] = record
-        envs[model_name] =  env
+        envs[model_name] = env
         # plot
         plot_fun = select_plot_model(model_name.lower())
         plot_fun(record, model_name)

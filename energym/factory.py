@@ -466,7 +466,7 @@ def make(key, eval_mode=False, **kwargs):
                 )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SWISSHOUSE_RAD_S16_V0.value:
+    elif key == EnvNames.SWISSHOUSE_RAD_V0.value:
         if eval_mode:
             try:
                 return SwissHouse(
@@ -474,7 +474,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "HP_u_Rad_1RC_Sun_S16_v0",
+                        "HP_u_Rad_1RC_Sun_v0",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -488,13 +488,13 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "HP_u_Rad_1RC_Sun_S16_v0",
+                        "HP_u_Rad_1RC_Sun_v0",
                     ),
                     **kwargs
                 )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SWISSHOUSE_RAD_S18_V0.value:
+    elif key == EnvNames.SWISSHOUSE_SLAB_V0.value:
         if eval_mode:
             try:
                 return SwissHouse(
@@ -502,7 +502,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "HP_u_Rad_1RC_Sun_S18_v0",
+                        "HP_u_Slab_1RC_Sun_v0",
                     ),
                     weather="CH_ZH_Maur",
                     simulation_days=365,
@@ -516,119 +516,7 @@ def make(key, eval_mode=False, **kwargs):
                         "swiss_house",
                         "fmus",
                         op_sys,
-                        "HP_u_Rad_1RC_Sun_S18_v0",
-                    ),
-                    **kwargs
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SWISSHOUSE_RAD_S20_V0.value:
-        if eval_mode:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Rad_1RC_Sun_S20_v0",
-                    ),
-                    weather="CH_ZH_Maur",
-                    simulation_days=365,
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-        else:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Rad_1RC_Sun_S20_v0",
-                    ),
-                    **kwargs
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SWISSHOUSE_SLAB_S16_V0.value:
-        if eval_mode:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Slab_1RC_Sun_S16_v0",
-                    ),
-                    weather="CH_ZH_Maur",
-                    simulation_days=365,
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-        else:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Slab_1RC_Sun_S16_v0",
-                    ),
-                    **kwargs
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SWISSHOUSE_SLAB_S18_V0.value:
-        if eval_mode:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Slab_1RC_Sun_S18_v0",
-                    ),
-                    weather="CH_ZH_Maur",
-                    simulation_days=365,
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-        else:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Slab_1RC_Sun_S18_v0",
-                    ),
-                    **kwargs
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-    elif key == EnvNames.SWISSHOUSE_SLAB_S20_V0.value:
-        if eval_mode:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Slab_1RC_Sun_S20_v0",
-                    ),
-                    weather="CH_ZH_Maur",
-                    simulation_days=365,
-                )
-            except BaseException as e:
-                logger.exception("Unable to build model. {}".format(e))
-        else:
-            try:
-                return SwissHouse(
-                    model_path=os.path.join(
-                        "swiss_house",
-                        "fmus",
-                        op_sys,
-                        "HP_u_Slab_1RC_Sun_S20_v0",
+                        "HP_u_Slab_1RC_Sun_v0",
                     ),
                     **kwargs
                 )

@@ -14,11 +14,5 @@ class EnvNames(Enum):
     SEMINARCENTER_FULL_V0 = "SeminarcenterFull-v0"
     SIMPLE_HOUSE_RAD_V0 = "SimpleHouseRad-v0"
     SIMPLE_HOUSE_SLAB_V0 = "SimpleHouseSlab-v0"
-    SWISSHOUSE_RAD_S18_V0 = "SwissHouseRad-v0"
-
-    #Next names are trial versions and should not be used (will be Deprecated)
-    SWISSHOUSE_RAD_S16_V0 = "SwissHouseRadS16-v0"
-    SWISSHOUSE_RAD_S20_V0 = "SwissHouseRadS20-v0"
-    SWISSHOUSE_SLAB_S16_V0 = "SwissHouseSlabS16-v0"
-    SWISSHOUSE_SLAB_S18_V0 = "SwissHouseSlabS18-v0"
-    SWISSHOUSE_SLAB_S20_V0 = "SwissHouseSlabS20-v0"
+    SWISSHOUSE_RAD_V0 = "SwissHouseRad-v0"
+    SWISSHOUSE_SLAB_V0 = "SwissHouseSlab-v0"

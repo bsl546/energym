@@ -1,5 +1,5 @@
 ﻿within modelica.swiss_house.src;
-model HP_u_Slab_1RC_Sun_S16_v0
+model HP_u_Slab_1RC_Sun_v0
   "Heat pump with Carnot HX connected to a simple room model with floor heating"
   extends Modelica.Icons.Example;
   replaceable package MediumA =
@@ -14,11 +14,11 @@ model HP_u_Slab_1RC_Sun_S16_v0
   // Heat Pump
   parameter Real COP_nominal = 3
     "Nominal COP";
-  parameter Modelica.SIunits.Power P_nominal = 53.1e3
+  parameter Modelica.SIunits.Power P_nominal = 1000
     "Nominal compressor power (at y=1)";
-  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 3*53.1e3
+  parameter Modelica.SIunits.HeatFlowRate Q_flow_nominal = 3000
     "Nominal heat flow rate of radiator";
-  parameter Modelica.SIunits.MassFlowRate mHeaPum_flow_nominal = Q_flow_nominal/4200/10
+  parameter Modelica.SIunits.MassFlowRate mHeaPum_flow_nominal = Q_flow_nominal/4200/5
     "Heat pump nominal mass flow rate";
   parameter Modelica.SIunits.TemperatureDifference dTEva_nominal = -10
     "Temperature difference evaporator outlet-inlet";
@@ -30,21 +30,21 @@ model HP_u_Slab_1RC_Sun_S16_v0
     "Evaporator Temperature used to compute COP_nominal";
 
   // Floor heating radiant slab
-  parameter Modelica.SIunits.Area slab_surf = 10453
+  parameter Modelica.SIunits.Area slab_surf = 200
     "Surface area of radiant slab (m^2)";
-  parameter Modelica.SIunits.ThermalConductance slab_G_Abo = 108.1e3
+  parameter Modelica.SIunits.ThermalConductance slab_G_Abo = 8000
     "Combined convection and radiation resistance above the slab (W/K)";  //G=2*area/0.05
-  parameter Modelica.SIunits.ThermalConductance slab_G_Bel = 120
+  parameter Modelica.SIunits.ThermalConductance slab_G_Bel = 20
     "Combined convection and radiation resistance below the slab (W/K)";  //G=0.05*area/0.4
   parameter Modelica.SIunits.Temperature slab_T_Bel = 273.15 + 10
     "Radiant temperature below the slab (K)";
 
   // Building envelope
-  parameter Modelica.SIunits.ThermalConductance therm_cond_G = 5403
-    "Envelope Thermal Conductance (W/K)";  // G=Qheat/40
-  parameter Modelica.SIunits.HeatCapacity heat_capa_C = 7.53e9
-    "Envelope Heat Capacity (J/K)";  // C=2*180*1.2*1006
-  parameter Modelica.SIunits.Volume room_vol_V = 10e3
+  parameter Modelica.SIunits.ThermalConductance therm_cond_G = 100
+    "Envelope Thermal Conductance (W/K)";  // G=Qheat/max(Tin-Tout)
+  parameter Modelica.SIunits.HeatCapacity heat_capa_C = 40e6
+    "Envelope Heat Capacity (J/K)";  // C=0.2 MJ/m2K
+  parameter Modelica.SIunits.Volume room_vol_V = 750
     "Room volume (m^3)";
   parameter Modelica.SIunits.MassFlowRate mA_flow_nominal = room_vol_V*6/3600
     "Air nominal mass flow rate (kg/s)";
@@ -55,7 +55,7 @@ model HP_u_Slab_1RC_Sun_S16_v0
   parameter Real tilt_C = 90 "Surface tilt (°C)";
   parameter Real azimuth_C = 0 "Surface azimuth (°C)";
   parameter Real latitude_C = 47.14 "Latitude (°C)";
-  parameter Real sun_heat_gain = 261.3 "Sun heat gain";
+  parameter Real sun_heat_gain = 2.5 "Sun heat gain";
 
   // Weather data
   parameter String weafile = Modelica.Utilities.Files.loadResource(
@@ -346,4 +346,4 @@ equation
     experiment(
       StopTime=172800,
       Tolerance=1e-08));
-end HP_u_Slab_1RC_Sun_S16_v0;
+end HP_u_Slab_1RC_Sun_v0;

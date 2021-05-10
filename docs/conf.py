@@ -65,6 +65,7 @@ extensions = [
 ]
 
 autodoc_mock_imports = ["fmpy"]
+autodoc_typehints = "none"
 # autodoc_default_options = {
 #    'autosummary': True,
 # }

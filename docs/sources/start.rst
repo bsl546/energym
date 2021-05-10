@@ -57,7 +57,7 @@ In code, this looks as follows:
     outputs = env.step(inputs)
 
 
-Getting forecasts
+Getting Forecasts
 -------------------------------
 
 Each environment has a get_forecast() method, with which the user can retrieve meteorological and (depending on the environment) other stochastic forecasts. To get the current forecasts,
@@ -69,6 +69,16 @@ Each environment has a get_forecast() method, with which the user can retrieve m
 is used. It outputs a dictionary with the forecasted keys over the horizon forecast_length.
 
 
+Activating the Evaluation Mode
+--------------------------------
+
+The evaluation mode fixes simulation parameters for each environment to guarantee comparability in the controller evaluation. To create an environment in simulation mode, simply call
+
+.. code-block:: python
+
+    env = energym.make(env_name, eval_mode=True)
+
+If the environment is in simulation mode, all other optional parameters of the ``make`` method are ignored and set to default values.
 
 
 Evaluating Control Performance

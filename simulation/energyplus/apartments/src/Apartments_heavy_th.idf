@@ -4,7 +4,7 @@
 !-      Use '!' comments if they need to be retained when using the IDFEditor.
 !-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
 
-  Version,9.4;
+  Version,9.5;
 
 !-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
 
@@ -7518,7 +7518,7 @@
   ElectricEquipment,
     EV_fakeConsumption,      !- Name
     P3_TZ_6_NightArea,       !- Zone or ZoneList Name
-    EVdischarge_Dw3_schedule,  !- Schedule Name
+    EVdischarge_Dw3_schedule,!- Schedule Name
     EquipmentLevel,          !- Design Level Calculation Method
     3700,                    !- Design Level {W}
     ,                        !- Watts per Zone Floor Area {W/m2}
@@ -10504,16 +10504,40 @@
     0.001472,                !- Reference Source Side Flow Rate {m3/s}
     48580.0000,              !- Reference Heating Capacity {W}
     4260.000000000,          !- Reference Heating Power Consumption {W}
-    -0.767190000,            !- Heating Capacity Coefficient 1
-    -2.333590000,            !- Heating Capacity Coefficient 2
-    5.657140000,             !- Heating Capacity Coefficient 3
-    -0.767190000,            !- Heating Capacity Coefficient 4
-    -0.767190000,            !- Heating Capacity Coefficient 5
-    -4.040910030,            !- Heating Compressor Power Coefficient 1
-    12.012802060,            !- Heating Compressor Power Coefficient 2
-    1.155141390,             !- Heating Compressor Power Coefficient 3
-    -4.040910030,            !- Heating Compressor Power Coefficient 4
-    -4.040910030;            !- Heating Compressor Power Coefficient 5
+    WWHPHeatCapCurve 1,      !- Heating Capacity Curve Name
+    WWHPHeatPowCurve 1;      !- Heating Compressor Power Curve Name
+
+  Curve:QuadLinear,
+    WWHPHeatCapCurve 1,      !- Name
+    -0.767190000,            !- Coefficient1 Constant
+    -2.333590000,            !- Coefficient2 w
+    5.657140000,             !- Coefficient3 x
+    -0.767190000,            !- Coefficient4 y
+    -0.767190000,            !- Coefficient5 z
+    -100,                    !- Minimum Value of w
+    100,                     !- Maximum Value of w
+    -100,                    !- Minimum Value of x
+    100,                     !- Maximum Value of x
+    -100,                    !- Minimum Value of y
+    100,                     !- Maximum Value of y
+    -100,                    !- Minimum Value of z
+    100;                     !- Maximum Value of z
+
+  Curve:QuadLinear,
+    WWHPHeatPowCurve 1,      !- Name
+    -4.040910030,            !- Coefficient1 Constant
+    12.012802060,            !- Coefficient2 w
+    1.155141390,             !- Coefficient3 x
+    -4.040910030,            !- Coefficient4 y
+    -4.040910030,            !- Coefficient5 z
+    -100,                    !- Minimum Value of w
+    100,                     !- Maximum Value of w
+    -100,                    !- Minimum Value of x
+    100,                     !- Maximum Value of x
+    -100,                    !- Minimum Value of y
+    100,                     !- Maximum Value of y
+    -100,                    !- Minimum Value of z
+    100;                     !- Maximum Value of z
 
 !-   ===========  ALL OBJECTS IN CLASS: DISTRICTCOOLING ===========
 
@@ -11934,7 +11958,7 @@
 
   EnergyManagementSystem:Sensor,
     SP_EVbatteryPower,       !- Name
-    EVStorageChargeSchedule,  !- Output:Variable or Output:Meter Index Key Name
+    EVStorageChargeSchedule, !- Output:Variable or Output:Meter Index Key Name
     Schedule Value;          !- Output:Variable or Output:Meter Name
 
   EnergyManagementSystem:Sensor,
@@ -12242,9 +12266,9 @@
     SET electricDW_3 = DW3auxTank+DW3electricAux,  !- <none>
     SET electricDW_3_all = electricDW_3+DW3app+DW3light+DW3_EV,  !- <none>
     SET electricDW_4 = DW4auxTank+DW4electricAux,  !- <none>
-    SET electricDW_4_all = electricDW_4+DW4app+DW4light,  !- <none>   
+    SET electricDW_4_all = electricDW_4+DW4app+DW4light,  !- <none>
     SET ele1= electricDW_1+electricDW_2+electricDW_3+electricDW_4,  !- <none>
-    SET ele1_all= electricDW_1_all+electricDW_2_all+electricDW_3_all+electricDW_4_all,  !- <none> 
+    SET ele1_all= electricDW_1_all+electricDW_2_all+electricDW_3_all+electricDW_4_all,  !- <none>
     SET ele2= HPconsEnergy_Wh+HotWaterPumpEnergy_Wh+EvaporatorLoopPumpEnergy_Wh,  !- <none>
     SET ele3= BatChargeEnergy_Wh-BatDischargeEnergy_Wh-EnergyProducedAtBus_Wh,  !- <none>
     SET thermaltotank_J=thermaltotank1_J+thermaltotank2_J+thermaltotank3_J+thermaltotank4_J,  !- <none>
@@ -12272,7 +12296,6 @@
     ELSE,                    !- <none>
     SET EVchargeStatus=0,    !- <none>
     ENDIF;                   !- <none>
-
 
   EnergyManagementSystem:Program,
     EnergyConversion,        !- Name
@@ -12393,7 +12416,7 @@
     EnergyProduced_Wh,       !- Erl Variable 1 Name
     ZonesFansCons,           !- Erl Variable 2 Name
     ele1_all,                !- Erl Variable 3 Name
-    ele1;                    !- Erl Variable 4 Name
+    ele1;                    !- <none>
 
   EnergyManagementSystem:GlobalVariable,
     ele2,                    !- Erl Variable 1 Name
@@ -13335,7 +13358,7 @@
     Pv_surface,              !- Surface Name
     PhotovoltaicPerformance:Simple,  !- Photovoltaic Performance Object Type
     15percentEffPVh83Area,   !- Module Performance Name
-    IntegratedSurfaceOutsideFace,  !- Heat Transfer Integration Mode
+    Decoupled,  !- Heat Transfer Integration Mode
     14,                      !- Number of Series Strings in Parallel {dimensionless}
     3;                       !- Number of Modules in Series {dimensionless}
 
@@ -13509,9 +13532,9 @@
     ,                        !- Maximum Storage State of Charge Fraction
     ,                        !- Minimum Storage State of Charge Fraction
     3700,                    !- Design Storage Control Charge Power {W}
-    EVStorageChargeSchedule,  !- Storage Charge Power Fraction Schedule Name
+    EVStorageChargeSchedule, !- Storage Charge Power Fraction Schedule Name
     3700,                    !- Design Storage Control Discharge Power {W}
-    EVdischarge_Dw3_schedule;  !- Storage Discharge Power Fraction Schedule Name
+    EVdischarge_Dw3_schedule;!- Storage Discharge Power Fraction Schedule Name
 
 !-   ===========  ALL OBJECTS IN CLASS: ELECTRICLOADCENTER:STORAGE:CONVERTER ===========
 
@@ -13934,14 +13957,14 @@
     Bd_Pw_Bat_sp_out;        !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    EVStorageChargeSchedule,  !- Output:Variable Index Key Name
+    EVStorageChargeSchedule, !- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
     Bd_Ch_EVBat_sp_out;      !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    EVdischarge_Dw3_schedule,  !- Output:Variable Index Key Name
+    EVdischarge_Dw3_schedule,!- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
-    Bd_DisCh_EVBat;     !- FMU Variable Name
+    Bd_DisCh_EVBat;          !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     ON_VENT_YEARLY,          !- Output:Variable Index Key Name
@@ -14362,28 +14385,25 @@
     Bd_T_HP_sp,              !- FMU Variable Name
     55.0;                    !- Initial Value
 
+  ExternalInterface:FunctionalMockupUnitExport:From:Variable,
+    Water to Water Heat Pump Heating HW Inlet Node,  !- Output:Variable Index Key Name
+    System Node Mass Flow Rate,  !- Output:Variable Name
+    Bd_Fl_HP;                !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
-    System Node Mass Flow Rate,    !- Output:Variable Name
-    Bd_Fl_HP;                   !- FMU Variable Name
+    Water to Water Heat Pump Heating HW Outlet Node,  !- Output:Variable Index Key Name
+    System Node Temperature, !- Output:Variable Name
+    Bd_T_HP_supply;          !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    Water to Water Heat Pump Heating HW Outlet Node,               !- Output:Variable Index Key Name
-    System Node Temperature,    !- Output:Variable Name
-    Bd_T_HP_supply;                   !- FMU Variable Name
+    Water to Water Heat Pump Heating HW Inlet Node,  !- Output:Variable Index Key Name
+    System Node Temperature, !- Output:Variable Name
+    Bd_T_HP_return;          !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    Water to Water Heat Pump Heating HW Inlet Node,               !- Output:Variable Index Key Name
-    System Node Temperature,    !- Output:Variable Name
-    Bd_T_HP_return;                   !- FMU Variable Name
-
-ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     HPsupply_setpoint,       !- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
     Bd_T_HP_sp_out;          !- FMU Variable Name
-
-
 
 !Tanks temperatures
 
@@ -14420,17 +14440,16 @@ ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     0.0;                     !- Initial Value
 
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
-    EVStorageChargeSchedule,  !- Schedule Name
+    EVStorageChargeSchedule, !- Schedule Name
     Any Number,              !- Schedule Type Limits Names
     Bd_Ch_EVBat_sp,          !- FMU Variable Name
     0.0;                     !- Initial Value
 
-
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
-    EVdischarge_Dw3_schedule,  !- Schedule Name
+    EVdischarge_Dw3_schedule,!- Schedule Name
     Any Number,              !- Schedule Type Limits Names
-    Bd_DisCh_EVBat_sp,         !- FMU Variable Name
-    0.0;     
+    Bd_DisCh_EVBat_sp,       !- FMU Variable Name
+    0.0;                     !- Initial Value
 
 !-   ===========  ALL OBJECTS IN CLASS: OUTPUT:VARIABLE ===========
 !======== weather outputs ========
@@ -14505,12 +14524,11 @@ ExternalInterface:FunctionalMockupUnitExport:From:Variable,
 
   Output:Variable,DHWtgn4yearly,Schedule Value,Timestep;
 
-
   Output:Variable,Water to Water Heat Pump Heating HW Inlet Node,System Node Mass Flow Rate,Timestep;
 
-  Output:Variable, Water to Water Heat Pump Heating HW Outlet Node,System Node Temperature,Timestep;
+  Output:Variable,Water to Water Heat Pump Heating HW Outlet Node,System Node Temperature,Timestep;
 
-  Output:Variable, Water to Water Heat Pump Heating HW Inlet Node,System Node Temperature,Timestep;
+  Output:Variable,Water to Water Heat Pump Heating HW Inlet Node,System Node Temperature,Timestep;
 
 ! ======== Batterie outputs  ===============
 ! Batteries
@@ -14590,7 +14608,6 @@ ExternalInterface:FunctionalMockupUnitExport:From:Variable,
 
 !  Output:Diagnostics,
 !    DisplayExtraWarnings;   !- Key 1
-
 !night ventilation schedule
 
   Schedule:Year,

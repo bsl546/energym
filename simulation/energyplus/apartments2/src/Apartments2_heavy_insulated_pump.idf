@@ -4,7 +4,7 @@
 !-      Use '!' comments if they need to be retained when using the IDFEditor.
 !-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
 
-  Version,9.4;
+  Version,9.5;
 
 !-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
 
@@ -19534,7 +19534,7 @@
   ElectricEquipment,
     EV_fakeConsumption,      !- Name
     P2_TZ_4_NightArea,       !- Zone or ZoneList Name
-    EVdischarge_Dw2_schedule,  !- Schedule Name
+    EVdischarge_Dw2_schedule,!- Schedule Name
     EquipmentLevel,          !- Design Level Calculation Method
     3700,                    !- Design Level {W}
     ,                        !- Watts per Zone Floor Area {W/m2}
@@ -19547,7 +19547,7 @@
   ElectricEquipment,
     EV2_fakeConsumption,     !- Name
     P3_TZ_6_NightArea,       !- Zone or ZoneList Name
-    EVdischarge_Dw3_schedule,  !- Schedule Name
+    EVdischarge_Dw3_schedule,!- Schedule Name
     EquipmentLevel,          !- Design Level Calculation Method
     3700,                    !- Design Level {W}
     ,                        !- Watts per Zone Floor Area {W/m2}
@@ -23575,12 +23575,12 @@
 
   EnergyManagementSystem:Sensor,
     SP_EVbatteryPower,       !- Name
-    EVStorageChargeSchedule,  !- Output:Variable or Output:Meter Index Key Name
+    EVStorageChargeSchedule, !- Output:Variable or Output:Meter Index Key Name
     Schedule Value;          !- Output:Variable or Output:Meter Name
 
   EnergyManagementSystem:Sensor,
     SP_EV2batteryPower,      !- Name
-    EV2StorageChargeSchedule,  !- Output:Variable or Output:Meter Index Key Name
+    EV2StorageChargeSchedule,!- Output:Variable or Output:Meter Index Key Name
     Schedule Value;          !- Output:Variable or Output:Meter Name
 
   EnergyManagementSystem:Sensor,
@@ -23706,7 +23706,6 @@
     Schedule:Compact,        !- Actuated Component Type
     Schedule Value;          !- Actuated Component Control Type
 
-
 !-   ===========  ALL OBJECTS IN CLASS: ENERGYMANAGEMENTSYSTEM:PROGRAMCALLINGMANAGER ===========
 !!!!!!Temperature control
 
@@ -23730,7 +23729,6 @@
     AfterPredictorBeforeHVACManagers,  !- EnergyPlus Model Calling Point
     BatterySetConversion;    !- Program Name 1
 
-
 !-   ===========  ALL OBJECTS IN CLASS: ENERGYMANAGEMENTSYSTEM:PROGRAM ===========
 
   EnergyManagementSystem:Program,
@@ -23749,8 +23747,6 @@
  !     SET EVStorageDischargeScheduleActuator = 0,
  !    SET EVStorageDischargeScheduleActuator = 0,
   !    SET StorageDischargeScheduleActuator = 0,
-
-
 
   EnergyManagementSystem:Program,
     HeatingControlStrategy2, !- Name
@@ -23874,7 +23870,7 @@
     SET electricDW_2= DW2electricAux,  !- <none>
     SET DW2_EV=EVBatChargeEnergy_Wh,  !- <none>
     SET electricDW_2_all= electricDW_2+DW2app+DW2light+DW2_EV,  !- <none>
-    SET DW3_EV=EV2BatChargeEnergy_Wh,  !- <none> -EV2BatDischargeEnergy_Wh
+    SET DW3_EV=EV2BatChargeEnergy_Wh,  !- <none>
     SET electricDW_3= DW3electricAux,  !- <none>
     SET electricDW_3_all= electricDW_3+DW3app+DW3light+DW3_EV,  !- <none>
     SET electricDW_4= DW4electricAux,  !- <none>
@@ -24053,10 +24049,10 @@
     electricDW_2,            !- <none>
     electricDW_3,            !- <none>
     electricDW_4,            !- <none>
-    electricDW_1_all,            !- <none>
-    electricDW_2_all,            !- <none>
-    electricDW_3_all,            !- <none>
-    electricDW_4_all,            !- <none>
+    electricDW_1_all,        !- <none>
+    electricDW_2_all,        !- <none>
+    electricDW_3_all,        !- <none>
+    electricDW_4_all,        !- <none>
     DW3_EV,                  !- <none>
     DW2_EV,                  !- <none>
     DemandEnergyFacility_Wh; !- <none>
@@ -24064,8 +24060,8 @@
   EnergyManagementSystem:GlobalVariable,
     EnergyProduced_Wh,       !- Erl Variable 1 Name
     ZonesFansCons,           !- Erl Variable 2 Name
-    ele1_all,                !- Erl Variable 2 Name
-    ele1;                    !- Erl Variable 3 Name
+    ele1_all,                !- Erl Variable 3 Name
+    ele1;                    !- <none>
 
   EnergyManagementSystem:GlobalVariable,
     ele2,                    !- Erl Variable 1 Name
@@ -24946,7 +24942,7 @@
     Pv_surface,              !- Surface Name
     PhotovoltaicPerformance:Simple,  !- Photovoltaic Performance Object Type
     15percentEffPVh83Area,   !- Module Performance Name
-    IntegratedSurfaceOutsideFace,  !- Heat Transfer Integration Mode
+    Decoupled,  !- Heat Transfer Integration Mode
     14,                      !- Number of Series Strings in Parallel {dimensionless}
     3;                       !- Number of Modules in Series {dimensionless}
 
@@ -25096,9 +25092,9 @@
     ,                        !- Maximum Storage State of Charge Fraction
     ,                        !- Minimum Storage State of Charge Fraction
     3700,                    !- Design Storage Control Charge Power {W}
-    EVStorageChargeSchedule,  !- Storage Charge Power Fraction Schedule Name
+    EVStorageChargeSchedule, !- Storage Charge Power Fraction Schedule Name
     3700,                    !- Design Storage Control Discharge Power {W}
-    EVdischarge_Dw2_schedule;  !- Storage Discharge Power Fraction Schedule Name
+    EVdischarge_Dw2_schedule;!- Storage Discharge Power Fraction Schedule Name
 
   ElectricLoadCenter:Distribution,
     DC with inverter and Synerion 24M for electric car2,  !- Name
@@ -25117,9 +25113,9 @@
     ,                        !- Maximum Storage State of Charge Fraction
     ,                        !- Minimum Storage State of Charge Fraction
     3700,                    !- Design Storage Control Charge Power {W}
-    EV2StorageChargeSchedule,  !- Storage Charge Power Fraction Schedule Name
+    EV2StorageChargeSchedule,!- Storage Charge Power Fraction Schedule Name
     3700,                    !- Design Storage Control Discharge Power {W}
-    EVdischarge_Dw3_schedule;  !- Storage Discharge Power Fraction Schedule Name
+    EVdischarge_Dw3_schedule;!- Storage Discharge Power Fraction Schedule Name
 
 !-   ===========  ALL OBJECTS IN CLASS: ELECTRICLOADCENTER:STORAGE:CONVERTER ===========
 
@@ -25771,30 +25767,28 @@
     0.0;                     !- Initial Value
 
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
-    EVStorageChargeSchedule,  !- Schedule Name
+    EVStorageChargeSchedule, !- Schedule Name
     Any Number,              !- Schedule Type Limits Names
     Bd_Ch_EV1Bat_sp,         !- FMU Variable Name
     0.0;                     !- Initial Value
 
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
-    EV2StorageChargeSchedule,  !- Schedule Name
+    EV2StorageChargeSchedule,!- Schedule Name
     Any Number,              !- Schedule Type Limits Names
     Bd_Ch_EV2Bat_sp,         !- FMU Variable Name
     0.0;                     !- Initial Value
 
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
-    EVdischarge_Dw2_schedule,  !- Schedule Name
+    EVdischarge_Dw2_schedule,!- Schedule Name
     Any Number,              !- Schedule Type Limits Names
-    Bd_DisCh_EV1Bat_sp,         !- FMU Variable Name
+    Bd_DisCh_EV1Bat_sp,      !- FMU Variable Name
     0.0;                     !- Initial Value
 
   ExternalInterface:FunctionalMockupUnitExport:To:Schedule,
-    EVdischarge_Dw3_schedule,  !- Schedule Name
+    EVdischarge_Dw3_schedule,!- Schedule Name
     Any Number,              !- Schedule Type Limits Names
-    Bd_DisCh_EV2Bat_sp,         !- FMU Variable Name
+    Bd_DisCh_EV2Bat_sp,      !- FMU Variable Name
     0.0;                     !- Initial Value
-
-
 
 !-   ===========  ALL OBJECTS IN CLASS: EXTERNALINTERFACE:FUNCTIONALMOCKUPUNITEXPORT:FROM:VARIABLE ===========
 !External outputs
@@ -25851,24 +25845,24 @@
     Bd_Pw_Bat_sp_out;        !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    EVStorageChargeSchedule,  !- Output:Variable Index Key Name
+    EVStorageChargeSchedule, !- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
     Bd_Ch_EV1Bat_sp_out;     !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    EV2StorageChargeSchedule,  !- Output:Variable Index Key Name
+    EV2StorageChargeSchedule,!- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
     Bd_Ch_EV2Bat_sp_out;     !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    EVdischarge_Dw2_schedule,  !- Output:Variable Index Key Name
+    EVdischarge_Dw2_schedule,!- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
-    Bd_DisCh_EV1Bat;           !- FMU Variable Name
+    Bd_DisCh_EV1Bat;         !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
-    EVdischarge_Dw3_schedule,  !- Output:Variable Index Key Name
+    EVdischarge_Dw3_schedule,!- Output:Variable Index Key Name
     Schedule Value,          !- Output:Variable Name
-    Bd_DisCh_EV2Bat;           !- FMU Variable Name
+    Bd_DisCh_EV2Bat;         !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     ON_VENT_YEARLY,          !- Output:Variable Index Key Name
@@ -26361,4 +26355,3 @@
 
 !  Output:Diagnostics,
 !    DisplayExtraWarnings;   !- Key 1
-

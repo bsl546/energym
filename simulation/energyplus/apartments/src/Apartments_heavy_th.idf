@@ -14310,7 +14310,7 @@
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     EMS,                     !- Output:Variable Index Key Name
     ElectricEnergyopt,       !- Output:Variable Name
-    Fa_Pw_HVAC;              !- FMU Variable Name
+    Fa_E_HVAC;              !- FMU Variable Name
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     EMS,                     !- Output:Variable Index Key Name

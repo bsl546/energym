@@ -464,7 +464,7 @@ OUTPUTS_SPECS = {
         "upper_bound": 2e4,
         "description": "Self consumption energy (Wh).",
     },
-    "Fa_Pw_HVAC": {
+    "Fa_E_HVAC": {
         "type": "scalar",
         "lower_bound": 0,
         "upper_bound": 3e4,

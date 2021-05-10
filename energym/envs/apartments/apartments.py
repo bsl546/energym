@@ -106,7 +106,7 @@ OUTPUTS_SPECS = {
         "type": "scalar",
         "lower_bound": 0,
         "upper_bound": 1000,
-        "description": "Direct normal radiation (W/m2)",
+        "description": "Direct normal radiation (W/m2).",
     },
     "Ext_P": {
         "type": "scalar",
@@ -486,7 +486,7 @@ OUTPUTS_SPECS = {
         "upper_bound": 2e3,
         "description": "Self consumption energy (Wh).",
     },
-    "Fa_Pw_HVAC": {
+    "Fa_E_HVAC": {
         "type": "scalar",
         "lower_bound": 0,
         "upper_bound": 2e3,

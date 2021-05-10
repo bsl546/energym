@@ -242,6 +242,9 @@ class InputsWrapper(Wrapper):
     def step(self, inputs):
         return self.env.step(self.inputs(inputs))
 
+    def sample_random_action(self):
+        return self.revert_inputs(self.env.sample_random_action())
+
     @abc.abstractmethod
     def inputs(self, inputs):
         pass

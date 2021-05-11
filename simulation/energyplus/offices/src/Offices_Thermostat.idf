@@ -4,7 +4,7 @@
 !-      Use '!' comments if they need to be retained when using the IDFEditor.
 !-   ===========  ALL OBJECTS IN CLASS: VERSION ===========
 
-  Version,9.4;
+  Version,9.5;
 
 !-   ===========  ALL OBJECTS IN CLASS: SIMULATIONCONTROL ===========
 
@@ -1697,7 +1697,7 @@
 !-   ===========  ALL OBJECTS IN CLASS: WINDOWMATERIAL:SIMPLEGLAZINGSYSTEM ===========
 
   WindowMaterial:SimpleGlazingSystem,
-    VENT_OFFICES,              !- Name
+    VENT_OFFICES,            !- Name
     2.719,                   !- U-Factor {W/m2-K}
     0.661,                   !- Solar Heat Gain Coefficient
     0.9;                     !- Visible Transmittance
@@ -1830,8 +1830,8 @@
     GYPSUM_BOAR_0018M;       !- Layer 6
 
   Construction,
-    VENT_OFFICES,              !- Name
-    VENT_OFFICES;              !- Outside Layer
+    VENT_OFFICES,            !- Name
+    VENT_OFFICES;            !- Outside Layer
 
   Construction,
     WALL_TILE,               !- Name
@@ -2032,7 +2032,7 @@
 !-   ===========  ALL OBJECTS IN CLASS: ZONELIST ===========
 
   ZoneList,
-    Offices_all_TZ,            !- Name
+    Offices_all_TZ,          !- Name
     TZ_01,                   !- Zone 1 Name
     TZ_02,                   !- Zone 2 Name
     TZ_03,                   !- Zone 3 Name
@@ -5650,7 +5650,7 @@
   FenestrationSurface:Detailed,
     TZ1_EAST_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ1_EAST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -5695,7 +5695,7 @@
   FenestrationSurface:Detailed,
     TZ1_SOUTH_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ1_SOUTH_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -5725,7 +5725,7 @@
   FenestrationSurface:Detailed,
     TZ2_EAST_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ2_EAST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -5830,7 +5830,7 @@
   FenestrationSurface:Detailed,
     TZ3_EAST_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ3_EAST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -5845,7 +5845,7 @@
   FenestrationSurface:Detailed,
     TZ3_EAST_FAC_01_WIN_02,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ3_EAST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -5950,7 +5950,7 @@
   FenestrationSurface:Detailed,
     TZ4_EAST_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ4_EAST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6040,7 +6040,7 @@
   FenestrationSurface:Detailed,
     TZ5_EAST_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ5_EAST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6130,7 +6130,7 @@
   FenestrationSurface:Detailed,
     TZ6_NORT_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ6_NORT_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6160,7 +6160,7 @@
   FenestrationSurface:Detailed,
     TZ6_SOUTH_PART_01_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ6_SOUTH_PART_01,       !- Building Surface Name
     TZ8_NORTH_PART_02_WIN_01,!- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6190,7 +6190,7 @@
   FenestrationSurface:Detailed,
     TZ7_EAST_PART_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ7_EAST_PART_01,        !- Building Surface Name
     TZ8_WEST_PART_06_WIN_01, !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6310,7 +6310,7 @@
   FenestrationSurface:Detailed,
     TZ8_NORTH_PART_02_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ8_NORTH_PART_02,       !- Building Surface Name
     TZ6_SOUTH_PART_01_WIN_01,!- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6370,7 +6370,7 @@
   FenestrationSurface:Detailed,
     TZ8_WEST_FAC_01_WIN_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ8_WEST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6385,7 +6385,7 @@
   FenestrationSurface:Detailed,
     TZ8_WEST_FAC_01_WIN_02,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ8_WEST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6400,7 +6400,7 @@
   FenestrationSurface:Detailed,
     TZ8_WEST_FAC_01_WIN_03,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ8_WEST_FAC_01,         !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6490,7 +6490,7 @@
   FenestrationSurface:Detailed,
     TZ8_WEST_PART_06_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ8_WEST_PART_06,        !- Building Surface Name
     TZ7_EAST_PART_01_WIN_01, !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6580,7 +6580,7 @@
   FenestrationSurface:Detailed,
     TZ13_SOUTH_FAC_01_DOOR_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ13_SOUTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6610,7 +6610,7 @@
   FenestrationSurface:Detailed,
     TZ14_SOUTH_FAC_01_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ14_SOUTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6625,7 +6625,7 @@
   FenestrationSurface:Detailed,
     TZ15_EAST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ15_EAST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6640,7 +6640,7 @@
   FenestrationSurface:Detailed,
     TZ15_SOUTH_FAC_01_DOOR_01,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ15_SOUTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6655,7 +6655,7 @@
   FenestrationSurface:Detailed,
     TZ15_SOUTH_FAC_01_DOOR_02,  !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ15_SOUTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6685,7 +6685,7 @@
   FenestrationSurface:Detailed,
     TZ16_EAST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ16_EAST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6820,7 +6820,7 @@
   FenestrationSurface:Detailed,
     TZ18_EAST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ18_EAST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6850,7 +6850,7 @@
   FenestrationSurface:Detailed,
     TZ19_EAST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ19_EAST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6865,7 +6865,7 @@
   FenestrationSurface:Detailed,
     TZ19_NORTH_FAC_01_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ19_NORTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6880,7 +6880,7 @@
   FenestrationSurface:Detailed,
     TZ19_NORTH_FAC_01_WIN_02,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ19_NORTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6925,7 +6925,7 @@
   FenestrationSurface:Detailed,
     TZ20_EAST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ20_EAST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -6955,7 +6955,7 @@
   FenestrationSurface:Detailed,
     TZ20_NORTH_FAC_02_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ20_NORTH_FAC_02,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7015,7 +7015,7 @@
   FenestrationSurface:Detailed,
     TZ21_WEST_FAC_01_DOOR_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ21_WEST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7030,7 +7030,7 @@
   FenestrationSurface:Detailed,
     TZ21_WEST_FAC_01_DOOR_02,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ21_WEST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7045,7 +7045,7 @@
   FenestrationSurface:Detailed,
     TZ21_WEST_FAC_01_DOOR_03,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ21_WEST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7225,7 +7225,7 @@
   FenestrationSurface:Detailed,
     TZ23_WEST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ23_WEST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7255,7 +7255,7 @@
   FenestrationSurface:Detailed,
     TZ24_SOUTH_FAC_01_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ24_SOUTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7285,7 +7285,7 @@
   FenestrationSurface:Detailed,
     TZ25_SOUTH_FAC_01_WIN_01,!- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ25_SOUTH_FAC_01,       !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -7300,7 +7300,7 @@
   FenestrationSurface:Detailed,
     TZ25_WEST_FAC_01_WIN_01, !- Name
     Window,                  !- Surface Type
-    VENT_OFFICES,              !- Construction Name
+    VENT_OFFICES,            !- Construction Name
     TZ25_WEST_FAC_01,        !- Building Surface Name
     ,                        !- Outside Boundary Condition Object
     ,                        !- View Factor to Ground
@@ -9059,7 +9059,7 @@
     Pv_surface,              !- Surface Name
     PhotovoltaicPerformance:Simple,  !- Photovoltaic Performance Object Type
     15percentEffPVh83Area,   !- Module Performance Name
-    IntegratedSurfaceOutsideFace,  !- Heat Transfer Integration Mode
+    Decoupled,  !- Heat Transfer Integration Mode
     14,                      !- Number of Series Strings in Parallel {dimensionless}
     3;                       !- Number of Modules in Series {dimensionless}
 
@@ -13872,23 +13872,23 @@
     HW Boiler Loop Operation,!- Name
     PlantEquipmentOperation:HeatingLoad,  !- Control Scheme 1 Object Type
     HW Boiler Loop Scheme 1, !- Control Scheme 1 Name
-    heating_onoff_sp;           !- Control Scheme 1 Schedule Name
+    heating_onoff_sp;        !- Control Scheme 1 Schedule Name
 
   PlantEquipmentOperationSchemes,
     CHW Chiller Loop Operation,  !- Name
     PlantEquipmentOperation:CoolingLoad,  !- Control Scheme 1 Object Type
     CHW Chiller Loop Scheme 1,  !- Control Scheme 1 Name
-    cooling_onoff_sp;           !- Control Scheme 1 Schedule Name
+    cooling_onoff_sp;        !- Control Scheme 1 Schedule Name
 
 !-   ===========  ALL OBJECTS IN CLASS: AVAILABILITYMANAGER:SCHEDULED ===========
 
   AvailabilityManager:Scheduled,
     HW Boiler Loop Availability,  !- Name
-    heating_onoff_sp;           !- Schedule Name
+    heating_onoff_sp;        !- Schedule Name
 
   AvailabilityManager:Scheduled,
     CHW Chiller Loop Availability,  !- Name
-    cooling_onoff_sp;           !- Schedule Name
+    cooling_onoff_sp;        !- Schedule Name
 
 !-   ===========  ALL OBJECTS IN CLASS: AVAILABILITYMANAGERASSIGNMENTLIST ===========
 
@@ -14320,7 +14320,6 @@
     Environment,             !- Output:Variable Index Key Name
     Site Direct Solar Radiation Rate per Area,  !- Output:Variable Name
     Ext_Irr;                 !- FMU Variable Name
-
 
   ExternalInterface:FunctionalMockupUnitExport:From:Variable,
     TZ_01,                   !- Output:Variable Index Key Name

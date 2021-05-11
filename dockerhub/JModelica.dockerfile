@@ -79,12 +79,12 @@ RUN cd $SRC_DIR/JModelica.org-2.14/build && \
 
 #################################################################
 #Define E+ version 
-ENV ENERGYPLUS_INSTALL_VERSION 9-4-0
+ENV ENERGYPLUS_INSTALL_VERSION 9-5-0
 
 
 # Download from github
-ENV ENERGYPLUS_DOWNLOAD_URL https://github.com/NREL/EnergyPlus/releases/download/v9.4.0/EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu18.04-x86_64.sh
-ENV ENERGYPLUS_DOWNLOAD_FILENAME  EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu18.04-x86_64.sh
+ENV ENERGYPLUS_DOWNLOAD_URL https://github.com/NREL/EnergyPlus/releases/download/v9.5.0/EnergyPlus-9.5.0-de239b2e5f-Linux-Ubuntu18.04-x86_64.sh
+ENV ENERGYPLUS_DOWNLOAD_FILENAME  EnergyPlus-9.5.0-de239b2e5f-Linux-Ubuntu18.04-x86_64.sh
 
 
 RUN rm -rf /var/lib/apt/lists/* 

@@ -15,7 +15,7 @@ Windows 10
 
 1. Download and install JModelica `binaries <https://disq.us/url?url=https%3A%2F%2Fdownloads.modelon.com%2Fdownload%2F%3Fa%3DJMODELICA%3A_xx_BYR7Ndv4fd3-M3M3XSHiyjY&cuid=2163236/>`_.
 
-2. Install Energyplus 9.4; see :ref:`install_min`.
+2. Install Energyplus 9.5; see :ref:`install_min`.
 
 3. Install a  C/C++ compiler (e.g. Visual Studio)
 
@@ -40,7 +40,7 @@ Linux (Ubuntu)
 
 1.  Download and install the latest free JModelica version (requires python 2.7)
 
-2. Install Energyplus 9.4; see :ref:`install_min`.
+2. Install Energyplus 9.5; see :ref:`install_min`.
 
 3. Install the following librairies::
 

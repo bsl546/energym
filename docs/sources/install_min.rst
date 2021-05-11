@@ -13,11 +13,11 @@ Windows 10
 
 Before starting, you must have a running version of Python>=3.6. Check `here <https://www.python.org/downloads/>`_.
 
-1. Download Energyplus 9.4 for Windows from this  `link <https://energyplus.net/downloads>`_ and install it.
+1. Download Energyplus 9.5 for Windows from this  `link <https://energyplus.net/downloads>`_ and install it.
 
-2. Edit windows environment variables, add Energyplus to your path follwing the steps:
+2. Edit Windows environment variables, add Energyplus to your path follwing the steps:
 
-    - Search "edit environment variables" in the taskbar, open the purposed link, click on Environment Variables.
+    - Search "edit environment variables" in the taskbar, open the proposed link, click on Environment Variables.
 
     .. image:: images/env_var_windows1.PNG
         :width: 400
@@ -57,12 +57,12 @@ Before starting, you must have a running version of Python>=3.6. Check `here <ht
 
     #On Ubuntu 18.04, use libgfortran3 instead of libgfortran5.
 
-2. Download and install Energyplus 9.4::
+2. Download and install Energyplus 9.5::
 
-    curl -SLO https://github.com/NREL/EnergyPlus/releases/download/v9.4.0/EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu20.04-x86_64.sh
-    chmod +x EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu20.04-x86_64.sh  #here for Ubuntu 20.04
-    sudo echo "y\r" | ./EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu20.04-x86_64.sh
-    rm EnergyPlus-9.4.0-998c4b761e-Linux-Ubuntu20.04-x86_64.sh
+    curl -SLO https://github.com/NREL/EnergyPlus/releases/download/v9.5.0/EnergyPlus-9.5.0-de239b2e5f-Linux-Ubuntu20.04-x86_64.sh
+    chmod +x EnergyPlus-9.5.0-de239b2e5f-Linux-Ubuntu20.04-x86_64.sh  #here for Ubuntu 20.04
+    sudo echo "y\r" | ./EnergyPlus-9.5.0-de239b2e5f-Linux-Ubuntu20.04-x86_64.sh
+    rm EnergyPlus-9.5.0-de239b2e5f-Linux-Ubuntu20.04-x86_64.sh
 
 3. Install Energym::
 

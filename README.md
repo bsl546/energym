@@ -33,7 +33,7 @@ Precompiled FMU files are made available to the user, for both Windows 10 and Li
 
 The library runs with EnergyPlus and Modelica. To ensure that FMU models compiled from EnergyPlus models work, please install the following version of EnergyPlus:
 
-- EnergyPlus 9.4 [link](https://energyplus.net/downloads)
+- EnergyPlus 9.5 [link](https://energyplus.net/downloads)
 
 Communication between the Python code and the FMU's relies on the package [FMPy](https://github.com/CATIA-Systems/FMPy), which is installed with the default installation.
 
@@ -43,7 +43,7 @@ Firstly `git clone` the present repository and move inside with `cd energym`. Th
 
 ### Docker version
 
-For users willing to use containers, a dockerfile, called `Dockerfile`, is made available. It creates an Ubuntu 20.04 container, with EnergyPlus 9.4 and Python 3.8. This docker file is not made to compile .idf or .mo files  and works with the precompiled FMU's. For this latter particular task, another dockerfile is provided, that downloads a pre-built docker image on dockerhub.
+For users willing to use containers, a dockerfile, called `Dockerfile`, is made available. It creates an Ubuntu 20.04 container, with EnergyPlus 9.5 and Python 3.8. This docker file is not made to compile .idf or .mo files  and works with the precompiled FMU's. For this latter particular task, another dockerfile is provided, that downloads a pre-built docker image on dockerhub.
 
 
 ## Available environments

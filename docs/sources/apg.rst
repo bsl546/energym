@@ -206,7 +206,7 @@ Simulation outputs
     "Fa_Pw_All",
     "Fa_Pw_Prod",
     "Fa_E_self",
-    "Fa_Pw_HVAC",
+    "Fa_E_HVAC",
     "Fa_E_All",
     "Fa_E_Light",
     "Fa_E_Appl"]

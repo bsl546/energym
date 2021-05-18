@@ -27,7 +27,7 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
   parameter Modelica.SIunits.TemperatureDifference TEva_nominal = 273.15 + 5
     "Evaporator Temperature used to compute COP_nominal";
 
-  // Tank Storage
+  // Space Heating Tank Storage
   parameter Modelica.SIunits.Volume SH_tank_vol_m3 = 1.0
     "Storage Tank Volume";
   parameter Modelica.SIunits.Length SH_tank_hei_m = 1.0
@@ -38,9 +38,25 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
     "Bottom height of heat exchanger";
   parameter Modelica.SIunits.HeatFlowRate SH_nominal_hex_power_W = 0.278*4200*20
     "Nominal power of the heat exchanger";
-  parameter Modelica.SIunits.Temperature TTan_nominal = 273.15 + 40
+  parameter Modelica.SIunits.Temperature SH_TTan_nominal = 273.15 + 40
     "Temperature of fluid inside the tank at nominal heat transfer conditions";
-  parameter Modelica.SIunits.Temperature THex_nominal = 273.15 + 50
+  parameter Modelica.SIunits.Temperature SH_THex_nominal = 273.15 + 50
+    "Temperature of fluid inside the heat exchanger at nominal heat transfer conditions";
+
+  // DHW Tank Storage
+  parameter Modelica.SIunits.Volume DHW_tank_vol_m3 = 1.0
+    "Storage Tank Volume";
+  parameter Modelica.SIunits.Length DHW_tank_hei_m = 1.0
+    "Storage Tank Height";
+  parameter Modelica.SIunits.Length DHW_hex_top_hei_m = 0.5
+    "Top height of heat exchanger";
+  parameter Modelica.SIunits.Length DHW_hex_bottom_hei_m = 0.1
+    "Bottom height of heat exchanger";
+  parameter Modelica.SIunits.HeatFlowRate DHW_nominal_hex_power_W = 0.278*4200*20
+    "Nominal power of the heat exchanger";
+  parameter Modelica.SIunits.Temperature DHW_TTan_nominal = 273.15 + 40
+    "Temperature of fluid inside the tank at nominal heat transfer conditions";
+  parameter Modelica.SIunits.Temperature DHW_THex_nominal = 273.15 + 50
     "Temperature of fluid inside the heat exchanger at nominal heat transfer conditions";
 
   // Floor heating radiant slab
@@ -110,7 +126,7 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
   Buildings.Fluid.Sensors.TemperatureTwoPort temTan2Sla(
     redeclare package Medium = MediumW,
     m_flow_nominal=mSlab_flow_nominal,
-    T_start=TTan_nominal)
+    T_start=SH_TTan_nominal)
     "Supply water temperature from Tank to Radiant Slab"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -128,7 +144,7 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
     m_flow_nominal=mHeaPum_flow_nominal,
     y_start=1,
     m_flow_start=0.85,
-    T_start=THex_nominal,
+    T_start=SH_THex_nominal,
     nominalValuesDefineDefaultPressureCurve=true,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
@@ -141,7 +157,7 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
   Buildings.Fluid.Sensors.TemperatureTwoPort temSla2Tan(
     redeclare package Medium = MediumW,
     m_flow_nominal=mSlab_flow_nominal,
-    T_start=TTan_nominal)
+    T_start=SH_TTan_nominal)
     "Return water temperature from Radiant Slab to Tank"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -213,15 +229,15 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
     allowFlowReversalHex=false,
     mHex_flow_nominal=mHeaPum_flow_nominal,
     energyDynamicsHex=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    TTan_nominal=TTan_nominal,
-    THex_nominal=THex_nominal) "Tank with heat exchanger configured as dynamic"
+    TTan_nominal=SH_TTan_nominal,
+    THex_nominal=SH_THex_nominal) "Tank with heat exchanger configured as dynamic"
     annotation (Placement(transformation(extent={{-60,-130},{-26,-98}})));
   Buildings.Fluid.Movers.FlowControlled_m_flow pumSla(
     redeclare package Medium = MediumW,
     m_flow_nominal=mSlab_flow_nominal,
     y_start=1,
     m_flow_start=0.85,
-    T_start=TTan_nominal,
+    T_start=SH_TTan_nominal,
     nominalValuesDefineDefaultPressureCurve=true,
     use_inputFilter=false,
     energyDynamics=Modelica.Fluid.Types.Dynamics.SteadyState)
@@ -235,7 +251,7 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
   Buildings.Fluid.Sensors.TemperatureTwoPort temHP2Hex(
     redeclare package Medium = MediumW,
     m_flow_nominal=mHeaPum_flow_nominal,
-    T_start=THex_nominal) "Supply water temperature from HP to Tank"
+    T_start=SH_THex_nominal) "Supply water temperature from HP to Tank"
     annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=0,
@@ -243,7 +259,7 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
   Buildings.Fluid.Sensors.TemperatureTwoPort temHex2HP(
     redeclare package Medium = MediumW,
     m_flow_nominal=mHeaPum_flow_nominal,
-    T_start=THex_nominal) "Return water temperature from Tank to HP"
+    T_start=SH_THex_nominal) "Return water temperature from Tank to HP"
     annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=0,
@@ -303,21 +319,21 @@ model HP_u_Tank_u_DHW_u_RSla_1RC_Sun
   Buildings.Fluid.Storage.StratifiedEnhancedInternalHex tanDHW(
     redeclare package Medium = MediumW,
     m_flow_nominal=mSlab_flow_nominal,
-    VTan=SH_tank_vol_m3,
+    VTan=DHW_tank_vol_m3,
     dIns=0.07,
     redeclare package MediumHex = MediumW,
     CHex=40,
-    Q_flow_nominal=SH_nominal_hex_power_W,
-    hTan=SH_tank_hei_m,
-    hHex_a=SH_hex_top_hei_m,
-    hHex_b=SH_hex_bottom_hei_m,
+    Q_flow_nominal=DHW_nominal_hex_power_W,
+    hTan=DHW_tank_hei_m,
+    hHex_a=DHW_hex_top_hei_m,
+    hHex_b=DHW_hex_bottom_hei_m,
     energyDynamics=Modelica.Fluid.Types.Dynamics.FixedInitial,
     allowFlowReversal=true,
     allowFlowReversalHex=false,
     mHex_flow_nominal=mHeaPum_flow_nominal,
     energyDynamicsHex=Modelica.Fluid.Types.Dynamics.FixedInitial,
-    TTan_nominal=TTan_nominal,
-    THex_nominal=THex_nominal) "Tank with heat exchanger configured as dynamic"
+    TTan_nominal=DHW_TTan_nominal,
+    THex_nominal=DHW_THex_nominal) "Tank with heat exchanger configured as dynamic"
     annotation (Placement(transformation(extent={{-60,30},{-26,62}})));
   Buildings.Fluid.Actuators.Valves.ThreeWayLinear valve(redeclare package
       Medium = MediumW, m_flow_nominal=mHeaPum_flow_nominal,

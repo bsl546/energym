@@ -35,7 +35,7 @@ def plot_sh_rad(record, model_name):
     fig, ax = plt.subplots(row, col, sharex=True, num=model_name)
 
     record["rad_Q"] = (
-        (record["temSup.T"] - record["temRet.T"]) * record["rad.m_flow"] * cp
+            (record["temSup.T"] - record["temRet.T"]) * record["rad.m_flow"] * cp
     )
     (
         record[
@@ -43,8 +43,8 @@ def plot_sh_rad(record, model_name):
                 "weaBus.HDifHor",
                 "weaBus.HDirNor",
                 "weaBus.HGloHor",
-                # "weaBus.HHorIR",
-                # "sunRad.y",
+                "weaBus.HHorIR",
+                "sunRad.y",
             ]
         ]
     ).plot(ax=ax[0, 0])
@@ -82,12 +82,64 @@ def plot_sh_rad(record, model_name):
     # plt.show()
 
 
+def plot_sh_rsla(record, model_name):
+    row, col = 3, 2
+    fig, ax = plt.subplots(row, col, sharex=True, num=model_name)
+
+    record["rad_Q"] = (
+            (record["temSup.T"] - record["temRet.T"]) * record["sla.m_flow"] * cp
+    )
+    (
+        record[
+            [
+                "weaBus.HDifHor",
+                "weaBus.HDirNor",
+                "weaBus.HGloHor",
+                "weaBus.HHorIR",
+                "sunRad.y",
+            ]
+        ]
+    ).plot(ax=ax[0, 0])
+    (
+        record[
+            [
+                "preHea.Q_flow",
+                "sunHea.Q_flow",
+                "heaPum.QEva_flow",
+                "heaPum.QCon_flow",
+                "heaPum.P",
+                "sla.QTot",
+            ]
+        ].abs()
+        * 1e-3
+    ).plot(ax=ax[1, 0])
+    (
+        record[
+            [
+                "TOut.T",
+                "temRoo.T",
+                "heaPum.TEvaAct",
+                "heaPum.TConAct",
+                "temRet.T",
+                "temSup.T",
+                "sla.heatPortEmb[1].T",
+            ]
+        ]
+        - T0
+    ).plot(ax=ax[2, 0])
+    record[["heaPum.COP", "heaPum.COPCar"]].plot(ax=ax[0, 1])
+    record[["sla.m_flow"]].plot(ax=ax[1, 1])
+    record[["u"]].plot(ax=ax[2, 1])
+    set_plot_labels(ax)
+    # plt.show()
+
+
 def plot_sh_slab(record, model_name):
     row, col = 3, 2
     fig, ax = plt.subplots(row, col, sharex=True, num=model_name)
 
     record["slab_Q"] = (
-        (record["temSup.T"] - record["temRet.T"]) * record["sla.m_flow"] * cp
+            (record["temSup.T"] - record["temRet.T"]) * record["sla.m_flow"] * cp
     )
     (
         record[
@@ -140,6 +192,8 @@ def plot_sh_slab(record, model_name):
 def select_plot_model(model_name: str):
     if "rad" in model_name:
         func = plot_sh_rad
+    elif "rsla" in model_name:
+        func = plot_sh_rsla
     elif "slab" in model_name:
         func = plot_sh_slab
     else:
@@ -193,6 +247,13 @@ def run_model(model_name: str):
             # "TRadSup_nominal": T0 + 40,
             # "TRadRet_nominal": T0 + 35,
         })
+    elif "rsla" in model_name.lower():
+        param_fmu = dict(**param_fmu, **{
+            # "slab_surf": 200,
+        })
+        param_read.extend([
+            "slab_surf",
+        ])
     elif "slab" in model_name.lower():
         param_fmu = dict(**param_fmu, **{
             # "slab_surf": 200,
@@ -242,9 +303,9 @@ def run_model(model_name: str):
 
 def test_models():
     # List of models to be tested
-    # to_test = ["SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
+    to_test = ["SimpleHouseRad-v0", "SimpleHouseRSla-v0", "SimpleHouseSlab-v0"]
     # to_test = ["SwissHouseRad-v0"]
-    to_test = ["SwissHouseRad-v0", "SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
+    # to_test = ["SwissHouseRad-v0", "SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
     records, envs = {}, {}
 
     for model_name in to_test:

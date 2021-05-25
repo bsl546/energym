@@ -13,6 +13,7 @@ class EnvNames(Enum):
     SEMINARCENTER_THERMOSTAT_V0 = "SeminarcenterThermostat-v0"
     SEMINARCENTER_FULL_V0 = "SeminarcenterFull-v0"
     SIMPLE_HOUSE_RAD_V0 = "SimpleHouseRad-v0"
+    SIMPLE_HOUSE_RSLA_V0 = "SimpleHouseRSla-v0"
     SIMPLE_HOUSE_SLAB_V0 = "SimpleHouseSlab-v0"
     SWISSHOUSE_RAD_V0 = "SwissHouseRad-v0"
     SWISSHOUSE_SLAB_V0 = "SwissHouseSlab-v0"

@@ -11,7 +11,7 @@ INPUTS_SPECS = {
     }
 }
 
-OUTPUTS_SPECS_RAD = {
+OUTPUTS_SPECS_RSLA = {
     "weaBus.HDifHor": {
         "type": "scalar",
         "lower_bound": 0,
@@ -82,7 +82,7 @@ OUTPUTS_SPECS_RAD = {
         "type": "scalar",
         "lower_bound": 0,
         "upper_bound": 20,
-        "description": "Heat pump carnot efficiency.",
+        "description": "Heat pump Carnot efficiency.",
     },
     "heaPum.TConAct": {
         "type": "scalar",
@@ -96,142 +96,7 @@ OUTPUTS_SPECS_RAD = {
         "upper_bound": 343.15,
         "description": "Evaporator temperature used to compute efficiency (K).",
     },
-    "rad.Q_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Radiator heat flow rate (W).",
-    },
-    "rad.m_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 10,
-        "description": "Radiator mass flow rate (kg/s).",
-    },
-    "temRet.T": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 353.15,
-        "description": "Heat pump return temperature (K).",
-    },
-    "temSup.T": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 353.15,
-        "description": "Heat pump supply temperature (K).",
-    },
-    "TOut.T": {
-        "type": "scalar",
-        "lower_bound": 253.15,
-        "upper_bound": 343.15,
-        "description": "Outdoor temperature (K).",
-    },
-    "temRoo.T": {
-        "type": "scalar",
-        "lower_bound": 263.15,
-        "upper_bound": 343.15,
-        "description": "Indoor temperature (K).",
-    },
-    "y": {
-        "type": "scalar",
-        "lower_bound": 263.15,
-        "upper_bound": 343.15,
-        "description": "Indoor temperature (K).",
-    },
-}
-
-OUTPUTS_SPECS_SLAB = {
-    "weaBus.HDifHor": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Horizontal diffuse solar radiation (W/m2).",
-    },
-    "weaBus.HDirNor": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Direct normal radiation (W/m2).",
-    },
-    "weaBus.HGloHor": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Horizontal global radiation (W/m2).",
-    },
-    "weaBus.HHorIR": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Horizontal infrared radiation (W/m2).",
-    },
-    "sunRad.y": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Direct normal radiation (W/m2).",
-    },
-    "sunHea.Q_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Solar heat flow rate (W).",
-    },
-    "preHea.Q_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Prescribed heat flow rate (W).",
-    },
-    "heaPum.P": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Heat pump consumed power (W).",
-    },
-    "heaPum.QCon_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Actual heating heat flow rate added to fluid (W).",
-    },
-    "heaPum.QEva_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Actual cooling heat flow rate removed from fluid (W).",
-    },
-    "heaPum.COP": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 20,
-        "description": "Heat pump coefficient of performance.",
-    },
-    "heaPum.COPCar": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 20,
-        "description": "Carnot efficiency.",
-    },
-    "heaPum.TConAct": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 343.15,
-        "description": "Condenser temperature used to compute efficiency (K).",
-    },
-    "heaPum.TEvaAct": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 343.15,
-        "description": "Evaporator temperature used to compute efficiency (K).",
-    },
-    "sla.surf_a.Q_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Slab heat flow rate (W).",
-    },
-    "sla.surf_b.Q_flow": {
+    "sla.QTot": {
         "type": "scalar",
         "lower_bound": 0,
         "upper_bound": 100,
@@ -243,13 +108,7 @@ OUTPUTS_SPECS_SLAB = {
         "upper_bound": 10,
         "description": "Slab mass flow rate (kg/s).",
     },
-    "sla.surf_a.T": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 343.15,
-        "description": "Slab temperature (K).",
-    },
-    "sla.surf_b.T": {
+    "sla.heatPortEmb[1].T": {
         "type": "scalar",
         "lower_bound": 273.15,
         "upper_bound": 343.15,
@@ -349,10 +208,10 @@ class SwissHouse(EnvModFMU):
         start_time = delta.total_seconds()
         stop_time = start_time + n_steps * 24 * simulation_days * step_size
         params = {
-            # "P_nominal": 5e3,
-            # "COP_nominal": 5.0,
-            # "therm_cond_G": 500.0,
-            # "heat_capa_C": 1e7,
+            # "P_nominal": 1e3,
+            # "COP_nominal": 3.0,
+            # "therm_cond_G": 100.0,
+            # "heat_capa_C": 40e6,
             # "QRooInt_flow": 700.0,
         }
         init_vals = {"u": 0.0}
@@ -360,10 +219,10 @@ class SwissHouse(EnvModFMU):
         if kpi_options is None:
             kpi_options = default_kpi_options
 
-        if "Rad" in model_path:
-            outputs_specs = OUTPUTS_SPECS_RAD
+        if "RSla" in model_path:
+            outputs_specs = OUTPUTS_SPECS_RSLA
         else:
-            outputs_specs = OUTPUTS_SPECS_SLAB
+            print("Add other output specs")
 
         super().__init__(
             model_path,

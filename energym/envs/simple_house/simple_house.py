@@ -112,141 +112,6 @@ OUTPUTS_SPECS_RAD = {
         "type": "scalar",
         "lower_bound": 273.15,
         "upper_bound": 353.15,
-        "description": "Return temperature (K).",
-    },
-    "temSup.T": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 353.15,
-        "description": "Supply temperature (K).",
-    },
-    "TOut.T": {
-        "type": "scalar",
-        "lower_bound": 253.15,
-        "upper_bound": 343.15,
-        "description": "Outdoor temperature (K).",
-    },
-    "temRoo.T": {
-        "type": "scalar",
-        "lower_bound": 263.15,
-        "upper_bound": 343.15,
-        "description": "Indoor temperature (K).",
-    },
-    "y": {
-        "type": "scalar",
-        "lower_bound": 263.15,
-        "upper_bound": 343.15,
-        "description": "Indoor temperature (K).",
-    },
-}
-
-OUTPUTS_SPECS_RSLA = {
-    "weaBus.HDifHor": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Horizontal diffuse solar radiation (W/m2).",
-    },
-    "weaBus.HDirNor": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Direct normal radiation (W/m2).",
-    },
-    "weaBus.HGloHor": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Horizontal global radiation (W/m2).",
-    },
-    "weaBus.HHorIR": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Horizontal infrared radiation (W/m2).",
-    },
-    "sunRad.y": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 1000,
-        "description": "Direct normal radiation (W/m2).",
-    },
-    "sunHea.Q_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Solar heat flow rate (W).",
-    },
-    "preHea.Q_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Prescribed heat flow rate (W).",
-    },
-    "heaPum.P": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Heat pump consumed power (W).",
-    },
-    "heaPum.QCon_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Actual heating heat flow rate added to fluid (W).",
-    },
-    "heaPum.QEva_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Actual cooling heat flow rate removed from fluid (W).",
-    },
-    "heaPum.COP": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 20,
-        "description": "Heat pump coefficient of performance.",
-    },
-    "heaPum.COPCar": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 20,
-        "description": "Heat pump Carnot efficiency.",
-    },
-    "heaPum.TConAct": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 343.15,
-        "description": "Condenser temperature used to compute efficiency (K).",
-    },
-    "heaPum.TEvaAct": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 343.15,
-        "description": "Evaporator temperature used to compute efficiency (K).",
-    },
-    "sla.QTot": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 100,
-        "description": "Slab heat flow rate (W).",
-    },
-    "sla.m_flow": {
-        "type": "scalar",
-        "lower_bound": 0,
-        "upper_bound": 10,
-        "description": "Slab mass flow rate (kg/s).",
-    },
-    "sla.heatPortEmb[1].T": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 343.15,
-        "description": "Slab temperature (K).",
-    },
-    "temRet.T": {
-        "type": "scalar",
-        "lower_bound": 273.15,
-        "upper_bound": 353.15,
         "description": "Heat pump return temperature (K).",
     },
     "temSup.T": {
@@ -422,6 +287,141 @@ OUTPUTS_SPECS_SLAB = {
     },
 }
 
+OUTPUTS_SPECS_RSLA = {
+    "weaBus.HDifHor": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1000,
+        "description": "Horizontal diffuse solar radiation (W/m2).",
+    },
+    "weaBus.HDirNor": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1000,
+        "description": "Direct normal radiation (W/m2).",
+    },
+    "weaBus.HGloHor": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1000,
+        "description": "Horizontal global radiation (W/m2).",
+    },
+    "weaBus.HHorIR": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1000,
+        "description": "Horizontal infrared radiation (W/m2).",
+    },
+    "sunRad.y": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1000,
+        "description": "Direct normal radiation (W/m2).",
+    },
+    "sunHea.Q_flow": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 100,
+        "description": "Solar heat flow rate (W).",
+    },
+    "preHea.Q_flow": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 100,
+        "description": "Prescribed heat flow rate (W).",
+    },
+    "heaPum.P": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 100,
+        "description": "Heat pump consumed power (W).",
+    },
+    "heaPum.QCon_flow": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 100,
+        "description": "Actual heating heat flow rate added to fluid (W).",
+    },
+    "heaPum.QEva_flow": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 100,
+        "description": "Actual cooling heat flow rate removed from fluid (W).",
+    },
+    "heaPum.COP": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 20,
+        "description": "Heat pump coefficient of performance.",
+    },
+    "heaPum.COPCar": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 20,
+        "description": "Heat pump Carnot efficiency.",
+    },
+    "heaPum.TConAct": {
+        "type": "scalar",
+        "lower_bound": 273.15,
+        "upper_bound": 343.15,
+        "description": "Condenser temperature used to compute efficiency (K).",
+    },
+    "heaPum.TEvaAct": {
+        "type": "scalar",
+        "lower_bound": 273.15,
+        "upper_bound": 343.15,
+        "description": "Evaporator temperature used to compute efficiency (K).",
+    },
+    "sla.QTot": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 100,
+        "description": "Slab heat flow rate (W).",
+    },
+    "sla.m_flow": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 10,
+        "description": "Slab mass flow rate (kg/s).",
+    },
+    "sla.heatPortEmb[1].T": {
+        "type": "scalar",
+        "lower_bound": 273.15,
+        "upper_bound": 343.15,
+        "description": "Slab temperature (K).",
+    },
+    "temRet.T": {
+        "type": "scalar",
+        "lower_bound": 273.15,
+        "upper_bound": 353.15,
+        "description": "Heat pump return temperature (K).",
+    },
+    "temSup.T": {
+        "type": "scalar",
+        "lower_bound": 273.15,
+        "upper_bound": 353.15,
+        "description": "Heat pump supply temperature (K).",
+    },
+    "TOut.T": {
+        "type": "scalar",
+        "lower_bound": 253.15,
+        "upper_bound": 343.15,
+        "description": "Outdoor temperature (K).",
+    },
+    "temRoo.T": {
+        "type": "scalar",
+        "lower_bound": 263.15,
+        "upper_bound": 343.15,
+        "description": "Indoor temperature (K).",
+    },
+    "y": {
+        "type": "scalar",
+        "lower_bound": 263.15,
+        "upper_bound": 343.15,
+        "description": "Indoor temperature (K).",
+    },
+}
+
 default_kpi_options = {
     "kpi1": {"name": "heaPum.P", "type": "avg"},
     "kpi2": {
@@ -438,7 +438,7 @@ default_kpi_options = {
 
 
 class SimpleHouse(EnvModFMU):
-    """Containing information for the models SimpleHouseRad-v0 and SimpleHouseSlab-v0
+    """Containing information for the models
 
     Subclasses EnvModFMU and inherits its behavior. Simulation based details are
     specified in this class and passed to the constructor of EnvModFMU.

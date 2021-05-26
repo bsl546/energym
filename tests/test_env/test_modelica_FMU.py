@@ -303,9 +303,8 @@ def run_model(model_name: str):
 
 def test_models():
     # List of models to be tested
-    to_test = ["SimpleHouseRad-v0", "SimpleHouseRSla-v0", "SimpleHouseSlab-v0"]
-    # to_test = ["SwissHouseRad-v0"]
-    # to_test = ["SwissHouseRad-v0", "SimpleHouseRad-v0", "SimpleHouseSlab-v0"]
+    # to_test = ["SimpleHouseRad-v0", "SimpleHouseSlab-v0", "SimpleHouseRSla-v0"]
+    to_test = ["SimpleHouseRSla-v0", "SwissHouseRSlaW2W-v0", "SwissHouseRSlaA2W-v0"]
     records, envs = {}, {}
 
     for model_name in to_test:

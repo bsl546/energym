@@ -1,4 +1,4 @@
-﻿within modelica.simple_house.src;
+﻿within modelica.swiss_house.src;
 model HP_u_Tank_u_RSla_1RC_Sun
   "Heat pump connected to a tank storage and a simple room model with radiant slab"
   extends Modelica.Icons.Example;
@@ -12,9 +12,9 @@ model HP_u_Tank_u_RSla_1RC_Sun
   ////////////////////////////
 
   // Heat Pump
-  parameter Modelica.SIunits.Power P_nominal = 10e3
+  parameter Modelica.SIunits.Power P_nominal = 1000
     "Nominal compressor power (at y=1)";
-  parameter Real COP_nominal = 4
+  parameter Real COP_nominal = 3
     "Nominal COP";
   parameter Modelica.SIunits.MassFlowRate mHeaPum_flow_nominal = 1.0
     "Heat pump nominal mass flow rate";
@@ -44,17 +44,17 @@ model HP_u_Tank_u_RSla_1RC_Sun
     "Temperature of fluid inside the heat exchanger at nominal heat transfer conditions";
 
   // Floor heating radiant slab
-  parameter Modelica.SIunits.Area slab_surf = 100
+  parameter Modelica.SIunits.Area slab_surf = 200
     "Surface area of radiant slab (m^2)";
   parameter Modelica.SIunits.MassFlowRate mSlab_flow_nominal = 1.0
     "Radiator nominal mass flow rate";
 
   // Building envelope
-  parameter Modelica.SIunits.ThermalConductance therm_cond_G = 500
+  parameter Modelica.SIunits.ThermalConductance therm_cond_G = 100
     "Envelope Thermal Conductance W/K";
-  parameter Modelica.SIunits.HeatCapacity heat_capa_C = 5e5
+  parameter Modelica.SIunits.HeatCapacity heat_capa_C = 40e6
     "Envelope Heat Capacity J/K";
-  parameter Modelica.SIunits.Volume room_vol_V=6*10*3
+  parameter Modelica.SIunits.Volume room_vol_V = 750
     "Room volume";
   parameter Modelica.SIunits.MassFlowRate mA_flow_nominal = room_vol_V*6/3600
     "Air nominal mass flow rate";
@@ -62,20 +62,20 @@ model HP_u_Tank_u_RSla_1RC_Sun
     "Internal heat gains of the room";
 
   // Sun effect on tilted surface 1
-  parameter Real tilt1_C = 20 "Surface tilt (°C)";
-  parameter Real azimuth1_C = -45 "Surface azimuth (°C)";
-  parameter Real latitude1_C = 37.7 "Latitude (°C)";
+  parameter Real tilt1_C = 90 "Surface tilt (°C)";
+  parameter Real azimuth1_C = 0 "Surface azimuth (°C)";
+  parameter Real latitude1_C = 47.14 "Latitude (°C)";
   parameter Real sun_heat_gain1 = 2.5 "Sun heat gain";
 
 // Sun effect on tilted surface 2
-  parameter Real tilt2_C = 20 "Surface tilt (°C)";
-  parameter Real azimuth2_C = -45 "Surface azimuth (°C)";
-  parameter Real latitude2_C = 47.3 "Latitude (°C)";
-  parameter Real sun_heat_gain2 = 2.5 "Sun heat gain";
+  parameter Real tilt2_C = 90 "Surface tilt (°C)";
+  parameter Real azimuth2_C = 0 "Surface azimuth (°C)";
+  parameter Real latitude2_C = 47.14 "Latitude (°C)";
+  parameter Real sun_heat_gain2 = 0 "Sun heat gain";
 
   // Weather data
   parameter String weafile = Modelica.Utilities.Files.loadResource(
-        "modelica://modelica/simple_house/wf/Switzerland_CHE_Maur.mos")
+        "modelica://modelica/swiss_house/wf/Switzerland_CHE_Maur.mos")
     "Name of weather data file";
 
 //------------------------------------------------------------------------------//
@@ -281,12 +281,12 @@ model HP_u_Tank_u_RSla_1RC_Sun
   Modelica.Blocks.Interfaces.RealOutput temRoom
     annotation (Placement(transformation(extent={{30,-10},{10,10}})));
   Modelica.Thermal.HeatTransfer.Components.ThermalResistor thermalResistor(R=
-        embPipe.R_c/embPipe.A_floor*embPipe.nDiscr) annotation (Placement(
+        sla.R_c/sla.A_floor*sla.nDiscr) annotation (Placement(
         transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
         origin={112,-40})));
-  IDEAS.Fluid.HeatExchangers.RadiantSlab.EmbeddedPipe embPipe(
+  IDEAS.Fluid.HeatExchangers.RadiantSlab.EmbeddedPipe sla(
     redeclare package Medium = MediumW,
     redeclare
       IDEAS.Fluid.HeatExchangers.RadiantSlab.BaseClasses.FH_ValidationEmpa4_6
@@ -402,11 +402,11 @@ equation
     annotation (Line(points={{60,0},{20,0}}, color={0,0,127}));
   connect(uHP, gaiHP.u) annotation (Line(points={{-180,0},{-150,0},{-150,-148},
           {-174.4,-148}}, color={0,0,127}));
-  connect(temTan2Sla.port_b, embPipe.port_a)
+  connect(temTan2Sla.port_b, sla.port_a)
     annotation (Line(points={{80,-80},{102,-80}}, color={0,127,255}));
-  connect(embPipe.port_b, temSla2Tan.port_a)
+  connect(sla.port_b, temSla2Tan.port_a)
     annotation (Line(points={{122,-80},{140,-80}}, color={0,127,255}));
-  connect(embPipe.heatPortEmb[1], thermalResistor.port_a)
+  connect(sla.heatPortEmb[1], thermalResistor.port_a)
     annotation (Line(points={{112,-70},{112,-50}}, color={191,0,0}));
   connect(thermalResistor.port_b, vol.heatPort) annotation (Line(points={{112,
           -30},{112,0},{240,0},{240,-40}}, color={191,0,0}));

@@ -25,7 +25,7 @@ cp = 4180   # [J/(kg K)] Water specific heat capacity
 def sh_dhw_tank():
     mdl = {
         "model_path": os.path.join(
-            "simple_house",
+            "swiss_house",
             "fmus",
             op_sys,
             "HP_u_Tank_u_DHW_u_RSla_1RC_Sun",
@@ -37,21 +37,24 @@ def sh_dhw_tank():
         "states": [
             "heaPum.P",
             "heaPum.QCon_flow",
-            "embPipe.QTot",
+            "sla.QTot",
             "temHP2Hex.T",
             "temHex2HP.T",
+            "tanDHW.heaPorSid.T",
+            "hotWaterTap.tem_in.T",
+            "tanSH.heaPorSid.T",
             "temTan2Sla.T",
             "temSla2Tan.T",
+            "sla.heatPortEmb[1].T",
             "temRoo.T",
             "TOut.T",
-            "hotWaterTap.tem_in.T"
         ],
         "params": {
-            "P_nominal": 10e3,
-            "COP_nominal": 4,
+            "P_nominal": 1002,
+            "COP_nominal": 3,
             "gaiHP.k": 1.0,
-            "therm_cond_G": 500,
-            "heat_capa_C": 5e5,
+            "therm_cond_G": 102,
+            "heat_capa_C": 40e6,
         },
         "in_specs": {
             "uHP": {
@@ -89,7 +92,7 @@ def sh_dhw_tank():
         },
         "kpi_options": {},
         "init": {"key": ["uHP", "uRSla", "uValveDHW", "uFlowDHW"],
-                 "val": [0.0, 0.0, 0.0, 0.0]},
+                 "val": [0.2, 0.0, 1.0, 0.0]},
 
         # Controller I/O and Gains
         "inputs": ["uHP", "uRSla"],
@@ -108,7 +111,7 @@ def sh_dhw_tank():
 # Plot functions
 # ============================================================================
 
-def plot_simple_house(mdl, record, model_name):
+def plot_swiss_house(mdl, record, model_name):
     row, col = 3, 1
     fig, ax = plt.subplots(row, col, sharex=True, num=model_name)
 
@@ -185,11 +188,11 @@ def run_model(model_name: str):
     print(get_model_data(env, mdl["params"].keys()))
 
     # Set parameters and check
-    set_model_param(env, mdl["params"].keys(), mdl["params"].values())
+    set_model_param(env, list(mdl["params"].keys()), mdl["params"].values())
     print(get_model_data(env, mdl["params"].keys()))
 
     # Set initial conditions (for states and/or inputs) and check
-    set_model_param(env, mdl["init"].keys(), mdl["init"].values())
+    set_model_param(env, mdl["init"]["key"], mdl["init"]["val"])
     print(get_model_data(env, mdl["init"]["key"]))
     print(get_model_data(env, mdl["states"]))
 
@@ -238,8 +241,8 @@ def test_models():
         records[model_name] = record
 
         # plot
-        if "simple_house" in mdl["model_path"]:
-            plot_simple_house(mdl, record, model_name)
+        if "swiss_house" in mdl["model_path"]:
+            plot_swiss_house(mdl, record, model_name)
         else:
             print("no plot")
     return records

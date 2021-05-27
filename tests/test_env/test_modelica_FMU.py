@@ -65,12 +65,12 @@ def plot_sh_rad(record, model_name):
     (
         record[
             [
-                "TOut.T",
-                "temRoo.T",
                 "heaPum.TEvaAct",
                 "heaPum.TConAct",
                 "temRet.T",
                 "temSup.T",
+                "temRoo.T",
+                "TOut.T",
             ]
         ]
         - T0
@@ -116,13 +116,13 @@ def plot_sh_rsla(record, model_name):
     (
         record[
             [
-                "TOut.T",
-                "temRoo.T",
                 "heaPum.TEvaAct",
                 "heaPum.TConAct",
                 "temRet.T",
                 "temSup.T",
                 "sla.heatPortEmb[1].T",
+                "temRoo.T",
+                "TOut.T",
             ]
         ]
         - T0
@@ -170,14 +170,14 @@ def plot_sh_slab(record, model_name):
     (
         record[
             [
-                "TOut.T",
-                "temRoo.T",
                 "heaPum.TEvaAct",
                 "heaPum.TConAct",
                 "temRet.T",
                 "temSup.T",
                 "sla.surf_a.T",
                 "sla.surf_b.T",
+                "temRoo.T",
+                "TOut.T",
             ]
         ]
         - T0
@@ -226,8 +226,8 @@ def run_model(model_name: str):
     )
 
     param_fmu = {
-        # "P_nominal": 1e3,
-        # "COP_nominal": 4,
+        # "P_nominal": 1000,
+        "COP_nominal": 3,
         # "therm_cond_G": 100,
         # "heat_capa_C": 40e6,
         # "TCon_nominal": T0 + 30,
@@ -269,7 +269,7 @@ def run_model(model_name: str):
         param_read = []
 
     print("old param:", env.get_variable_data(param_fmu))
-    env.set_model_variables(list(param_fmu.keys()), list(param_fmu.values()))
+    env.set_model_variables(list(param_fmu.keys()), param_fmu.values())
     print("new param:", env.get_variable_data(param_fmu))
     print("read param:", env.get_variable_data(param_read))
 

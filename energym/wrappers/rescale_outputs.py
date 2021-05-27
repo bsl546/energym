@@ -8,9 +8,7 @@ class RescaleOutputs(OutputsWrapper):
     r"""Rescales the continuous outputs space of the environment to a given range. By default, variables are rescaled
     between 0 and 1."""
 
-    def __init__(
-        self, env: energym.envs.env, lower_bound=None, upper_bound=None
-    ):
+    def __init__(self, env: energym.envs.env, lower_bound=None, upper_bound=None):
 
         super(RescaleOutputs, self).__init__(env)
 
@@ -42,9 +40,7 @@ class RescaleOutputs(OutputsWrapper):
     def outputs(self, outputs: dict):
 
         output_cop = deepcopy(outputs)
-        shared_keys = [
-            p for p in output_cop if p in list(self.lower_bound.keys())
-        ]
+        shared_keys = [p for p in output_cop if p in list(self.lower_bound.keys())]
 
         for key in shared_keys:
             if isinstance(output_cop[key], list):
@@ -53,22 +49,26 @@ class RescaleOutputs(OutputsWrapper):
                         output_cop[key][i] - self.lower_bound[key]
                     ) / (self.upper_bound[key] - self.lower_bound[key])
             else:
-                output_cop[key] = (
-                    output_cop[key] - self.lower_bound[key]
-                ) / (self.upper_bound[key] - self.lower_bound[key])
+                output_cop[key] = (output_cop[key] - self.lower_bound[key]) / (
+                    self.upper_bound[key] - self.lower_bound[key]
+                )
 
         return output_cop
 
     def revert_outputs(self, outputs: dict):
 
         output_cop = deepcopy(outputs)
-        shared_keys = [
-            p for p in output_cop if p in list(self.lower_bound.keys())
-        ]
+        shared_keys = [p for p in output_cop if p in list(self.lower_bound.keys())]
 
         for key in shared_keys:
-            output_cop[key] = self.lower_bound[key] + (
-                output_cop[key]
-                * (self.upper_bound[key] - self.lower_bound[key])
-            )
+            if isinstance(output_cop[key], list):
+                for i in range(len(output_cop[key])):
+                    output_cop[key][i] = self.lower_bound[key] + (
+                        output_cop[key][i]
+                        * (self.upper_bound[key] - self.lower_bound[key])
+                    )
+            else:
+                output_cop[key] = self.lower_bound[key] + (
+                    output_cop[key] * (self.upper_bound[key] - self.lower_bound[key])
+                )
         return output_cop

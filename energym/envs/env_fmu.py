@@ -183,6 +183,7 @@ class EnvFMU(Env):
         self.stop_time = stop_time
 
         self.input_specs = input_specs
+        self.output_specs = output_specs
 
         # Fix inputs and outputs keys
         if output_specs is not None:

@@ -83,8 +83,8 @@ def sh_tank():
         "init": {"key": ["uHP", "uRSla"], "val": [0.2, 0.2]},
         # Controller I/O and Gains
         "inputs": ["uHP", "uRSla"],
-        "sensor": ["temHP2Hex.T", "temRoo.T"],
-        "ref": [T0 + 60, T0 + 21],
+        "sensor": ["tanSH.heaPorSid.T", "temRoo.T"],
+        "ref": [T0 + 40, T0 + 21],
         "kp": [0.1, 0.04],
         "bound": [[0, 1], [0, 1]]
     }

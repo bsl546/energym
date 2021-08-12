@@ -550,5 +550,62 @@ def make(key, eval_mode=False, **kwargs):
                 )
             except BaseException as e:
                 logger.exception("Unable to build model. {}".format(e))
+    elif key == EnvNames.SWISSHOUSE_RSLA_TANK_V0.value:
+        if eval_mode:
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "HP_u_Tank_u_RSla_1RC_Sun",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
+        else:
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "HP_u_Tank_u_RSla_1RC_Sun",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
+    elif key == EnvNames.SWISSHOUSE_RSLA_TANK_DHW_V0.value:
+        if eval_mode:
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "HP_u_Tank_u_DHW_u_RSla_1RC_Sun",
+                    ),
+                    weather="CH_ZH_Maur",
+                    simulation_days=365,
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
+        else:
+            try:
+                return SwissHouse(
+                    model_path=os.path.join(
+                        "swiss_house",
+                        "fmus",
+                        op_sys,
+                        "HP_u_Tank_u_DHW_u_RSla_1RC_Sun",
+                    ),
+                    **kwargs
+                )
+            except BaseException as e:
+                logger.exception("Unable to build model. {}".format(e))
+
     else:
         raise Exception("Invalid environment name.")

@@ -18,7 +18,7 @@ Thermal systems
 A water to water heat pump is connected to a simple room model with radiator. A schematic picture of the equipment is given in the following image:
 
 
-.. image:: images/HP_u_Rad_1_RC_Sun.png
+.. image:: images/SimpleHouse_HP_u_Rad_1RC_Sun.png
     :width: 600
     :align: center
 

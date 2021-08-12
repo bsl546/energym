@@ -30,4 +30,6 @@ For each model we define an evaluation scenario that includes the tracked KPIs, 
 
    houseslab
 
-   suurr
+   swiss
+
+   swiss2

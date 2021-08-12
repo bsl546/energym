@@ -19,10 +19,9 @@ Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 A water to water heat pump is connected to a simple room model with hydronic underfloor heating. A schematic picture of the equipment is given in the following image:
 
-.. image:: images/HP_u_RSla_1_RC_Sun.png
+.. image:: images/SimpleHouse_HP_u_RSla_1RC_Sun.png
     :width: 600
     :align: center
-
 
 
 
@@ -110,4 +109,4 @@ Notebook example
    :maxdepth: 1
    :caption:  Here is a notebook example:
 
-   notebooks/SimpleHouseSlab
+   notebooks/SimpleHouseRSla

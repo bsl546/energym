@@ -18,7 +18,19 @@ Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Two  heat pump versions are implemented: SwissHouseRSlaW2W-v0 and SwissHouseRSlaA2W-v0.
 SwissHouseRSlaW2W-v0 has a water to water heat pump, and SwissHouseRSlaA2W-v0 a air to water heat pump. Both emit heat to the zone via  hydronic underfloor heating.
-The building has no cooling system and is tailor made for european climate.
+The building has no cooling system.
+
+The picture below displays the Air-to-Water systems.
+
+.. image:: images/SwissHouse_HP_u_RSla_1RC_Sun_A2W.png
+    :width: 600
+    :align: center
+
+The picture below displays the Water-to-Water systems.
+
+.. image:: images/SwissHouse_HP_u_RSla_1RC_Sun_W2W.png
+    :width: 600
+    :align: center
 
 
 Electrical systems
@@ -49,13 +61,14 @@ For more detail, please check the documentation :ref:`swisshouse_doc` or the sou
     from energym.envs.swiss_house.swiss_house import INPUTS_SPECS
     table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in INPUTS_SPECS:
-        table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
-        if INPUTS_SPECS[var]["type"] == "scalar":
-            table = table + str(INPUTS_SPECS[var]["lower_bound"]) + ", " + str(INPUTS_SPECS[var]["upper_bound"]) + ", "
-        else:
-            table = table + ", , " + str(INPUTS_SPECS[var]["size"])
-        table = table + ", " + str(INPUTS_SPECS[var]["description"])
-        table = table + "\n"
+        if var=="u":
+            table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
+            if INPUTS_SPECS[var]["type"] == "scalar":
+                table = table + str(INPUTS_SPECS[var]["lower_bound"]) + ", " + str(INPUTS_SPECS[var]["upper_bound"]) + ", "
+            else:
+                table = table + ", , " + str(INPUTS_SPECS[var]["size"])
+            table = table + ", " + str(INPUTS_SPECS[var]["description"])
+            table = table + "\n"
     print(table)
         
 
@@ -65,15 +78,15 @@ Simulation outputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. exec::
     import json
-    from energym.envs.swiss_house.swiss_house import OUTPUTS_SPECS_RAD
+    from energym.envs.swiss_house.swiss_house import OUTPUTS_SPECS_RSLA
     table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
-    for var in OUTPUTS_SPECS_RAD:
-        table = table + "    " + var + ", " + "" + OUTPUTS_SPECS_RAD[var]["type"] + ", "
-        if OUTPUTS_SPECS_RAD[var]["type"] == "scalar":
-            table = table + str(OUTPUTS_SPECS_RAD[var]["lower_bound"]) + ", " + str(OUTPUTS_SPECS_RAD[var]["upper_bound"]) + ", "
+    for var in OUTPUTS_SPECS_RSLA:
+        table = table + "    " + var + ", " + "" + OUTPUTS_SPECS_RSLA[var]["type"] + ", "
+        if OUTPUTS_SPECS_RSLA[var]["type"] == "scalar":
+            table = table + str(OUTPUTS_SPECS_RSLA[var]["lower_bound"]) + ", " + str(OUTPUTS_SPECS_RSLA[var]["upper_bound"]) + ", "
         else:
-            table = table + ", , " + str(OUTPUTS_SPECS_RAD[var]["size"])
-        table = table + ", " + str(OUTPUTS_SPECS_RAD[var]["description"])
+            table = table + ", , " + str(OUTPUTS_SPECS_RSLA[var]["size"])
+        table = table + ", " + str(OUTPUTS_SPECS_RSLA[var]["description"])
         table = table + "\n"
     print(table)
 
@@ -94,7 +107,7 @@ The available weather files for this model have the following specifiers:
 
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The evaluation scenario for the `SwissHouseRad-v0` model consists of a control from January to April with the objective of minimizing the power demand, while keeping the zone temperatures between 19 and 24°C.
+The evaluation scenario for the `SwissHouseRSlaW2W-v0` model consists of a control from January to April with the objective of minimizing the power demand, while keeping the zone temperatures between 19 and 24°C.
 For this goal, the tracked KPIs are the average power demand, and the average temperature deviation and total temperature violations with respect to the interval [19, 24].
 
 Notebook example
@@ -103,4 +116,4 @@ Notebook example
    :maxdepth: 1
    :caption:  Here is a notebook example:
 
-   notebooks/SwissHouseRad
+   notebooks/SwissHouseRSla

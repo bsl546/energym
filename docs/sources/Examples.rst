@@ -1,7 +1,7 @@
 .. _examples:
 
 Examples
-**********
+**************
 
 Building Examples
 ------------------
@@ -25,6 +25,14 @@ Building Examples
    Apartments2Grid-v0 <notebooks/Apartments2Grid>
 
    Apartments2Thermal-v0 <notebooks/Apartments2Thermal>
+
+   SimpleHouseRad-v0 <notebooks/SimpleHouseRad>
+
+   SimpleHouseRSla-v0 <notebooks/SimpleHouseRSla>
+
+   SwissHouseRSlaW2W-v0 <notebooks/SwissHouseRSla>
+
+   SwissHouseRSlaTank-v0 <notebooks/SwissHouseRSlaTank>
 
 .. _kpi_ex:
 

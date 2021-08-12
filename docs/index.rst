@@ -32,7 +32,7 @@ Energym is an open source building simulation library designed for the control c
  
 The  library offers an intuitive interface to a variety of building models, similar to the one popularized by the `Gym <https://gym.openai.com/>`_ used in the robotic control community. Energym relies on the `functional mockup interface (FMI) <https://fmi-standard.org/>`_ standard in order to support models generated in multiple modelling languages easily. It incorporates models developed in  `Modelica <https://www.modelica.org/>`_ and `EnergyPlus <https://energyplus.net/>`_  as well as specific classes for simulating weather forecasts and appliances consumption figures.
  
-Energym has to date 11 models integrated and  offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). 
+Energym has to date 14 models integrated and  offers the possibility to benchmark controllers on buildings models that are representative of real-world HVAC systems. They cover different buildings typologies (institutional building, office building, etc.) and configuration of the HVAC where control can be performed at different levels (control of energy generation, control of final demand through setpoints, etc.). 
 
 New models and new control capabilities are under development und will be added to the library in due course.
 

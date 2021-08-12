@@ -25,6 +25,7 @@ config_dict["root"] = {
     "libs": [
         r"/home/libraries/modelica-buildings/Buildings",
         r"/home/libraries/modelica-ibpsa/IBPSA",
+        r"/home/libraries/IDEAS/IDEAS",
         r"/app/simulation/modelica",
     ]
 }

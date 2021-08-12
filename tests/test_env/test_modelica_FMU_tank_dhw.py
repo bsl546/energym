@@ -136,7 +136,7 @@ def build_model(mdl):
         step_size=mdl["step_size"],
         weather=mdl["weather"],
         params={},
-        init_vals={},
+        init_vals=dict(zip(mdl["init"]["key"], mdl["init"]["val"])),
         input_specs=mdl["in_specs"],
         output_specs=mdl["out_specs"],
         kpi_options=mdl["kpi_options"],

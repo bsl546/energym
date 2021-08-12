@@ -124,6 +124,12 @@ OUTPUTS_SPECS_RSLA = {
         "upper_bound": 343.15,
         "description": "Evaporator temperature used to compute efficiency (K).",
     },
+    "tanSH.heaPorSid.T": {
+        "type": "scalar",
+        "lower_bound": 273.15,
+        "upper_bound": 353.15,
+        "description": "Tank temperature (K).",
+    },
     "sla.QTot": {
         "type": "scalar",
         "lower_bound": 0,
@@ -202,7 +208,7 @@ class SwissHouse(EnvModFMU):
         start_day=1,
         start_month=1,
         year=2019,
-        simulation_days=3 * 21,
+        simulation_days=21,
         weather="CH_BS_Basel",
         kpi_options=None,
         default_path=True,

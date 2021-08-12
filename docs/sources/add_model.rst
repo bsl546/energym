@@ -31,7 +31,7 @@ edit the pythoncom variable depending on your platform.
 
 Then, in a command line, type::
 
-    python create_eplus_env.py -src <folder_name>
+    python create_eplus_env.py -folder_name <folder_name> -src <model_name>
 
 
 You may want to provide a weather file with the option -wf. By default, you must have at least a weather wile called weather.epw in the weather folder.
@@ -47,7 +47,7 @@ We provide in the directory scripts a Python script *create_mo_env_jmod.py*. You
 
 Then, in a command line, type::
 
-    python create_mo_env_jmod.py -src <folder_name>
+    python create_mo_env_jmod.py -folder_name <folder_name> -src <model_name>
 
 If the compilation is successful, models are added to the fmus folder of your model.
 

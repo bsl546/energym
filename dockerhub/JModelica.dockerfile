@@ -108,11 +108,8 @@ WORKDIR /home/libraries
 WORKDIR /home/libraries
 
 #Commented github download because of instabilities when downloading from git
-RUN git clone -b v7.0.0  https://github.com/lbl-srg/modelica-buildings.git
-#RUN wget https://github.com/lbl-srg/modelica-buildings/releases/download/v7.0.0/Buildings-v7.0.0.zip
-#RUN mkdir modelica-buildings
-#RUN unzip  Buildings-v7.0.0.zip  && mv 'Buildings 7.0.0'  modelica-buildings/Buildings
-
+RUN git clone -b v8.0.0  https://github.com/lbl-srg/modelica-buildings.git
+RUN git clone https://github.com/open-ideas/IDEAS.git
 RUN git clone https://github.com/ibpsa/modelica-ibpsa.git
 RUN git clone https://github.com/lbl-srg/EnergyPlusToFMU
 

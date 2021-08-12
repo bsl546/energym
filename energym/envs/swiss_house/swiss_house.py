@@ -8,7 +8,35 @@ INPUTS_SPECS = {
         "upper_bound": 1,
         "default": 0,
         "description": "Heat pump power fraction setpoint.",
-    }
+    },
+    "uHP": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1,
+        "default": 0,
+        "description": "Heat pump power fraction setpoint.",
+    },
+    "uRSla": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1,
+        "default": 0,
+        "description": "Hot water emitter flow fraction setpoint.",
+    },
+    "uValveDHW": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1,
+        "default": 0,
+        "description": "Hot water valve opening fraction.",
+    },
+    "uFlowDHW": {
+        "type": "scalar",
+        "lower_bound": 0,
+        "upper_bound": 1,
+        "default": 0,
+        "description": "Hot water flow demand fraction.",
+    },
 }
 
 OUTPUTS_SPECS_RSLA = {
@@ -214,7 +242,7 @@ class SwissHouse(EnvModFMU):
             # "heat_capa_C": 40e6,
             # "QRooInt_flow": 700.0,
         }
-        init_vals = {"u": 0.0}
+        init_vals = {key: INPUTS_SPECS[key]["default"] for key in INPUTS_SPECS}
 
         if kpi_options is None:
             kpi_options = default_kpi_options

@@ -61,8 +61,11 @@ Environment | Thermostat | Heat Pump | Battery | AHU | EV | PV | Software
 `SeminarcenterThermostat-v0` | :heavy_check_mark: | :large_orange_diamond: | :x: | :x: | :x: | :large_orange_diamond: | E+
 `SeminarcenterFull-v0` | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | E+
 `SimpleHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
-`SimpleHouseSlab-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
-`SwissHouseRad-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SimpleHouseRSla-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SwissHouseRSlaW2W-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SwissHouseRSlaA2W-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SwissHouseRSlaTank-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
+`SwissHouseRSlaTankDhw-v0` | :x: | :heavy_check_mark: | :x: | :x: | :x: | :large_orange_diamond: | Mod
 
 :heavy_check_mark: : present and controllable, :large_orange_diamond: : present but not controllable, :x: : absent. 
 
@@ -135,4 +138,5 @@ Two docker pre-built images are stored on dockerhub, one for model launching and
 If you use our library for your work, please cite our paper: 
 
 Scharnhorst, P.; Schubnel, B.; Fernández Bandera, C.; Salom, J.; Taddeo, P.; Boegli, M.; Gorecki, T.; Stauffer, Y.; Peppas, A.; Politi, C. Energym: A Building Model Library for Controller Benchmarking. Appl. Sci. 2021, 11, 3518. https://doi.org/10.3390/app11083518 
+
 

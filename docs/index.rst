@@ -99,9 +99,15 @@ of the buildings, their inputs and outputs.
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 | :ref:`SimpleHouseRad-v0 <SimpleHouserad>`                           |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`SimpleHouseSlab-v0 <SimpleHouseslab>`                         |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
+| :ref:`SimpleHouseRSla-v0 <SimpleHouseslab>`                         |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
-| :ref:`SwissHouseRad-v0 <SwissHouserad>`                             |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
+| :ref:`SwissHouseRSlaW2W-v0 <SwissHousesla>`                         |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
++---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
+| :ref:`SwissHouseRSlaA2W-v0 <SwissHousesla>`                         |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
++---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
+| :ref:`SwissHouseRSlaTank-v0 <SwissHouseslatank>`                    |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
++---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
+| :ref:`SwissHouseRSlaTankDhw-v0 <SwissHouseslatank>`                 |:red:`abs` |:gre:`con`  |:red:`abs`  |:red:`abs`|:red:`abs`|:yel:`uncon`|Mod|
 +---------------------------------------------------------------------+-----------+------------+------------+----------+----------+------------+---+
 
 :gre:`con` : present and controllable, :yel:`uncon` : present but uncontrollable, :red:`abs` : absent.
@@ -132,6 +138,9 @@ of the buildings, their inputs and outputs.
 
    sources/houseslab
 
+   sources/swiss
+
+   sources/swiss2
 
 Example
 ----------

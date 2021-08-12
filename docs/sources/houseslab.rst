@@ -1,25 +1,25 @@
 .. _SimpleHouseslab:
 
 
-SimpleHouseSlab
+SimpleHouseRSla
 ----------------
 
 
-The simple house is a one-zone residential buildings located in Zurich Canton, Switzerland
+The simple house is a one-zone residential building.
 
 
 Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The entire house is modeled with a single thermal zone.
+The entire house is modeled with a single thermal zone. The parameters of the envelope are typical from a not-very well insulated american house and are taken from the modelica buildings library.
+The building has no cooling system.
 
 
 
 Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-A Heat pump with Carnot HX connected to a simple room model with radiator. A schematic picture of the equipment is given in the following image:
+A water to water heat pump is connected to a simple room model with hydronic underfloor heating. A schematic picture of the equipment is given in the following image:
 
-
-.. image:: images/HP_u_Slab_1_RC_Sun.png
+.. image:: images/HP_u_RSla_1_RC_Sun.png
     :width: 600
     :align: center
 

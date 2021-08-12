@@ -1,24 +1,24 @@
-.. _SwissHouserad:
+.. _SwissHousesla:
 
 
-SwissHouseRad
+SwissHouseRSla
 ----------------
 
-
-The SwissHouse building is a one-zone residential buildings located in Zurich Canton, Switzerland.
+The SwissHouse building is a one-zone residential building located in Zurich Canton, Switzerland. 
 
 
 Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The entire house is modeled with a single thermal zone.
+The entire house is modeled with a single thermal zone. Its envelop is a simple RC model with R, C parameters
+fitted to a real swiss Minergie house (low energy consumption building standard).
 
 
 
 Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-A Heat pump with Carnot HX connected to a simple room model with radiator.
-
-
+Two  heat pump versions are implemented: SwissHouseRSlaW2W-v0 and SwissHouseRSlaA2W-v0.
+SwissHouseRSlaW2W-v0 has a water to water heat pump, and SwissHouseRSlaA2W-v0 a air to water heat pump. Both emit heat to the zone via  hydronic underfloor heating.
+The building has no cooling system and is tailor made for european climate.
 
 
 Electrical systems
@@ -33,9 +33,7 @@ Controllable components
 
 HP control
 """"""""""""""""""
-The heat pump normalized supply flow and supply temperature are controllable.
-
-
+The heat pump normalized power is controllable.
 
 
 

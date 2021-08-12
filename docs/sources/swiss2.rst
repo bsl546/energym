@@ -1,26 +1,24 @@
-.. _SimpleHouserad:
+.. _SwissHouseslatank:
 
 
-SimpleHouseRad
--------------------
+SwissHouseRSla
+----------------
 
-The simple house is a one-zone residential building. 
+The SwissHouse building is a one-zone residential building located in Zurich Canton, Switzerland. 
 
 
 Building and thermal zones
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The entire house is modeled with a single thermal zone. The parameters of the envelope are typical from a not-very well insulated american house and are taken from the modelica buildings library.
-The building has no cooling system.
+The entire house is modeled with a single thermal zone. Its envelop is a simple RC model with R, C parameters
+fitted to a real swiss Minergie house (low energy consumption building standard).
+
 
 
 Thermal systems
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-A water to water heat pump is connected to a simple room model with radiator. A schematic picture of the equipment is given in the following image:
-
-
-.. image:: images/HP_u_Rad_1_RC_Sun.png
-    :width: 600
-    :align: center
+Heat is provided by a water to water heat pump, connected to a tank. The tanks serves as a supply to the hydronic underfloor heating.
+In the version SwissHouseRSlaTankDhw-v0, a hot water tank for hot water consumption is added and connected to the pump as well.
+The building has no cooling system and is tailor made for european climate.
 
 
 Electrical systems
@@ -37,20 +35,25 @@ HP control
 """"""""""""""""""
 The heat pump normalized power is controllable.
 
+Tank control
+""""""""""""""""""
+The normalized flow from the tank to the room is controllable.
 
-
+Valve control
+""""""""""""""""""
+The valve opening (water flow to the hot water tank) is controllable.
 
 
 
 Simulation inputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For more detail, please check the documentation :ref:`simplehouse_doc` or the source code in :py:class:`energym.envs.simple_house.simple_house.SimpleHouse`.
+For more detail, please check the documentation :ref:`swisshouse_doc` or the source code in :py:class:`energym.envs.swiss_house.swiss_house.SwissHouse`.
 
 
 .. exec::
     import json
-    from energym.envs.simple_house.simple_house import INPUTS_SPECS
+    from energym.envs.swiss_house.swiss_house import INPUTS_SPECS
     table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in INPUTS_SPECS:
         table = table + "    " + var + ", " + "" + INPUTS_SPECS[var]["type"] + ", "
@@ -69,7 +72,7 @@ Simulation outputs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 .. exec::
     import json
-    from energym.envs.simple_house.simple_house import OUTPUTS_SPECS_RAD
+    from energym.envs.swiss_house.swiss_house import OUTPUTS_SPECS_RAD
     table = ".. csv-table:: \n    :header: Variable Name, Type, Lower Bound, Upper Bound, # States, Description\n\n"
     for var in OUTPUTS_SPECS_RAD:
         table = table + "    " + var + ", " + "" + OUTPUTS_SPECS_RAD[var]["type"] + ", "
@@ -80,6 +83,7 @@ Simulation outputs
         table = table + ", " + str(OUTPUTS_SPECS_RAD[var]["description"])
         table = table + "\n"
     print(table)
+
 
 Weather files
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -97,7 +101,7 @@ The available weather files for this model have the following specifiers:
 
 Evaluation scenario
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The evaluation scenario for the `SimpleHouseRad-v0` model consists of a control from January to April with the objective of minimizing the power demand, while keeping the zone temperatures between 19 and 24°C.
+The evaluation scenario for the `SwissHouseRad-v0` model consists of a control from January to April with the objective of minimizing the power demand, while keeping the zone temperatures between 19 and 24°C.
 For this goal, the tracked KPIs are the average power demand, and the average temperature deviation and total temperature violations with respect to the interval [19, 24].
 
 Notebook example
@@ -106,4 +110,4 @@ Notebook example
    :maxdepth: 1
    :caption:  Here is a notebook example:
 
-   notebooks/SimpleHouseRad
+   notebooks/SwissHouseRad

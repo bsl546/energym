@@ -17,3 +17,5 @@ class EnvNames(Enum):
     SIMPLE_HOUSE_RSLA_V0 = "SimpleHouseRSla-v0"
     SWISSHOUSE_RSLA_W2W_V0 = "SwissHouseRSlaW2W-v0"
     SWISSHOUSE_RSLA_A2W_V0 = "SwissHouseRSlaA2W-v0"
+    SWISSHOUSE_RSLA_TANK_V0 = "SwissHouseRSlaTank-v0"
+    SWISSHOUSE_RSLA_TANK_DHW_V0 = "SwissHouseRSlaTankDhw-v0"

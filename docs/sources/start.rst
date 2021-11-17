@@ -122,3 +122,17 @@ gives the same outputs as the  gym step method, i.e. outputs, reward, done, info
 
 
 Forecasts are automatically adapted to match the chosen rescaling and downsampling. 
+
+
+Video Explanations
+-------------------
+
+First steps and more advanced usage of Energym are demonstrated in the following two videos.
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/hBuFMlXl0UI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/5eZFEzW2uNs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

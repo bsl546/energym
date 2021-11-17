@@ -11,6 +11,13 @@ Installation steps are explained below for Linux and Windows 10.
 Windows 10
 --------------------------
 
+All steps listed below are demonstrated in the following video:
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/9KYLtzTq4Y8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 Before starting, you must have a running version of Python>=3.6. Check `here <https://www.python.org/downloads/>`_.
 
 1. Download Energyplus 9.5 for Windows from this  `link <https://energyplus.net/downloads>`_ and install it.

@@ -24,8 +24,9 @@
 
 
 
-Energym
-================================
+.. figure:: sources/images/energym_logo_long_light.png
+   :height: 100
+   :target: https://github.com/bsl546/energym
 
 
 Energym is an open source building simulation library designed for the control community to test  climate control and energy mangement strategies on buildings in a systematic and reproducible way. Energym includes a number of building models that are calibrated on site data and defines standard metrics, quantifying the objective to be reached and allowing a standardized comparison between different controllers and publications.
@@ -175,6 +176,14 @@ When a controller/model has been trained, it can be finally evaluated on the pre
 Furthermore, models can be launched in parallels, making Energym models also usable for flexibility control strategies at multi-building level.
 
 
+Explanations
+-------------
+
+The first part of a video series on explanations and help around Energym can be found here:
+
+.. raw:: html
+
+   <iframe width="560" height="315" src="https://www.youtube.com/embed/9KYLtzTq4Y8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
